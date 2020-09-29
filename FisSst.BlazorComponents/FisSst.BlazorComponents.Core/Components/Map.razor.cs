@@ -1,5 +1,6 @@
 ﻿using FisSst.BlazorComponents.Core;
 using FisSst.BlazorComponents.Core.JsInterops;
+using FisSst.Maps.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -15,11 +16,24 @@ namespace FisSst.Maps
         public IJSRuntime JsRuntime { get; set; }
 
         [Parameter]
-        public string Id { get; set; }
+        public string MapDivId { get; set; }
+
+        [Parameter]
+        public LatLng StartCenter { get; set; }
+
+        [Parameter]
+        public int StartZoom { get; set; }
+
+        [Parameter]
+        public string UrlTileLayer { get; set; }
+
+        [Parameter]
+        public MapOptions MapOptions { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await MapJsInterop.Initialize(this.JsRuntime, this.Id);
+            await MapJsInterop.Initialize(
+                this.JsRuntime, this.MapDivId, this.StartCenter, this.StartZoom, this.UrlTileLayer, this.MapOptions);
         }
     }
 }
