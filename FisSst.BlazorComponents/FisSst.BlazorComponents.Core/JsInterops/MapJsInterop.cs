@@ -1,4 +1,5 @@
-﻿using FisSst.Maps.Models;
+﻿using FisSst.Maps.JsInterops.Base;
+using FisSst.Maps.Models;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -7,13 +8,27 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorComponents.Core.JsInterops
 {
-    internal class MapJsInterop
+    internal class MapJsInterop : BaseJsInterop
     {
-        internal static async Task Initialize(
-            IJSRuntime jsRuntime, 
-            MapOptions mapOptions)
+        private static readonly string jsFilePath = $"{JsInteropConfig.BaseJsFolder}{JsInteropConfig.MapFile}";
+        private const string initialize = "initialize";
+        private const string getCenter = "getCenter";
+
+        public MapJsInterop(IJSRuntime jsRuntime) : base(jsRuntime, jsFilePath)
         {
-            await jsRuntime.InvokeVoidAsync("leafletMap.initializeMap", mapOptions);
+
+        }
+
+        public async ValueTask<JSObjectReference> Initialize(MapOptions mapOptions)
+        {
+            var module = await moduleTask.Value;
+            return await module.InvokeAsync<JSObjectReference>(initialize, mapOptions);
+        }
+
+        public async ValueTask<LatLng> GetCenter(JSObjectReference mapReference)
+        {
+            var module = await moduleTask.Value;
+            return await module.InvokeAsync<LatLng>(getCenter, mapReference);
         }
     }
 }

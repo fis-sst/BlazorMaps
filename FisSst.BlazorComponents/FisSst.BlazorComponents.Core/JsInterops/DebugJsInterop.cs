@@ -1,15 +1,24 @@
+using FisSst.Maps.JsInterops.Base;
 using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 namespace FisSst.BlazorComponents.Core.JsInterops
 {
-    internal class DebugJsInterop
+    internal class DebugJsInterop : BaseJsInterop
     {
-        internal static async Task<string> Prompt(IJSRuntime jsRuntime, string message)
+        private static readonly string jsFilePath = $"{JsInteropConfig.BaseJsFolder}{JsInteropConfig.DebugFile}";
+        private const string showPrompt = "showPrompt";
+
+        public DebugJsInterop(IJSRuntime jsRuntime) : base(jsRuntime, jsFilePath)
         {
-            return await jsRuntime.InvokeAsync<string>(
-                "debugPrompt.showPrompt",
-                message);
+
+        }
+
+        public async ValueTask<string> Prompt(string message)
+        {
+            var module = await moduleTask.Value;
+            return await module.InvokeAsync<string>(showPrompt, message);
         }
     }
 }

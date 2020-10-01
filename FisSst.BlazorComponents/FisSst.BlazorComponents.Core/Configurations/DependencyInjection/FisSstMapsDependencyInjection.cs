@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FisSst.BlazorComponents.Core.JsInterops;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace FisSst.Maps.Configurations.DependencyInjection
     {
         public static IServiceCollection AddBlazorLeafletMaps(this IServiceCollection services)
         {
+            services.AddScoped<DebugJsInterop>();
+            services.AddScoped<MapJsInterop>();
             return services;
         }
     }
