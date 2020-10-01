@@ -2,7 +2,7 @@
 
 <h1>Map initialization</h1>
 
-<Map MapDivId="mapId" StartCenter="@StartCenter" StartZoom="StartZoom" UrlTileLayer="@UrlTileLayer" MapOptions="@MapOptions"></Map>
+<Map MapOptions="@MapOptions"></Map>
 
 <style>
     #mapId {
@@ -11,16 +11,20 @@
 </style>
 
 @code {
-    private LatLng StartCenter = new LatLng(50.279133, 18.685578);
-    private int StartZoom = 13;
-    private string UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}";
     private MapOptions MapOptions = new MapOptions()
     {
-        Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
-        MaxZoom = 18,
-        Id = "mapbox/streets-v11",
-        TileSize = 512,
-        ZoomOffset = -1,
-        AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
+        DivId = "mapId",
+        Center = new LatLng(50.279133, 18.685578),
+        Zoom = 13,
+        UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        SubOptions = new MapSubOptions()
+        {
+            Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+            MaxZoom = 18,
+            Id = "mapbox/streets-v11",
+            TileSize = 512,
+            ZoomOffset = -1,
+            AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
+        }
     };
 }

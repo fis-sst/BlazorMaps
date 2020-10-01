@@ -16,24 +16,11 @@ namespace FisSst.Maps
         public IJSRuntime JsRuntime { get; set; }
 
         [Parameter]
-        public string MapDivId { get; set; }
-
-        [Parameter]
-        public LatLng StartCenter { get; set; }
-
-        [Parameter]
-        public int StartZoom { get; set; }
-
-        [Parameter]
-        public string UrlTileLayer { get; set; }
-
-        [Parameter]
-        public MapOptions MapOptions { get; set; }
+        public MapOptions MapOptions { get; set; }        
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await MapJsInterop.Initialize(
-                this.JsRuntime, this.MapDivId, this.StartCenter, this.StartZoom, this.UrlTileLayer, this.MapOptions);
+            await MapJsInterop.Initialize(this.JsRuntime, this.MapOptions);
         }
     }
 }

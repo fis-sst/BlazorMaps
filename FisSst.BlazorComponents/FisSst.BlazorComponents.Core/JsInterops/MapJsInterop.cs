@@ -11,14 +11,9 @@ namespace FisSst.BlazorComponents.Core.JsInterops
     {
         internal static async Task Initialize(
             IJSRuntime jsRuntime, 
-            string mapDivId, 
-            LatLng startCenter, 
-            int startZoom,
-            string urlTileLayer,
             MapOptions mapOptions)
         {
-            await jsRuntime.InvokeVoidAsync("leafletMap.initializeMap", 
-                mapDivId, startCenter.Value, startZoom, urlTileLayer, mapOptions);
+            await jsRuntime.InvokeVoidAsync("leafletMap.initializeMap", mapOptions);
         }
     }
 }

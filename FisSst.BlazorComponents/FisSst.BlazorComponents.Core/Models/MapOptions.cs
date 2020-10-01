@@ -6,11 +6,10 @@ namespace FisSst.Maps.Models
 {
     public class MapOptions
     {
-        public string Id { get; set; }
-        public string Attribution { get; set; }
-        public int MaxZoom { get; set; }        
-        public int TileSize { get; set; }
-        public int ZoomOffset { get; set; }
-        public string AccessToken { get; set; }
+        public string DivId { get; set; }
+        public LatLng Center { get; set; }
+        public int Zoom { get; set; }
+        public string UrlTileLayer { get; set; }
+        public MapSubOptions SubOptions { get; set; }
     }
 }
