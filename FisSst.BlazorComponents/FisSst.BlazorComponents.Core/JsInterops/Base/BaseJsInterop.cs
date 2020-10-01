@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FisSst.Maps.JsInterops.Base
 {
-    internal class BaseJsInterop : IAsyncDisposable
+    internal abstract class BaseJsInterop : IAsyncDisposable, IBaseJsInterop
     {
         protected readonly Lazy<Task<JSObjectReference>> moduleTask;
 

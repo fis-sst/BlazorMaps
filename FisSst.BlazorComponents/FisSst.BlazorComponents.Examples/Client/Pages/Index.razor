@@ -2,7 +2,9 @@
 
 <h1>Map initialization</h1>
 
-<Map MapOptions="@MapOptions"></Map>
+<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+
+<button @onclick="async () => await MapRef.Debug()">Debug</button>
 
 <style>
     #mapId {
@@ -11,6 +13,8 @@
 </style>
 
 @code {
+    private Map MapRef;
+
     private MapOptions MapOptions = new MapOptions()
     {
         DivId = "mapId",

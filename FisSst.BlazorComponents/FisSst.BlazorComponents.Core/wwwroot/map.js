@@ -5,6 +5,5 @@
 }
 
 export function getCenter(mapObject) {
-    console.log(mapObject.getCenter());
     return mapObject.getCenter();
 }

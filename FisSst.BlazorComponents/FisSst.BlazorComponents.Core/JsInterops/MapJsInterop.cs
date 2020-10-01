@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorComponents.Core.JsInterops
 {
-    internal class MapJsInterop : BaseJsInterop
+    internal class MapJsInterop : BaseJsInterop, IMapJsInterop
     {
         private static readonly string jsFilePath = $"{JsInteropConfig.BaseJsFolder}{JsInteropConfig.MapFile}";
         private const string initialize = "initialize";

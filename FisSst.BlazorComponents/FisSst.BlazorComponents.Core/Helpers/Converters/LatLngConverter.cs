@@ -16,9 +16,28 @@ namespace FisSst.Maps.Helpers.Converters
             Type typeToConvert,
             JsonSerializerOptions options)
         {
-            double latitude = reader.GetDouble();
-            double longitude = reader.GetDouble();
-            return new LatLng(latitude, longitude);
+            double? latitude = null;
+            double? longitude = null;
+            while (reader.Read())
+            {
+                switch (reader.TokenType)
+                {
+                    case JsonTokenType.PropertyName:
+                    case JsonTokenType.String:
+                        break;
+                    case JsonTokenType.Number:
+                        {
+                            if (latitude == null)
+                                latitude = reader.GetDouble();
+                            else
+                                longitude = reader.GetDouble();
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+            return new LatLng(latitude.Value, longitude.Value);
         }
 
         public override void Write(

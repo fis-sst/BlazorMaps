@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorComponents.Core.JsInterops
 {
-    internal class DebugJsInterop : BaseJsInterop
+    internal class DebugJsInterop : BaseJsInterop, IDebugJsInterop
     {
         private static readonly string jsFilePath = $"{JsInteropConfig.BaseJsFolder}{JsInteropConfig.DebugFile}";
         private const string showPrompt = "showPrompt";
