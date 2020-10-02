@@ -35,10 +35,34 @@ namespace FisSst.Maps
             }            
         }
 
-        public async Task Debug()
+        public async Task<LatLng> GetCenter()
         {
-            var center = await this.MapJsInterop.GetCenter(this.MapReference);
-            await this.DebugJsInterop.Prompt($"{center.Latitude}, {center.Longitude}");
+            return await this.MapJsInterop.GetCenter(this.MapReference);
+        }
+
+        public async Task SetView(LatLng latLng)
+        {
+            await this.MapJsInterop.SetView(this.MapReference, latLng);
+        }
+
+        public async Task SetZoom(int zoom)
+        {
+            await this.MapJsInterop.SetZoom(this.MapReference, zoom);
+        }
+
+        public async Task ZoomIn(int zoomDelta)
+        {
+            await this.MapJsInterop.SetZoom(this.MapReference, zoomDelta);
+        }
+
+        public async Task ZoomOut(int zoomDelta)
+        {
+            await this.MapJsInterop.SetZoom(this.MapReference, zoomDelta);
+        }
+
+        public async Task SetZoomAround(LatLng latLng, int zoom)
+        {
+            await this.MapJsInterop.SetZoomAround(this.MapReference, latLng, zoom);
         }
     }
 }

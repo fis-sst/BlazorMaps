@@ -12,5 +12,10 @@ namespace FisSst.Maps.JsInterops.Base
     {
         ValueTask<JSObjectReference> Initialize(MapOptions mapOptions);
         ValueTask<LatLng> GetCenter(JSObjectReference mapReference);
+        ValueTask SetView(JSObjectReference mapReference, LatLng latLng);
+        Task SetZoom(JSObjectReference mapReference, int zoom);
+        Task ZoomIn(JSObjectReference mapReference, int? zoomDelta);
+        Task ZoomOut(JSObjectReference mapReference, int? zoomDelta);
+        Task SetZoomAround(JSObjectReference mapReference, LatLng latLng, int zoom);
     }
 }

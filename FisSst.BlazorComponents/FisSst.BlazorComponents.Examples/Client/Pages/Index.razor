@@ -1,10 +1,14 @@
 ﻿@page "/"
 
+@inject IJSRuntime jsRuntime
+
 <h1>Map initialization</h1>
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
-<button @onclick="async () => await MapRef.Debug()">Debug</button>
+<button @onclick="async () => await GetCenterExample()">Get Center</button>
+<button @onclick="async () => await MapRef.SetView(Center)">Set View</button>
+<button @onclick="async () => await MapRef.SetZoom(zoom: 13)">Set Zoom</button>
 
 <style>
     #mapId {
@@ -15,10 +19,12 @@
 @code {
     private Map MapRef;
 
+    private static readonly LatLng Center = new LatLng(50.279133, 18.685578);
+
     private MapOptions MapOptions = new MapOptions()
     {
         DivId = "mapId",
-        Center = new LatLng(50.279133, 18.685578),
+        Center = Center,
         Zoom = 13,
         UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
         SubOptions = new MapSubOptions()
@@ -31,4 +37,10 @@
             AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
         }
     };
+
+    private async Task GetCenterExample()
+    {
+        LatLng center = await MapRef.GetCenter();
+        await jsRuntime.InvokeAsync<string>("console.log", center);
+    }
 }
