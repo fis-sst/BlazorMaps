@@ -28,11 +28,14 @@ namespace FisSst.Maps
         private JSObjectReference MapReference { get; set; }
 
         private const string getCenter = "getCenter";
+        private const string getZoom = "getZoom";
+        private const string getMinZoom = "getMinZoom";
+        private const string getMaxZoom = "getMaxZoom";
         private const string setView = "setView";
         private const string setZoom = "setZoom";
         private const string zoomIn = "zoomIn";
         private const string zoomOut = "zoomOut";
-        private const string setZoomAround = "setZoomAround";
+        private const string setZoomAround = "setZoomAround";        
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -45,6 +48,21 @@ namespace FisSst.Maps
         public async Task<LatLng> GetCenter()
         {
             return await this.MapReference.InvokeAsync<LatLng>(getCenter);
+        }
+
+        public async Task<int> GetZoom()
+        {
+            return await this.MapReference.InvokeAsync<int>(getZoom);
+        }
+
+        public async Task<int> GetMinZoom()
+        {
+            return await this.MapReference.InvokeAsync<int>(getMinZoom);
+        }
+
+        public async Task<int> GetMaxZoom()
+        {
+            return await this.MapReference.InvokeAsync<int>(getMaxZoom);
         }
 
         public async Task SetView(LatLng latLng)
