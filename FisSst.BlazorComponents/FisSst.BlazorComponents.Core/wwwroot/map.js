@@ -3,7 +3,3 @@
     L.tileLayer(mapOptions.urlTileLayer, mapOptions.subOptions).addTo(newMap);
     return newMap;
 }
-
-export function getCenter(mapObject) {
-    return mapObject.getCenter();
-}
