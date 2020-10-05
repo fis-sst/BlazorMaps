@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using FisSst.Maps.Configurations.DependencyInjection;
+using FisSst.Maps.DependencyInjection;
 
 namespace FisSst.BlazorComponents.Examples.Client
 {

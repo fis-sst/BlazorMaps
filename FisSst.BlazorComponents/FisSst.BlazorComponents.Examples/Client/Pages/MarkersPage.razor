@@ -1,0 +1,54 @@
+﻿@page "/markers"
+
+@inject IJSRuntime JsRuntime
+@inject IMarkerFactory MarkerFactory
+
+<h1>Map initialization</h1>
+
+<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+
+<button @onclick="async () => await AddMarkers()">Add Markers</button>
+
+<style>
+    #mapId {
+        height: 600px;
+    }
+</style>
+
+@code {
+    private Map MapRef;
+
+    bool firstRender = true;
+
+    private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
+    private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
+    private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+
+    private MapOptions MapOptions = new MapOptions()
+    {
+        DivId = "mapId",
+        Center = new LatLng(50.279133, 18.685578),
+        Zoom = 13,
+        UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        SubOptions = new MapSubOptions()
+        {
+            Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+            MaxZoom = 18,
+            Id = "mapbox/streets-v11",
+            TileSize = 512,
+            ZoomOffset = -1,
+            AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
+        }
+    };
+
+    protected async Task AddMarkers()
+    {
+        if (firstRender)
+        {
+            firstRender = false;
+            Marker marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
+            Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
+            Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(ThirdMarkerLatLng, MapRef);
+        }
+    }
+}

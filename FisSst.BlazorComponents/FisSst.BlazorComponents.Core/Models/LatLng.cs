@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 namespace FisSst.Maps.Models
 {
     [JsonConverter(typeof(LatLngConverter))]
-    public class LatLng 
+    public struct LatLng 
     {
         public LatLng(double lat, double lng)
         {

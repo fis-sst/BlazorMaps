@@ -23,9 +23,9 @@ namespace FisSst.Maps
         internal IMapJsInterop MapJsInterop { get; set; }
 
         [Parameter]
-        public MapOptions MapOptions { get; set; }        
+        public MapOptions MapOptions { get; set; }
 
-        private JSObjectReference MapReference { get; set; }
+        internal JSObjectReference MapReference { get; set; }
 
         private const string getCenter = "getCenter";
         private const string getZoom = "getZoom";
