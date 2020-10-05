@@ -49,27 +49,27 @@ namespace FisSst.Maps
 
         public async Task SetView(LatLng latLng)
         {
-            await this.MapReference.InvokeVoidAsync(setView, latLng);
+            await this.MapReference.InvokeAsync<JSObjectReference>(setView, latLng);
         }
 
         public async Task SetZoom(int zoom)
         {
-            await this.MapReference.InvokeVoidAsync(setZoom, zoom);
+            await this.MapReference.InvokeAsync<JSObjectReference>(setZoom, zoom);
         }
 
         public async Task ZoomIn(int zoomDelta)
         {
-            await this.MapReference.InvokeVoidAsync(zoomIn, zoomDelta);
+            await this.MapReference.InvokeAsync<JSObjectReference>(zoomIn, zoomDelta);
         }
 
         public async Task ZoomOut(int zoomDelta)
         {
-            await this.MapReference.InvokeVoidAsync(zoomOut, zoomDelta);
+            await this.MapReference.InvokeAsync<JSObjectReference>(zoomOut, zoomDelta);
         }
 
         public async Task SetZoomAround(LatLng latLng, int zoom)
         {
-            await this.MapReference.InvokeVoidAsync(setZoomAround, latLng, zoom);
+            await this.MapReference.InvokeAsync<JSObjectReference>(setZoomAround, latLng, zoom);
         }
     }
 }
