@@ -1,4 +1,3 @@
-﻿using FisSst.BlazorComponents.Core.JsInterops;
 using FisSst.Maps.Factories;
 using FisSst.Maps.JsInterops;
 using FisSst.Maps.JsInterops.Base;
@@ -10,15 +9,27 @@ namespace FisSst.Maps.DependencyInjection
     {
         public static IServiceCollection AddBlazorLeafletMaps(this IServiceCollection services)
         {
-            services.AddTransient<IDebugJsInterop, DebugJsInterop>();
-            services.AddTransient<IMapJsInterop, MapJsInterop>();
+            AddJsInterops(services);
+            AddFactories(services);
+            return services;
+        }
+
+        private static void AddFactories(IServiceCollection services)
+        {
             services.AddTransient<IMarkerFactory, MarkerFactory>();
+            services.AddTransient<IIconFactory, IconFactory>();
             services.AddTransient<IPolylineFactory, PolylineFactory>();
             services.AddTransient<IPolygonFactory, PolygonFactory>();
-            services.AddTransient<IEventedJsInterop, EventedJsInterop>();
             services.AddTransient<ICircleMarkerFactory, CircleMarkerFactory>();
             services.AddTransient<ICircleFactory, CircleFactory>();
-            return services;
+        }
+
+        private static void AddJsInterops(IServiceCollection services)
+        {
+            services.AddTransient<IDebugJsInterop, DebugJsInterop>();
+            services.AddTransient<IMapJsInterop, MapJsInterop>();
+            services.AddTransient<IEventedJsInterop, EventedJsInterop>();
+            services.AddTransient<IIconFactoryJsInterop, IconFactoryJsInterop>();
         }
     }
 }

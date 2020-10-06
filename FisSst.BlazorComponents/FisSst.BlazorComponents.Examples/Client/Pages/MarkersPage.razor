@@ -2,6 +2,7 @@
 
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
+@inject IIconFactory IconFactory
 
 <h1>Markers</h1>
 
@@ -9,6 +10,8 @@
 
 <button @onclick="async () => await AddMarkers()">Add Markers</button>
 <button @onclick="async () => await RemoveMarkers()">Remove Markers</button>
+<button @onclick="async () => await AddMarkerWithOptions()">Add Marker with options</button>
+<button @onclick="async () => await RemoveMarkerWithOptions()">Remove Marker with options</button>
 
 <style>
     #mapId {
@@ -22,6 +25,9 @@
     private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
     private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
     private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+    private static readonly LatLng MarkerWithOptionsLatLng = new LatLng(50.273103, 18.684534);
+
+    private Marker MarkerWithOptions;
 
     Marker marker1 = null;
     Marker marker2 = null;
@@ -56,5 +62,24 @@
         await marker1.Remove();
         await marker2.Remove();
         await marker3.Remove();
+    }
+
+    private async Task AddMarkerWithOptions()
+    {
+        IconOptions iconOptions = new IconOptions()
+        {
+            IconUrl = "https://www.flaticon.com/svg/static/icons/svg/3214/3214679.svg",
+        };
+        MarkerOptions markerOptions = new MarkerOptions()
+        {
+            Draggable = true,
+            Icon = await this.IconFactory.Create(iconOptions),
+        };
+        this.MarkerWithOptions = await this.MarkerFactory.CreateAndAddToMap(MarkerWithOptionsLatLng, MapRef, markerOptions);
+    }
+
+    private async Task RemoveMarkerWithOptions()
+    {
+        await this.MarkerWithOptions.Remove();
     }
 }

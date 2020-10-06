@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorComponents.Core.JsInterops
+namespace FisSst.Maps.JsInterops
 {
     internal class MapJsInterop : BaseJsInterop, IMapJsInterop
     {
