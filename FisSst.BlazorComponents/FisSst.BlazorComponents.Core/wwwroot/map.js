@@ -8,3 +8,9 @@ export function sayHello(dotnetHelper) {
 return dotnetHelper.invokeMethodAsync('SayHello')
     .then(r => console.log(r));
 }
+
+function testCallback(callback){
+    if(confirm('are you sure ?')){
+        callback("test");
+    }
+}

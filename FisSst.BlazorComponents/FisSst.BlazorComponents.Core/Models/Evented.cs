@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using FisSst.Maps.Helpers.JsInterops;
+using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
@@ -8,11 +9,9 @@ namespace FisSst.Maps.Models
     {
         private readonly string on = "on";
 
-        public async Task On(string eventType, Action func)
+        public async Task On(string eventType, CallBackInteropWrapper callback)
         {
-            var objRef = DotNetObjectReference.Create(func);
-
-            await this.JsReference.InvokeAsync<string>(on, eventType, objRef);
+            await this.JsReference.InvokeVoidAsync(on, eventType, callback);
         }
     }
 }

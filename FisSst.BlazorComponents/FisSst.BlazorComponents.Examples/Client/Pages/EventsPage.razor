@@ -2,7 +2,6 @@
 
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
-@inject IDebugJSInterop DebugJSInterop
 
 <h1>Map initialization</h1>
 
@@ -36,10 +35,16 @@
         }
     };
 
-    private void AddEventToMap() 
+    private async Task AddEventToMap()
     {
-        Marker marker1 = this.MarkerFactory.Create(new LatLng(50.29761, 18.67658));
-        marker1.On("click", async () => 
-            await this.DebugJSInterop("Dupa"));
+        Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.279133, 18.685578), MapRef);
+        var callback = CallBackInteropWrapper.Create<string>(async s =>
+        {
+            await marker.BindPopup("Test");
+            await marker.OpenPopup(new LatLng(50.279133, 18.685578));
+            this.StateHasChanged();
+            await Task.CompletedTask;
+        });
+        await marker.On("mouseover", callback);
     }
 }
