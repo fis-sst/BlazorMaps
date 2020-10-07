@@ -10,7 +10,7 @@ namespace FisSst.Maps.Models
     public abstract class Evented : JsReferenceBase
     {
         protected IEventedJsInterop EventedJsInterop;
-        private IDictionary<string, Func<Task>> events = new Dictionary<string, Func<Task>>();
+        private readonly IDictionary<string, Func<Task>> events = new Dictionary<string, Func<Task>>();
 
         public async Task On(string eventType, Func<Task> callback)
         {
