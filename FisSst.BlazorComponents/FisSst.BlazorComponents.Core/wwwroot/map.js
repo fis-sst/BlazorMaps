@@ -3,3 +3,8 @@
     L.tileLayer(mapOptions.urlTileLayer, mapOptions.subOptions).addTo(newMap);
     return newMap;
 }
+
+export function sayHello(dotnetHelper) {
+return dotnetHelper.invokeMethodAsync('SayHello')
+    .then(r => console.log(r));
+}
