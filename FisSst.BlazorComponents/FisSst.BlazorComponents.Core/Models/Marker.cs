@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using FisSst.Maps.JsInterops.Base;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,10 @@ namespace FisSst.Maps.Models
 {
     public class Marker : InteractiveLayer
     {
-        internal Marker(JSObjectReference jsReference)
+        internal Marker(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
             JsReference = jsReference;
+            EventedJsInterop = eventedJsInterop;
         }
     }
 }

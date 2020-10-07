@@ -49,6 +49,6 @@ namespace FisSst.Maps.Helpers.Converters
             writer.WriteNumberValue(latLng.Value[0]);
             writer.WriteNumberValue(latLng.Value[1]);
             writer.WriteEndArray();
-        }                
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FisSst.BlazorComponents.Core.JsInterops;
 using FisSst.Maps.Factories;
+using FisSst.Maps.JsInterops;
 using FisSst.Maps.JsInterops.Base;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +13,7 @@ namespace FisSst.Maps.DependencyInjection
             services.AddTransient<IDebugJsInterop, DebugJsInterop>();
             services.AddTransient<IMapJsInterop, MapJsInterop>();
             services.AddTransient<IMarkerFactory, MarkerFactory>();
+            services.AddTransient<IEventedJsInterop, EventedJsInterop>();
             return services;
         }
     }

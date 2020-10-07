@@ -38,13 +38,8 @@
     private async Task AddEventToMap()
     {
         Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.279133, 18.685578), MapRef);
-        var callback = CallBackInteropWrapper.Create<string>(async s =>
-        {
-            await marker.BindPopup("Test");
-            await marker.OpenPopup(new LatLng(50.279133, 18.685578));
-            this.StateHasChanged();
-            await Task.CompletedTask;
-        });
-        await marker.On("mouseover", callback);
+
+        await marker.On("click", async () => await marker.BindPopup("Pierwszy test"));
+        await marker.On("mouseup", async () => await marker.BindTooltip("Drugi test"));
     }
 }
