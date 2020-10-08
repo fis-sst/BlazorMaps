@@ -1,0 +1,78 @@
+﻿@page "/objects"
+
+@inject IJSRuntime JsRuntime
+@inject IPolylineFactory PolylineFactory
+
+<h1>Object example</h1>
+
+<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+
+<button @onclick="async () => await AddPolylines()">Add Polylines</button>
+<button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
+<button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
+
+<style>
+    #mapId {
+        height: 600px;
+    }
+</style>
+
+@code {
+    private Map MapRef;
+
+    private Polyline Polyline1;
+    private Polyline Polyline2;
+
+    private static readonly LatLng FirstLatLng = new LatLng(50.284324, 18.664683);
+    private static readonly LatLng SecondLatLng = new LatLng(50.285495, 18.691064);
+    private static readonly LatLng ThirdLatLng = new LatLng(50.306061, 18.707469);
+    private static readonly LatLng FourthLatLng = new LatLng(50.279103, 18.685534);
+    private static readonly LatLng FifthLatLng = new LatLng(50.268534, 18.673535);
+
+    private MapOptions MapOptions = new MapOptions()
+    {
+        DivId = "mapId",
+        Center = new LatLng(50.279133, 18.685578),
+        Zoom = 13,
+        UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        SubOptions = new MapSubOptions()
+        {
+            Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+            MaxZoom = 18,
+            Id = "mapbox/streets-v11",
+            TileSize = 512,
+            ZoomOffset = -1,
+            AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
+        }
+    };
+
+    private PolylineOptions PolylineOptions = new PolylineOptions()
+    {
+        Weight = 10,
+        Color = "red"
+    };
+
+    private PolylineOptions PolylineOptions2 = new PolylineOptions()
+    {
+        Weight = 5,
+        Color = "green"
+    };
+
+    private async Task AddPolylines()
+    {
+        Polyline1 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
+        Polyline2 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { FourthLatLng, FifthLatLng }, MapRef);
+    }
+
+    private async Task ChangePolylineStyle()
+    {
+        await Polyline1.SetStyle(PolylineOptions);
+        await Polyline2.SetStyle(PolylineOptions2);
+    }
+
+    private async Task DeletePolylines()
+    {
+        await Polyline1.Remove();
+        await Polyline2.Remove();
+    }
+}
