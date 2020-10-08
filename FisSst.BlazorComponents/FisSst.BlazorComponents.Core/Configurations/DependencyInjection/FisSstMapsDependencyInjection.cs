@@ -12,6 +12,7 @@ namespace FisSst.Maps.DependencyInjection
             services.AddTransient<IDebugJsInterop, DebugJsInterop>();
             services.AddTransient<IMapJsInterop, MapJsInterop>();
             services.AddTransient<IMarkerFactory, MarkerFactory>();
+            services.AddTransient<IPolylineFactory, PolylineFactory>();
             return services;
         }
     }
