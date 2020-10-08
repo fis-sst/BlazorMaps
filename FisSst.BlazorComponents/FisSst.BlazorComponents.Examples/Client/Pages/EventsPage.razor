@@ -37,11 +37,16 @@
 
     private async Task AddEventToMap()
     {
-        Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.279133, 18.685578), MapRef);
-        await marker.On("click", async (MouseEvent mouseEvent) =>
-        {
-            await this.JsRuntime.InvokeVoidAsync("alert", $"Bla {mouseEvent.LatLng.Lat}, {mouseEvent.LatLng.Lng}");
-        });
-        //await marker.On("mouseup", async (MouseEvent mouseEvent) => await marker.BindTooltip("Drugi test"));
+        Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
+        await marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
+        await marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
+        await marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+    }
+
+    private async Task HandleMouseEvent(MouseEvent mouseEvent)
+    {
+        await this.JsRuntime.InvokeVoidAsync("alert", $"Event type: {mouseEvent.Type} Lat: {mouseEvent.LatLng.Lat}, Lng: {mouseEvent.LatLng.Lng}");
     }
 }
