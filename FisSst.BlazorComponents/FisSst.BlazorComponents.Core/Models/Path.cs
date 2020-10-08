@@ -21,11 +21,13 @@ namespace FisSst.Maps.Models
             await this.JsReference.InvokeAsync<JSObjectReference>(setStyle, options);
             return this;
         }
+
         public async Task<Path> BringToFront()
         {
             await this.JsReference.InvokeAsync<JSObjectReference>(bringToFront);
             return this;
         }
+
         public async Task<Path> BringToBack()
         {
             await this.JsReference.InvokeAsync<JSObjectReference>(bringToBack);
