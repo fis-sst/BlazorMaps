@@ -9,23 +9,29 @@ namespace FisSst.Maps.Models
 {
     public abstract class Evented : JsReferenceBase
     {
+        private const string click = "click";
         protected IEventedJsInterop EventedJsInterop;
-        private readonly IDictionary<string, Func<Task>> events = new Dictionary<string, Func<Task>>();
+        private readonly IDictionary<string, Func<MouseEvent, Task>> MouseEvents = new Dictionary<string, Func<MouseEvent, Task>>();
 
-        public async Task On(string eventType, Func<Task> callback)
+        public async Task OnClick(Func<MouseEvent, Task> callback)
         {
-            this.events.Add(eventType, callback);
+            await this.On(click, callback);
+        }
+
+        public async Task On(string eventType, Func<MouseEvent, Task> callback)
+        {
+            this.MouseEvents.Add(eventType, callback);
             DotNetObjectReference<Evented> eventedClass = DotNetObjectReference.Create(this);
             await this.EventedJsInterop.OnCallback(eventedClass, this.JsReference, eventType);
         }
 
         [JSInvokable]
-        public async Task OnCallback(string eventType)
+        public async Task OnCallback(string eventType, MouseEvent mouseEvent)
         {
-            bool isEvented = this.events.TryGetValue(eventType, out Func<Task> callback);
+            bool isEvented = this.MouseEvents.TryGetValue(eventType, out Func<MouseEvent, Task> callback);
             if (isEvented)
             {
-                await callback.Invoke();
+                await callback.Invoke(mouseEvent);
             }
         }
     }
