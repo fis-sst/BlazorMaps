@@ -1,44 +1,27 @@
-﻿using FisSst.Maps.Helpers.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-
-namespace FisSst.Maps.Models
+﻿namespace FisSst.Maps.Models
 {
-    [JsonConverter(typeof(LatLngConverter))]
-    public struct LatLng 
+    public class LatLng 
     {
+        public LatLng()
+        {
+        }
+
         public LatLng(double lat, double lng)
         {
-            Value = new List<double>() { lat, lng };
+            Lat = lat;
+            Lng = lng;
+            Alt = 0;
         }
 
-        internal List<double> Value { get; private set; }
-
-        public double Latitude
+        public LatLng(double lat, double lng, double alt)
         {
-            get
-            {
-                return Value[0];
-            }
-            set
-            {
-                Value[0] = value;
-            }
+            Lat = lat;
+            Lng = lng;
+            Alt = alt;
         }
 
-        public double Longitude
-        {
-            get
-            {
-                return Value[1];
-            }
-            set
-            {
-                Value[1] = value;
-            }
-        }
+        public double Lat { get; set; }
+        public double Lng { get; set; }
+        public double Alt { get; set; }
     }
 }
