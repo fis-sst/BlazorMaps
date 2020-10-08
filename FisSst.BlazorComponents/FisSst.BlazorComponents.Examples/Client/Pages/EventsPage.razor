@@ -1,0 +1,52 @@
+﻿@page "/events"
+
+@inject IJSRuntime JsRuntime
+@inject IMarkerFactory MarkerFactory
+
+<h1>Map initialization</h1>
+
+<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+
+<button @onclick="async () => await AddEventToMap()">Add Markers</button>
+
+<style>
+    #mapId {
+        height: 600px;
+    }
+</style>
+
+@code {
+    private Map MapRef;
+
+    private MapOptions MapOptions = new MapOptions()
+    {
+        DivId = "mapId",
+        Center = new LatLng(50.279133, 18.685578),
+        Zoom = 13,
+        UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        SubOptions = new MapSubOptions()
+        {
+            Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+            MaxZoom = 18,
+            Id = "mapbox/streets-v11",
+            TileSize = 512,
+            ZoomOffset = -1,
+            AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
+        }
+    };
+
+    private async Task AddEventToMap()
+    {
+        Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
+        await marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
+        await marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
+        await marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+    }
+
+    private async Task HandleMouseEvent(MouseEvent mouseEvent)
+    {
+        await this.JsRuntime.InvokeVoidAsync("alert", $"Event type: {mouseEvent.Type} Lat: {mouseEvent.LatLng.Lat}, Lng: {mouseEvent.LatLng.Lng}");
+    }
+}
