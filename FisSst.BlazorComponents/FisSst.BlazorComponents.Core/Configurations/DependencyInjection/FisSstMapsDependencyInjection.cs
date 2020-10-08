@@ -13,6 +13,7 @@ namespace FisSst.Maps.DependencyInjection
             services.AddTransient<IMapJsInterop, MapJsInterop>();
             services.AddTransient<IMarkerFactory, MarkerFactory>();
             services.AddTransient<IPolylineFactory, PolylineFactory>();
+            services.AddTransient<IPolygonFactory, PolygonFactory>();
             return services;
         }
     }
