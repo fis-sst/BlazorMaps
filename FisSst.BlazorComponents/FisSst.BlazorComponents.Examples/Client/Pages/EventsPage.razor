@@ -39,7 +39,10 @@
     {
         Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.279133, 18.685578), MapRef);
 
-        await marker.On("click", async () => await marker.BindPopup("Pierwszy test"));
+        await marker.On("click", async () =>
+        {
+            await this.JsRuntime.InvokeVoidAsync("alert", "Bla");
+        });
         await marker.On("mouseup", async () => await marker.BindTooltip("Drugi test"));
     }
 }

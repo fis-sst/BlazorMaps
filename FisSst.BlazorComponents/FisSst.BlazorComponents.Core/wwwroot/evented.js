@@ -1,3 +1,5 @@
-﻿export function onCallback(dotnetHelper, eventType) {
-    return dotnetHelper.invokeMethodAsync('OnCallback', eventType);
+﻿export function onCallback(dotnetHelper, evented, eventType) {
+    evented.on(eventType, () => {
+        dotnetHelper.invokeMethodAsync('OnCallback', eventType);
+    });
 }

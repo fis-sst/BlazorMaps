@@ -16,7 +16,7 @@ namespace FisSst.Maps.Models
         {
             this.events.Add(eventType, callback);
             DotNetObjectReference<Evented> eventedClass = DotNetObjectReference.Create(this);
-            await this.EventedJsInterop.OnCallback(eventedClass, eventType);
+            await this.EventedJsInterop.OnCallback(eventedClass, this.JsReference, eventType);
         }
 
         [JSInvokable]
