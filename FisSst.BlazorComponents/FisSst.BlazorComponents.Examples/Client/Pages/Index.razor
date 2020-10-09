@@ -2,13 +2,16 @@
 
 @inject IJSRuntime jsRuntime
 
-<h1>Map initialization</h1>
+<h1>Initialization</h1>
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
 <button @onclick="async () => await GetCenterExample()">Get Center</button>
 <button @onclick="async () => await MapRef.SetView(Center)">Set View</button>
-<button @onclick="async () => await MapRef.SetZoom(zoom: 13)">Set Zoom</button>
+<button @onclick="async () => await MapRef.SetZoom(zoom: 16)">Set Zoom</button>
+<button @onclick="async () => await MapRef.ZoomIn(zoomDelta: 1)">Zoom in</button>
+<button @onclick="async () => await MapRef.ZoomOut(zoomDelta: 3)">Zoom out</button>
+<button @onclick="async () => await MapRef.SetZoomAround(Center, zoom: 10)">Set Zoom Around</button>
 
 <style>
     #mapId {
@@ -41,6 +44,6 @@
     private async Task GetCenterExample()
     {
         LatLng center = await MapRef.GetCenter();
-        await jsRuntime.InvokeAsync<string>("console.log", center);
+        await jsRuntime.InvokeAsync<string>("alert", $"Wycentrowanie mapy w: Lat: {center.Lat}, Lng: {center.Lng}");
     }
 }

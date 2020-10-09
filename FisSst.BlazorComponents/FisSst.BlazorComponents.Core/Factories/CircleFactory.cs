@@ -1,18 +1,17 @@
 ﻿using FisSst.Maps.JsInterops.Base;
 using FisSst.Maps.Models;
 using Microsoft.JSInterop;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FisSst.Maps.Factories
 {
-    class PolylineFactory : IPolylineFactory
+    class CircleFactory : ICircleFactory
     {
-        private readonly string create = "L.polyline";
+        private readonly string create = "L.circle";
         private readonly IJSRuntime jsRuntime;
         private readonly IEventedJsInterop eventedJsInterop;
 
-        public PolylineFactory(
+        public CircleFactory(
             IJSRuntime jsRuntime,
             IEventedJsInterop eventedJsInterop)
         {
@@ -20,32 +19,32 @@ namespace FisSst.Maps.Factories
             this.eventedJsInterop = eventedJsInterop;
         }
 
-        public async Task<Polyline> Create(IEnumerable<LatLng> latLngs)
+        public async Task<Circle> Create(LatLng latLngs)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            return new Polyline(jsReference, this.eventedJsInterop);
+            return new Circle(jsReference, this.eventedJsInterop);
         }
 
-        public async  Task<Polyline> Create(IEnumerable<LatLng> latLngs, PolylineOptions options)
+        public async  Task<Circle> Create(LatLng latLngs, CircleOptions options)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            return new Polyline(jsReference, this.eventedJsInterop);
+            return new Circle(jsReference, this.eventedJsInterop);
         }
 
-        public async Task<Polyline> CreateAndAddToMap(IEnumerable<LatLng> latLngs, Map map)
+        public async Task<Circle> CreateAndAddToMap(LatLng latLngs, Map map)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            Polyline polyline = new Polyline(jsReference, this.eventedJsInterop);
-            await polyline.AddTo(map);
-            return polyline;
+            Circle circle = new Circle(jsReference, this.eventedJsInterop);
+            await circle.AddTo(map);
+            return circle;
         }
 
-        public async Task<Polyline> CreateAndAddToMap(IEnumerable<LatLng> latLngs, Map map, PolylineOptions options)
+        public async Task<Circle> CreateAndAddToMap(LatLng latLngs, Map map, CircleOptions options)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            Polyline polyline = new Polyline(jsReference, this.eventedJsInterop);
-            await polyline.AddTo(map);
-            return polyline;
+            Circle circle = new Circle(jsReference, this.eventedJsInterop);
+            await circle.AddTo(map);
+            return circle;
         }
     }
 }

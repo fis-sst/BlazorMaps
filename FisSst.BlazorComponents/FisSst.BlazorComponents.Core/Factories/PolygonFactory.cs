@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FisSst.Maps.Factories
 {
-    class PolylineFactory : IPolylineFactory
+    class PolygonFactory : IPolygonFactory
     {
-        private readonly string create = "L.polyline";
+        private readonly string create = "L.polygon";
         private readonly IJSRuntime jsRuntime;
         private readonly IEventedJsInterop eventedJsInterop;
 
-        public PolylineFactory(
+        public PolygonFactory(
             IJSRuntime jsRuntime,
             IEventedJsInterop eventedJsInterop)
         {
@@ -20,32 +20,32 @@ namespace FisSst.Maps.Factories
             this.eventedJsInterop = eventedJsInterop;
         }
 
-        public async Task<Polyline> Create(IEnumerable<LatLng> latLngs)
+        public async Task<Polygon> Create(IEnumerable<LatLng> latLngs)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            return new Polyline(jsReference, this.eventedJsInterop);
+            return new Polygon(jsReference, this.eventedJsInterop);
         }
 
-        public async  Task<Polyline> Create(IEnumerable<LatLng> latLngs, PolylineOptions options)
+        public async Task<Polygon> Create(IEnumerable<LatLng> latLngs, PolylineOptions options)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            return new Polyline(jsReference, this.eventedJsInterop);
+            return new Polygon(jsReference, this.eventedJsInterop);
         }
 
-        public async Task<Polyline> CreateAndAddToMap(IEnumerable<LatLng> latLngs, Map map)
+        public async Task<Polygon> CreateAndAddToMap(IEnumerable<LatLng> latLngs, Map map)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            Polyline polyline = new Polyline(jsReference, this.eventedJsInterop);
-            await polyline.AddTo(map);
-            return polyline;
+            Polygon polygon = new Polygon(jsReference, this.eventedJsInterop);
+            await polygon.AddTo(map);
+            return polygon;
         }
 
-        public async Task<Polyline> CreateAndAddToMap(IEnumerable<LatLng> latLngs, Map map, PolylineOptions options)
+        public async Task<Polygon> CreateAndAddToMap(IEnumerable<LatLng> latLngs, Map map, PolylineOptions options)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            Polyline polyline = new Polyline(jsReference, this.eventedJsInterop);
-            await polyline.AddTo(map);
-            return polyline;
+            Polygon polygon = new Polygon(jsReference, this.eventedJsInterop);
+            await polygon.AddTo(map);
+            return polygon;
         }
     }
 }

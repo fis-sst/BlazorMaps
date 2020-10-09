@@ -2,12 +2,16 @@
 
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
+@inject IPolygonFactory PolygonFactory
+@inject ICircleFactory CircleFactory
 
-<h1>Map initialization</h1>
+<h1>Events</h1>
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
 <button @onclick="async () => await AddEventToMap()">Add Markers</button>
+<button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
+<button @onclick="async () => await AddCircleToMap()">Add Circle</button>
 
 <style>
     #mapId {
@@ -17,6 +21,10 @@
 
 @code {
     private Map MapRef;
+
+    private Polygon Polygon;
+
+    private Circle Circle;
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -48,5 +56,46 @@
     private async Task HandleMouseEvent(MouseEvent mouseEvent)
     {
         await this.JsRuntime.InvokeVoidAsync("alert", $"Event type: {mouseEvent.Type} Lat: {mouseEvent.LatLng.Lat}, Lng: {mouseEvent.LatLng.Lng}");
+    }
+
+    private async Task AddPolygonToMap()
+    {
+        LatLng FirstLatLng = new LatLng(50.2905456, 18.634743);
+        LatLng SecondLatLng = new LatLng(50.287532, 18.615791);
+        LatLng ThirdLatLng = new LatLng(50.295247, 18.579297);
+        Polygon = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
+        await Polygon.OnClick(async (MouseEvent mouseEvent) => await ChangePolygonStyle());
+    }
+
+    private async Task ChangePolygonStyle()
+    {
+        PolygonOptions PolygonOptions = new PolygonOptions()
+        {
+            Weight = 5,
+            Color = "green"
+        };
+
+        await Polygon.SetStyle(PolygonOptions);
+    }
+
+    private async Task AddCircleToMap()
+    {
+        CircleOptions CircleOptionsInit = new CircleOptions()
+        {
+            Radius = 300
+        };
+
+        Circle = await this.CircleFactory.CreateAndAddToMap(new LatLng(50.263766, 18.705137), MapRef, CircleOptionsInit);
+        await Circle.OnClick(async (MouseEvent mouseEvent) => await ChangeCircleStyle());
+    }
+
+    private async Task ChangeCircleStyle()
+    {
+        CircleOptions CircleOptions = new CircleOptions()
+        {
+            Color = "green"
+        };
+
+        await Circle.SetLatLng(new LatLng(50.283783, 18.724827));
     }
 }

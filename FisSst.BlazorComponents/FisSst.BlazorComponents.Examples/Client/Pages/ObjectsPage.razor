@@ -2,14 +2,36 @@
 
 @inject IJSRuntime JsRuntime
 @inject IPolylineFactory PolylineFactory
+@inject IPolygonFactory PolygonFactory
+@inject ICircleMarkerFactory CircleMarkerFactory
+@inject ICircleFactory CircleFactory
 
-<h1>Object example</h1>
+<h1>Objects</h1>
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
-<button @onclick="async () => await AddPolylines()">Add Polylines</button>
-<button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
-<button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
+<div class="col">
+    <div>
+        <button @onclick="async () => await AddPolylines()">Add Polylines</button>
+        <button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
+        <button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddPolygons()">Add Polygons</button>
+        <button @onclick="async () => await ChangePolygonStyle()">Change Polygon Style</button>
+        <button @onclick="async () => await DeletePolygons()">Delete Polygons</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddCircleMarkers()">Add CircleMarkers</button>
+        <button @onclick="async () => await ChangeCircleMarkerStyle()">Change CircleMarker Style</button>
+        <button @onclick="async () => await DeleteCircleMarkers()">Delete CircleMarkers</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddCircles()">Add Circles</button>
+        <button @onclick="async () => await ChangeCircleStyle()">Change Circle Style</button>
+        <button @onclick="async () => await DeleteCircles()">Delete Circles</button>
+    </div>
+</div>
 
 <style>
     #mapId {
@@ -23,11 +45,33 @@
     private Polyline Polyline1;
     private Polyline Polyline2;
 
+    private Polygon Polygon1;
+    private Polygon Polygon2;
+
+    private CircleMarker CircleMarker1;
+    private CircleMarker CircleMarker2;
+
+    private Circle Circle1;
+    private Circle Circle2;
+
     private static readonly LatLng FirstLatLng = new LatLng(50.284324, 18.664683);
     private static readonly LatLng SecondLatLng = new LatLng(50.285495, 18.691064);
     private static readonly LatLng ThirdLatLng = new LatLng(50.306061, 18.707469);
     private static readonly LatLng FourthLatLng = new LatLng(50.279103, 18.685534);
     private static readonly LatLng FifthLatLng = new LatLng(50.268534, 18.673535);
+    private static readonly LatLng SixthLatLng = new LatLng(50.268235, 18.695198);
+    private static readonly LatLng SeventhLatLng = new LatLng(50.273202, 18.705697);
+    private static readonly LatLng EighthLatLng = new LatLng(50.2905456, 18.634743);
+    private static readonly LatLng NinthLatLng = new LatLng(50.287532, 18.615791);
+    private static readonly LatLng TenthLatLng = new LatLng(50.295247, 18.579297);
+    private static readonly LatLng EleventhLatLng = new LatLng(50.298249, 18.650836);
+    private static readonly LatLng TwelfthLatLng = new LatLng(50.304129, 18.635537);
+    private static readonly LatLng ThirteenthLatLng = new LatLng(50.304403, 18.613286);
+    private static readonly LatLng FourteenthLatLng = new LatLng(50.31915, 18.633894);
+    private static readonly LatLng FifteenthLatLng = new LatLng(50.276159, 18.599046);
+    private static readonly LatLng SixteenthLatLng = new LatLng(50.270142, 18.641009);
+    private static readonly LatLng SeventeenthLatLng = new LatLng(50.263766, 18.705137);
+    private static readonly LatLng EighteenthLatLng = new LatLng(50.283783, 18.724827);
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -58,6 +102,50 @@
         Color = "green"
     };
 
+    private PolygonOptions PolygonOptions = new PolygonOptions()
+    {
+        Weight = 10,
+        Color = "red"
+    };
+
+    private PolygonOptions PolygonOptions2 = new PolygonOptions()
+    {
+        Weight = 5,
+        Color = "green"
+    };
+
+    private CircleMarkerOptions CircleMarkerOptionsInit = new CircleMarkerOptions()
+    {
+        Radius = 50
+    };
+
+    private CircleMarkerOptions CircleMarkerOptions = new CircleMarkerOptions()
+    {
+        Color = "red",
+        Radius = 5
+    };
+
+    private CircleMarkerOptions CircleMarkerOptions2 = new CircleMarkerOptions()
+    {
+        Color = "green",
+        Radius = 30
+    };
+
+    private CircleOptions CircleOptionsInit = new CircleOptions()
+    {
+        Radius = 100
+    };
+
+    private CircleOptions CircleOptions = new CircleOptions()
+    {
+        Color = "red"
+    };
+
+    private CircleOptions CircleOptions2 = new CircleOptions()
+    {
+        Color = "green"
+    };
+
     private async Task AddPolylines()
     {
         Polyline1 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
@@ -74,5 +162,60 @@
     {
         await Polyline1.Remove();
         await Polyline2.Remove();
+    }
+
+    private async Task AddPolygons()
+    {
+        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EighthLatLng, NinthLatLng, TenthLatLng}, MapRef);
+        Polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EleventhLatLng, TwelfthLatLng, ThirteenthLatLng, FourteenthLatLng }, MapRef);
+    }
+
+    private async Task ChangePolygonStyle()
+    {
+        await Polygon1.SetStyle(PolygonOptions);
+        await Polygon2.SetStyle(PolygonOptions2);
+    }
+
+    private async Task DeletePolygons()
+    {
+        await Polygon1.Remove();
+        await Polygon2.Remove();
+    }
+
+    private async Task AddCircleMarkers()
+    {
+        CircleMarker1 = await this.CircleMarkerFactory.CreateAndAddToMap(FifteenthLatLng, MapRef, CircleMarkerOptionsInit);
+        CircleMarker2 = await this.CircleMarkerFactory.CreateAndAddToMap(SixteenthLatLng, MapRef);
+    }
+
+    private async Task ChangeCircleMarkerStyle()
+    {
+        await CircleMarker1.SetStyle(CircleMarkerOptions);
+        await CircleMarker2.SetStyle(CircleMarkerOptions2);
+    }
+
+    private async Task DeleteCircleMarkers()
+    {
+        await CircleMarker1.Remove();
+        await CircleMarker2.Remove();
+    }
+
+    private async Task AddCircles()
+    {
+        Circle1 = await this.CircleFactory.CreateAndAddToMap(SeventeenthLatLng, MapRef, CircleOptionsInit);
+        Circle2 = await this.CircleFactory.CreateAndAddToMap(EighteenthLatLng, MapRef);
+    }
+
+    private async Task ChangeCircleStyle()
+    {
+        await Circle1.SetStyle(CircleOptions);
+        await Circle2.SetStyle(CircleOptions2);
+        await Circle2.SetRadius(300);
+    }
+
+    private async Task DeleteCircles()
+    {
+        await Circle1.Remove();
+        await Circle2.Remove();
     }
 }

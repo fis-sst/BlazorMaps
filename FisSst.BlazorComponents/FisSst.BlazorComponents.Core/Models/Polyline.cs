@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using FisSst.Maps.JsInterops.Base;
+using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,8 +16,9 @@ namespace FisSst.Maps.Models
         private readonly string getBounds = "getBounds";
         private readonly string addLatLng = "addLatLng";
 
-        internal Polyline(JSObjectReference jsReference)
+        internal Polyline(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
+            EventedJsInterop = eventedJsInterop;
             JsReference = jsReference;
         }
 

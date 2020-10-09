@@ -1,0 +1,104 @@
+﻿@page "/popups"
+
+@inject IJSRuntime JsRuntime
+@inject IMarkerFactory MarkerFactory
+
+<h1>Popups</h1>
+
+<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+
+<button @onclick="async () => await AddMarkers()">Add markers</button>
+<button @onclick="async () => await BindPopup()">Bind popup</button>
+<button @onclick="async () => await BindTooltip()">Bind tooltip</button>
+<button @onclick="async () => await UpdatePopup()">Update popup</button>
+<button @onclick="async () => await UpdateTooltip()">Update tooltip</button>
+<button @onclick="async () => await TogglePopup()">Toogle popup</button>
+<button @onclick="async () => await ToggleTooltip()">Toggle tooltip</button>
+<button @onclick="async () => await RemovePopup()">Remove popup</button>
+<button @onclick="async () => await RemoveTooltip()">Remove tooltip</button>
+
+<style>
+    #mapId {
+        height: 600px;
+    }
+</style>
+
+@code {
+    private Map MapRef;
+
+    bool firstRender = true;
+
+    private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
+    private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
+    private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+
+    Marker marker1 = null;
+    Marker marker2 = null;
+
+    private MapOptions MapOptions = new MapOptions()
+    {
+        DivId = "mapId",
+        Center = new LatLng(50.279133, 18.685578),
+        Zoom = 13,
+        UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+        SubOptions = new MapSubOptions()
+        {
+            Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+            MaxZoom = 18,
+            Id = "mapbox/streets-v11",
+            TileSize = 512,
+            ZoomOffset = -1,
+            AccessToken = "pk.eyJ1Ijoia2luZ2FmaXMiLCJhIjoiY2tmZ3Zia2hpMHNtNzJyb3VlbWQweWJsdSJ9.5SH3Hdaoi6cnlxZ5SfUL5w"
+        }
+    };
+
+    protected async Task AddMarkers()
+    {
+        if (firstRender)
+        {
+            firstRender = false;
+            marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
+            marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
+        }
+    }
+
+    private async Task BindPopup()
+    {
+        await marker1.BindPopup("Cześć, tu popup");
+    }
+
+    private async Task BindTooltip()
+    {
+        await marker2.BindTooltip("A tu tooltip");
+    }
+
+    private async Task RemovePopup()
+    {
+        await marker1.UnbindPopup();
+    }
+
+    private async Task RemoveTooltip()
+    {
+        await marker2.UnbindTooltip();
+    }
+
+    private async Task UpdatePopup()
+    {
+        await marker1.SetPopupContent("Cześć, tu popup, ale już ze zmienioną zawartością!");
+    }
+
+    private async Task UpdateTooltip()
+    {
+        await marker2.SetTooltipContent("A tu tooltip i też umiem zmieniać wartość");
+    }
+
+    private async Task TogglePopup()
+    {
+        await marker1.TogglePopup();
+    }
+
+    private async Task ToggleTooltip()
+    {
+        await marker2.ToggleTooltip();
+    }
+}
