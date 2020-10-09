@@ -36,6 +36,7 @@ namespace FisSst.Maps.Models
         public async Task<Layer> Remove()
         {
             await this.JsReference.InvokeAsync<JSObjectReference>(remove);
+            await this.JsReference.DisposeAsync();
             return this;
         }
 
