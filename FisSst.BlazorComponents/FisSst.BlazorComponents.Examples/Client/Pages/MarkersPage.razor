@@ -8,6 +8,7 @@
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
 <button @onclick="async () => await AddMarkers()">Add Markers</button>
+<button @onclick="async () => await RemoveMarkers()">Remove Markers</button>
 
 <style>
     #mapId {
@@ -18,11 +19,13 @@
 @code {
     private Map MapRef;
 
-    bool firstRender = true;
-
     private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
     private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
     private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+
+    Marker marker1 = null;
+    Marker marker2 = null;
+    Marker marker3 = null;
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -41,14 +44,17 @@
         }
     };
 
-    protected async Task AddMarkers()
+    private async Task AddMarkers()
     {
-        if (firstRender)
-        {
-            firstRender = false;
-            Marker marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
-            Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
-            Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(ThirdMarkerLatLng, MapRef);
-        }
+        marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
+        marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
+        marker3 = await this.MarkerFactory.CreateAndAddToMap(ThirdMarkerLatLng, MapRef);
+    }
+
+    private async Task RemoveMarkers()
+    {
+        await marker1.Remove();
+        await marker2.Remove();
+        await marker3.Remove();
     }
 }
