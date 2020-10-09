@@ -11,6 +11,7 @@
 
 <button @onclick="async () => await AddEventToMap()">Add Markers</button>
 <button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
+<button @onclick="async () => await AddCircleToMap()">Add Circle</button>
 
 <style>
     #mapId {
@@ -75,5 +76,26 @@
         };
 
         await Polygon.SetStyle(PolygonOptions);
+    }
+
+    private async Task AddCircleToMap()
+    {
+        CircleOptions CircleOptionsInit = new CircleOptions()
+        {
+            Radius = 300
+        };
+
+        Circle = await this.CircleFactory.CreateAndAddToMap(new LatLng(50.263766, 18.705137), MapRef, CircleOptionsInit);
+        await Circle.OnClick(async (MouseEvent mouseEvent) => await ChangeCircleStyle());
+    }
+
+    private async Task ChangeCircleStyle()
+    {
+        CircleOptions CircleOptions = new CircleOptions()
+        {
+            Color = "green"
+        };
+
+        await Circle.SetLatLng(new LatLng(50.283783, 18.724827));
     }
 }

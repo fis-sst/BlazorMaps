@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using FisSst.Maps.JsInterops.Base;
+using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,10 +8,10 @@ namespace FisSst.Maps.Models
     public class Circle : CircleMarker
     {
         private readonly string setRadius = "setRadius";
-        private readonly string getRadius = "getRadius";
         private readonly string getBounds = "getBounds";
 
-        internal Circle(JSObjectReference jsReference) : base (jsReference)
+        internal Circle(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+            : base (jsReference, eventedJsInterop)
         {
             JsReference = jsReference;
         }
