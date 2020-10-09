@@ -1,13 +1,17 @@
-﻿@page "/markers"
+﻿@page "/popups"
 
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
 
-<h1>Markers</h1>
+<h1>Popups</h1>
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
-<button @onclick="async () => await AddMarkers()">Add Markers</button>
+<button @onclick="async () => await AddMarkers()">Add markers</button>
+<button @onclick="async () => await BindPopup()">Bind popup</button>
+<button @onclick="async () => await BindTooltip()">Bind tooltip</button>
+<button @onclick="async () => await RemovePopup()">Remove popup</button>
+<button @onclick="async () => await RemoveTooltip()">Remove tooltip</button>
 
 <style>
     #mapId {
@@ -23,6 +27,9 @@
     private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
     private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
     private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+
+    Marker marker1 = null;
+    Marker marker2 = null;
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -46,9 +53,28 @@
         if (firstRender)
         {
             firstRender = false;
-            Marker marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
-            Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
-            Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(ThirdMarkerLatLng, MapRef);
+            marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
+            marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
         }
+    }
+
+    private async Task BindPopup()
+    {
+        await marker1.BindPopup("Cześć, tu popup");
+    }
+
+    private async Task BindTooltip()
+    {
+        await marker2.BindTooltip("A tu tooltip");
+    }
+
+    private async Task RemovePopup()
+    {
+        await marker1.UnbindPopup();
+    }
+
+    private async Task RemoveTooltip()
+    {
+        await marker2.UnbindTooltip();
     }
 }
