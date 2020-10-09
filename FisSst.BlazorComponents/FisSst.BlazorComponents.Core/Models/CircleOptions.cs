@@ -7,6 +7,7 @@
             Fill = true;
             Radius = 10;
         }
+
         public double Radius { get; init; }
     }
 }

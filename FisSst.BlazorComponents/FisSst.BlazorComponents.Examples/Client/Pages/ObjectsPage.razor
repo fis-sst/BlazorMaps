@@ -2,6 +2,7 @@
 
 @inject IJSRuntime JsRuntime
 @inject IPolylineFactory PolylineFactory
+@inject IPolygonFactory PolygonFactory
 @inject ICircleMarkerFactory CircleMarkerFactory
 @inject ICircleFactory CircleFactory
 
@@ -14,6 +15,11 @@
         <button @onclick="async () => await AddPolylines()">Add Polylines</button>
         <button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
         <button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddPolygons()">Add Polygons</button>
+        <button @onclick="async () => await ChangePolygonStyle()">Change Polygon Style</button>
+        <button @onclick="async () => await DeletePolygons()">Delete Polygons</button>
     </div>
     <div>
         <button @onclick="async () => await AddCircleMarkers()">Add CircleMarkers</button>
@@ -39,6 +45,9 @@
     private Polyline Polyline1;
     private Polyline Polyline2;
 
+    private Polygon Polygon1;
+    private Polygon Polygon2;
+
     private CircleMarker CircleMarker1;
     private CircleMarker CircleMarker2;
 
@@ -50,6 +59,8 @@
     private static readonly LatLng ThirdLatLng = new LatLng(50.306061, 18.707469);
     private static readonly LatLng FourthLatLng = new LatLng(50.279103, 18.685534);
     private static readonly LatLng FifthLatLng = new LatLng(50.268534, 18.673535);
+    private static readonly LatLng SixthLatLng = new LatLng(50.268235, 18.695198);
+    private static readonly LatLng SeventhLatLng = new LatLng(50.273202, 18.705697);
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -75,6 +86,18 @@
     };
 
     private PolylineOptions PolylineOptions2 = new PolylineOptions()
+    {
+        Weight = 5,
+        Color = "green"
+    };
+
+    private PolygonOptions PolygonOptions = new PolygonOptions()
+    {
+        Weight = 10,
+        Color = "red"
+    };
+
+    private PolygonOptions PolygonOptions2 = new PolygonOptions()
     {
         Weight = 5,
         Color = "green"
@@ -128,6 +151,24 @@
     {
         await Polyline1.Remove();
         await Polyline2.Remove();
+    }
+
+    private async Task AddPolygons()
+    {
+        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
+        Polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FourthLatLng, FifthLatLng, SixthLatLng, SeventhLatLng }, MapRef);
+    }
+
+    private async Task ChangePolygonStyle()
+    {
+        await Polygon1.SetStyle(PolygonOptions);
+        await Polygon2.SetStyle(PolygonOptions2);
+    }
+
+    private async Task DeletePolygons()
+    {
+        await Polygon1.Remove();
+        await Polygon2.Remove();
     }
 
     private async Task AddCircleMarkers()

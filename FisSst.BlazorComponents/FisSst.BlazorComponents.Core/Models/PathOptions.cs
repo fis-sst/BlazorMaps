@@ -14,6 +14,7 @@
             BubblingMouseEvents = true;
             ClassName = null;
         }
+
         public bool Stroke { get; init; }
         public string Color { get; init; }
         public int Weight { get; init; }
