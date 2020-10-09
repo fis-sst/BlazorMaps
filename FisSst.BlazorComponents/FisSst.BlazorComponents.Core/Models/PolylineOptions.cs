@@ -7,6 +7,7 @@
             SmoothFactor = 1.0;
             NoClip = false;
         }
+
         public double SmoothFactor { get; init; }
         public bool NoClip { get; init; }
     }

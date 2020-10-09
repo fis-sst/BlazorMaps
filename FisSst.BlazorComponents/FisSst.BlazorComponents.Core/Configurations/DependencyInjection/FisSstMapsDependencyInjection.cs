@@ -16,6 +16,8 @@ namespace FisSst.Maps.DependencyInjection
             services.AddTransient<IPolylineFactory, PolylineFactory>();
             services.AddTransient<IPolygonFactory, PolygonFactory>();
             services.AddTransient<IEventedJsInterop, EventedJsInterop>();
+            services.AddTransient<ICircleMarkerFactory, CircleMarkerFactory>();
+            services.AddTransient<ICircleFactory, CircleFactory>();
             return services;
         }
     }

@@ -3,6 +3,8 @@
 @inject IJSRuntime JsRuntime
 @inject IPolylineFactory PolylineFactory
 @inject IPolygonFactory PolygonFactory
+@inject ICircleMarkerFactory CircleMarkerFactory
+@inject ICircleFactory CircleFactory
 
 <h1>Object example</h1>
 
@@ -18,6 +20,16 @@
         <button @onclick="async () => await AddPolygons()">Add Polygons</button>
         <button @onclick="async () => await ChangePolygonStyle()">Change Polygon Style</button>
         <button @onclick="async () => await DeletePolygons()">Delete Polygons</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddCircleMarkers()">Add CircleMarkers</button>
+        <button @onclick="async () => await ChangeCircleMarkerStyle()">Change CircleMarker Style</button>
+        <button @onclick="async () => await DeleteCircleMarkers()">Delete CircleMarkers</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddCircles()">Add Circles</button>
+        <button @onclick="async () => await ChangeCircleStyle()">Change Circle Style</button>
+        <button @onclick="async () => await DeleteCircles()">Delete Circles</button>
     </div>
 </div>
 
@@ -35,6 +47,12 @@
 
     private Polygon Polygon1;
     private Polygon Polygon2;
+
+    private CircleMarker CircleMarker1;
+    private CircleMarker CircleMarker2;
+
+    private Circle Circle1;
+    private Circle Circle2;
 
     private static readonly LatLng FirstLatLng = new LatLng(50.284324, 18.664683);
     private static readonly LatLng SecondLatLng = new LatLng(50.285495, 18.691064);
@@ -85,6 +103,38 @@
         Color = "green"
     };
 
+    private CircleMarkerOptions CircleMarkerOptionsInit = new CircleMarkerOptions()
+    {
+        Radius = 50
+    };
+
+    private CircleMarkerOptions CircleMarkerOptions = new CircleMarkerOptions()
+    {
+        Color = "red",
+        Radius = 5
+    };
+
+    private CircleMarkerOptions CircleMarkerOptions2 = new CircleMarkerOptions()
+    {
+        Color = "green",
+        Radius = 30
+    };
+
+    private CircleOptions CircleOptionsInit = new CircleOptions()
+    {
+        Radius = 100
+    };
+
+    private CircleOptions CircleOptions = new CircleOptions()
+    {
+        Color = "red"
+    };
+
+    private CircleOptions CircleOptions2 = new CircleOptions()
+    {
+        Color = "green"
+    };
+
     private async Task AddPolylines()
     {
         Polyline1 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
@@ -119,5 +169,42 @@
     {
         await Polygon1.Remove();
         await Polygon2.Remove();
+    }
+
+    private async Task AddCircleMarkers()
+    {
+        CircleMarker1 = await this.CircleMarkerFactory.CreateAndAddToMap(FirstLatLng, MapRef, CircleMarkerOptionsInit);
+        CircleMarker2 = await this.CircleMarkerFactory.CreateAndAddToMap(SecondLatLng, MapRef);
+    }
+
+    private async Task ChangeCircleMarkerStyle()
+    {
+        await CircleMarker1.SetStyle(CircleMarkerOptions);
+        await CircleMarker2.SetStyle(CircleMarkerOptions2);
+    }
+
+    private async Task DeleteCircleMarkers()
+    {
+        await CircleMarker1.Remove();
+        await CircleMarker2.Remove();
+    }
+
+    private async Task AddCircles()
+    {
+        Circle1 = await this.CircleFactory.CreateAndAddToMap(FirstLatLng, MapRef, CircleOptionsInit);
+        Circle2 = await this.CircleFactory.CreateAndAddToMap(SecondLatLng, MapRef);
+    }
+
+    private async Task ChangeCircleStyle()
+    {
+        await Circle1.SetStyle(CircleOptions);
+        await Circle2.SetStyle(CircleOptions2);
+        await Circle2.SetRadius(300);
+    }
+
+    private async Task DeleteCircles()
+    {
+        await Circle1.Remove();
+        await Circle2.Remove();
     }
 }
