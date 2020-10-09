@@ -10,6 +10,8 @@
 <button @onclick="async () => await AddMarkers()">Add markers</button>
 <button @onclick="async () => await BindPopup()">Bind popup</button>
 <button @onclick="async () => await BindTooltip()">Bind tooltip</button>
+<button @onclick="async () => await UpdatePopup()">Update popup</button>
+<button @onclick="async () => await UpdateTooltip()">Update tooltip</button>
 <button @onclick="async () => await RemovePopup()">Remove popup</button>
 <button @onclick="async () => await RemoveTooltip()">Remove tooltip</button>
 
@@ -76,5 +78,15 @@
     private async Task RemoveTooltip()
     {
         await marker2.UnbindTooltip();
+    }
+
+    private async Task UpdatePopup()
+    {
+        await marker1.SetPopupContent("Cześć, tu popup, ale już ze zmienioną zawartością!");
+    }
+
+    private async Task UpdateTooltip()
+    {
+        await marker2.SetTooltipContent("A tu tooltip i też umiem zmieniać wartość");
     }
 }
