@@ -2,14 +2,24 @@
 
 @inject IJSRuntime JsRuntime
 @inject IPolylineFactory PolylineFactory
+@inject IPolygonFactory PolygonFactory
 
 <h1>Object example</h1>
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
-<button @onclick="async () => await AddPolylines()">Add Polylines</button>
-<button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
-<button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
+<div class="col">
+    <div>
+        <button @onclick="async () => await AddPolylines()">Add Polylines</button>
+        <button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
+        <button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
+    </div>
+    <div>
+        <button @onclick="async () => await AddPolygons()">Add Polygons</button>
+        <button @onclick="async () => await ChangePolygonStyle()">Change Polygon Style</button>
+        <button @onclick="async () => await DeletePolygons()">Delete Polygons</button>
+    </div>
+</div>
 
 <style>
     #mapId {
@@ -23,11 +33,16 @@
     private Polyline Polyline1;
     private Polyline Polyline2;
 
+    private Polygon Polygon1;
+    private Polygon Polygon2;
+
     private static readonly LatLng FirstLatLng = new LatLng(50.284324, 18.664683);
     private static readonly LatLng SecondLatLng = new LatLng(50.285495, 18.691064);
     private static readonly LatLng ThirdLatLng = new LatLng(50.306061, 18.707469);
     private static readonly LatLng FourthLatLng = new LatLng(50.279103, 18.685534);
     private static readonly LatLng FifthLatLng = new LatLng(50.268534, 18.673535);
+    private static readonly LatLng SixthLatLng = new LatLng(50.268235, 18.695198);
+    private static readonly LatLng SeventhLatLng = new LatLng(50.273202, 18.705697);
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -58,6 +73,18 @@
         Color = "green"
     };
 
+    private PolygonOptions PolygonOptions = new PolygonOptions()
+    {
+        Weight = 10,
+        Color = "red"
+    };
+
+    private PolygonOptions PolygonOptions2 = new PolygonOptions()
+    {
+        Weight = 5,
+        Color = "green"
+    };
+
     private async Task AddPolylines()
     {
         Polyline1 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
@@ -74,5 +101,23 @@
     {
         await Polyline1.Remove();
         await Polyline2.Remove();
+    }
+
+    private async Task AddPolygons()
+    {
+        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
+        Polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FourthLatLng, FifthLatLng, SixthLatLng, SeventhLatLng }, MapRef);
+    }
+
+    private async Task ChangePolygonStyle()
+    {
+        await Polygon1.SetStyle(PolygonOptions);
+        await Polygon2.SetStyle(PolygonOptions2);
+    }
+
+    private async Task DeletePolygons()
+    {
+        await Polygon1.Remove();
+        await Polygon2.Remove();
     }
 }
