@@ -1,12 +1,13 @@
-﻿using Microsoft.JSInterop;
+﻿using FisSst.Maps.JsInterops.Base;
+using Microsoft.JSInterop;
 
 namespace FisSst.Maps.Models
 {
     public class Polygon : Polyline
     {
-        internal Polygon(JSObjectReference jsReference) : base(jsReference)
+        internal Polygon(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+            : base(jsReference, eventedJsInterop)
         {
-            JsReference = jsReference;
         }
     }
 }

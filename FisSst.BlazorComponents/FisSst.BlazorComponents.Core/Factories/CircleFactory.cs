@@ -1,4 +1,5 @@
-﻿using FisSst.Maps.Models;
+﻿using FisSst.Maps.JsInterops.Base;
+using FisSst.Maps.Models;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
@@ -8,29 +9,32 @@ namespace FisSst.Maps.Factories
     {
         private readonly string create = "L.circle";
         private readonly IJSRuntime jsRuntime;
+        private readonly IEventedJsInterop eventedJsInterop;
 
         public CircleFactory(
-            IJSRuntime jsRuntime)
+            IJSRuntime jsRuntime,
+            IEventedJsInterop eventedJsInterop)
         {
             this.jsRuntime = jsRuntime;
+            this.eventedJsInterop = eventedJsInterop;
         }
 
         public async Task<Circle> Create(LatLng latLngs)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            return new Circle(jsReference);
+            return new Circle(jsReference, this.eventedJsInterop);
         }
 
         public async  Task<Circle> Create(LatLng latLngs, CircleOptions options)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            return new Circle(jsReference);
+            return new Circle(jsReference, this.eventedJsInterop);
         }
 
         public async Task<Circle> CreateAndAddToMap(LatLng latLngs, Map map)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            Circle circle = new Circle(jsReference);
+            Circle circle = new Circle(jsReference, this.eventedJsInterop);
             await circle.AddTo(map);
             return circle;
         }
@@ -38,7 +42,7 @@ namespace FisSst.Maps.Factories
         public async Task<Circle> CreateAndAddToMap(LatLng latLngs, Map map, CircleOptions options)
         {
             JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            Circle circle = new Circle(jsReference);
+            Circle circle = new Circle(jsReference, this.eventedJsInterop);
             await circle.AddTo(map);
             return circle;
         }

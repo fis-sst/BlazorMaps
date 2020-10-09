@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using FisSst.Maps.JsInterops.Base;
+using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,9 +13,10 @@ namespace FisSst.Maps.Models
         private readonly string setRadius = "setRadius";
         private readonly string getRadius = "getRadius";
 
-        internal CircleMarker(JSObjectReference jsReference)
+        internal CircleMarker(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
             JsReference = jsReference;
+            EventedJsInterop = eventedJsInterop;
         }
 
         public async Task<object> ToGeoJSON()
