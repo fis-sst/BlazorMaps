@@ -61,6 +61,17 @@
     private static readonly LatLng FifthLatLng = new LatLng(50.268534, 18.673535);
     private static readonly LatLng SixthLatLng = new LatLng(50.268235, 18.695198);
     private static readonly LatLng SeventhLatLng = new LatLng(50.273202, 18.705697);
+    private static readonly LatLng EighthLatLng = new LatLng(50.2905456, 18.634743);
+    private static readonly LatLng NinthLatLng = new LatLng(50.287532, 18.615791);
+    private static readonly LatLng TenthLatLng = new LatLng(50.295247, 18.579297);
+    private static readonly LatLng EleventhLatLng = new LatLng(50.298249, 18.650836);
+    private static readonly LatLng TwelfthLatLng = new LatLng(50.304129, 18.635537);
+    private static readonly LatLng ThirteenthLatLng = new LatLng(50.304403, 18.613286);
+    private static readonly LatLng FourteenthLatLng = new LatLng(50.31915, 18.633894);
+    private static readonly LatLng FifteenthLatLng = new LatLng(50.276159, 18.599046);
+    private static readonly LatLng SixteenthLatLng = new LatLng(50.270142, 18.641009);
+    private static readonly LatLng SeventeenthLatLng = new LatLng(50.263766, 18.705137);
+    private static readonly LatLng EighteenthLatLng = new LatLng(50.283783, 18.724827);
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -155,8 +166,8 @@
 
     private async Task AddPolygons()
     {
-        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
-        Polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FourthLatLng, FifthLatLng, SixthLatLng, SeventhLatLng }, MapRef);
+        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EighthLatLng, NinthLatLng, TenthLatLng}, MapRef);
+        Polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EleventhLatLng, TwelfthLatLng, ThirteenthLatLng, FourteenthLatLng }, MapRef);
     }
 
     private async Task ChangePolygonStyle()
@@ -173,8 +184,8 @@
 
     private async Task AddCircleMarkers()
     {
-        CircleMarker1 = await this.CircleMarkerFactory.CreateAndAddToMap(FirstLatLng, MapRef, CircleMarkerOptionsInit);
-        CircleMarker2 = await this.CircleMarkerFactory.CreateAndAddToMap(SecondLatLng, MapRef);
+        CircleMarker1 = await this.CircleMarkerFactory.CreateAndAddToMap(FifteenthLatLng, MapRef, CircleMarkerOptionsInit);
+        CircleMarker2 = await this.CircleMarkerFactory.CreateAndAddToMap(SixteenthLatLng, MapRef);
     }
 
     private async Task ChangeCircleMarkerStyle()
@@ -191,8 +202,8 @@
 
     private async Task AddCircles()
     {
-        Circle1 = await this.CircleFactory.CreateAndAddToMap(FirstLatLng, MapRef, CircleOptionsInit);
-        Circle2 = await this.CircleFactory.CreateAndAddToMap(SecondLatLng, MapRef);
+        Circle1 = await this.CircleFactory.CreateAndAddToMap(SeventeenthLatLng, MapRef, CircleOptionsInit);
+        Circle2 = await this.CircleFactory.CreateAndAddToMap(EighteenthLatLng, MapRef);
     }
 
     private async Task ChangeCircleStyle()
