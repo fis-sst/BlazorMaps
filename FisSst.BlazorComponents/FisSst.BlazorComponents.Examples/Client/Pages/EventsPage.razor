@@ -9,9 +9,11 @@
 
 <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
 
-<button @onclick="async () => await AddEventToMap()">Add Markers</button>
+<button @onclick="async () => await AddMarkersToMap()">Add Markers</button>
 <button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
 <button @onclick="async () => await AddCircleToMap()">Add Circle</button>
+<button @onclick="async () => await AddEventsToMarkers()">Add events to markers</button>
+<button @onclick="async () => await RemoveEventsFromMarkers()">Remove events from markers</button>
 
 <style>
     #mapId {
@@ -25,6 +27,12 @@
     private Polygon Polygon;
 
     private Circle Circle;
+
+    private Marker Marker;
+
+    private Marker Marker2;
+
+    private Marker Marker3;
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -43,14 +51,11 @@
         }
     };
 
-    private async Task AddEventToMap()
+    private async Task AddMarkersToMap()
     {
-        Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
-        await marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-        Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
-        await marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-        Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
-        await marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        Marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
+        Marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
+        Marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
     }
 
     private async Task HandleMouseEvent(MouseEvent mouseEvent)
@@ -97,5 +102,19 @@
         };
 
         await Circle.SetLatLng(new LatLng(50.283783, 18.724827));
+    }
+
+    private async Task AddEventsToMarkers()
+    {
+        await Marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await Marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await Marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+    }
+
+    private async Task RemoveEventsFromMarkers()
+    {
+        await Marker.Off("click");
+        await Marker2.Off("contextmenu");
+        await Marker3.Off("dblclick");
     }
 }
