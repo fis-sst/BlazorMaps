@@ -16,13 +16,14 @@ namespace FisSst.Maps.Models
         private const string mouseover = "mouseover";
         private const string mouseout = "mouseout";
         private const string contextmenu = "contextmenu";
+        private const string off = "off";
         protected IEventedJsInterop EventedJsInterop;
         private readonly IDictionary<string, Func<MouseEvent, Task>> MouseEvents = new Dictionary<string, Func<MouseEvent, Task>>();
 
         public async Task OnClick(Func<MouseEvent, Task> callback)
         {
             await On(click, callback);
-        }        
+        }
 
         public async Task OnDblClick(Func<MouseEvent, Task> callback)
         {
@@ -56,14 +57,28 @@ namespace FisSst.Maps.Models
 
         private async Task On(string eventType, Func<MouseEvent, Task> callback)
         {
+            if (this.MouseEvents.ContainsKey(eventType))
+            {
+                return;
+            }
+
             this.MouseEvents.Add(eventType, callback);
             await this.On(eventType);
         }
 
         private async Task On(string eventType)
-        {            
+        {
             DotNetObjectReference<Evented> eventedClass = DotNetObjectReference.Create(this);
             await this.EventedJsInterop.OnCallback(eventedClass, this.JsReference, eventType);
+        }
+
+        public async Task Off(string eventType)
+        {
+            if (this.MouseEvents.ContainsKey(eventType))
+            {
+                this.MouseEvents.Remove(eventType);
+                await this.JsReference.InvokeAsync<JSObjectReference>(off, eventType);
+            }
         }
 
         [JSInvokable]
