@@ -8,6 +8,21 @@ namespace FisSst.Maps.Models
 {
     public class IconOptions
     {
+        public IconOptions()
+        {
+            IconUrl = null;
+            IconRetinaUrl = null;
+            IconSize = null;
+            IconAnchor = null;
+            PopupAnchor = new Point(0, 0);
+            TooltipAnchor = new Point(0, 0);
+            ShadowUrl = null;
+            ShadowRetinaUrl = null;
+            ShadowSize = null;
+            ShadowAnchor = null;
+            ClassName = string.Empty;
+        }
+
         public string IconUrl { get; init; }
         public string IconRetinaUrl { get; init; }
         public Point IconSize { get; init; }

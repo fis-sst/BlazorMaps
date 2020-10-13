@@ -23,6 +23,7 @@ namespace FisSst.Maps.Models
             Pane = "markerPane";
             ShadowPane = "shadowPane";
             BubblingMouseEvents = false;
+            Interactive = true;
         }
 
         private Icon iconRef;

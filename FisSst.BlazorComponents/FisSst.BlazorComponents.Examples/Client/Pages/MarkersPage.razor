@@ -68,13 +68,22 @@
     {
         IconOptions iconOptions = new IconOptions()
         {
-            IconUrl = "https://www.flaticon.com/svg/static/icons/svg/3214/3214679.svg",
+            IconUrl = "http://leafletjs.com/examples/custom-icons/leaf-green.png",
+            IconSize = new Point(38, 95),
+            IconAnchor = new Point(22, 94),
+            ShadowUrl = "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+            ShadowSize = new Point(50, 64),
+            ShadowAnchor = new Point(4, 61),
+            PopupAnchor = new Point(-3, -76),
         };
+
         MarkerOptions markerOptions = new MarkerOptions()
         {
+            Opacity = 0.5,
             Draggable = true,
             Icon = await this.IconFactory.Create(iconOptions),
         };
+
         this.MarkerWithOptions = await this.MarkerFactory.CreateAndAddToMap(MarkerWithOptionsLatLng, MapRef, markerOptions);
     }
 
