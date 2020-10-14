@@ -81,7 +81,7 @@
         {
             Opacity = 0.5,
             Draggable = true,
-            Icon = await this.IconFactory.Create(iconOptions),
+            IconRef = await this.IconFactory.Create(iconOptions),
         };
 
         this.MarkerWithOptions = await this.MarkerFactory.CreateAndAddToMap(MarkerWithOptionsLatLng, MapRef, markerOptions);

@@ -12,7 +12,7 @@ namespace FisSst.Maps.Models
     {
         public MarkerOptions()
         {
-            Icon = null;
+            IconRef = null;
             Keyboard = true;
             Title = string.Empty;
             Alt = string.Empty;
@@ -28,7 +28,7 @@ namespace FisSst.Maps.Models
 
         private Icon iconRef;
         [JsonIgnore]
-        public Icon Icon 
+        public Icon IconRef
         {
             get
             {
@@ -39,17 +39,15 @@ namespace FisSst.Maps.Models
                 iconRef = value;
                 if (value != null)
                 {
-                    IconReference = iconRef.JsReference;
+                    Icon = iconRef.JsReference;
                 }
                 else
                 {
-                    IconReference = null;
+                    Icon = null;
                 }
-                
             }
         }
-        [JsonPropertyName("icon")]
-        internal JSObjectReference IconReference { get; init; }
+        public JSObjectReference Icon { get; init; }
         public bool Keyboard { get; init; }
         public string Title { get; init; }
         public string Alt { get; init; }
