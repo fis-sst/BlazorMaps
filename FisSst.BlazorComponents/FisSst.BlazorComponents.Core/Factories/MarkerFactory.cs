@@ -25,10 +25,22 @@ namespace FisSst.Maps.Factories
             return new Marker(jsReference, this.eventedJsInterop);
         }
 
+        public async Task<Marker> Create(LatLng latLng, MarkerOptions options)
+        {
+            IJSObjectReference jsReference = await this.jsRuntime.InvokeAsync<IJSObjectReference>(create, latLng, options);
+            return new Marker(jsReference, this.eventedJsInterop);
+        }
+
         public async Task<Marker> CreateAndAddToMap(LatLng latLng, Map map)
         {
-            IJSObjectReference jsReference = await this.jsRuntime.InvokeAsync<IJSObjectReference>(create, latLng);
-            Marker marker = new Marker(jsReference, this.eventedJsInterop);
+            Marker marker = await this.Create(latLng);
+            await marker.AddTo(map);
+            return marker;
+        }
+
+        public async Task<Marker> CreateAndAddToMap(LatLng latLng, Map map, MarkerOptions options)
+        {
+            Marker marker = await this.Create(latLng, options);
             await marker.AddTo(map);
             return marker;
         }

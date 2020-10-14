@@ -13,7 +13,6 @@ namespace FisSst.Maps.Models
         internal Circle(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
             : base (jsReference, eventedJsInterop)
         {
-            JsReference = jsReference;
         }
 
         public async Task<Circle> SetRadius(double radius)
