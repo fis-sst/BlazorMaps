@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FisSst.Maps.Models
+﻿namespace FisSst.Maps.Models
 {
     public class MapOptions
     {
