@@ -10,7 +10,7 @@ namespace FisSst.Maps.Models
         private readonly string setRadius = "setRadius";
         private readonly string getBounds = "getBounds";
 
-        internal Circle(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+        internal Circle(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
             : base (jsReference, eventedJsInterop)
         {
             JsReference = jsReference;

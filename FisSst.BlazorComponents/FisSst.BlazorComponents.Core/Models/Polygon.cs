@@ -5,7 +5,7 @@ namespace FisSst.Maps.Models
 {
     public class Polygon : Polyline
     {
-        internal Polygon(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+        internal Polygon(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
             : base(jsReference, eventedJsInterop)
         {
         }

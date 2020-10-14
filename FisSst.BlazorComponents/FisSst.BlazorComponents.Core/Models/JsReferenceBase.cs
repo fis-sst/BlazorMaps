@@ -9,6 +9,6 @@ namespace FisSst.Maps.Models
 {
     public abstract class JsReferenceBase
     {
-        protected JSObjectReference JsReference;
+        protected IJSObjectReference JsReference;
     }
 }

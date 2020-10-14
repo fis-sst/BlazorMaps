@@ -10,7 +10,7 @@ namespace FisSst.Maps.Models
 {
     public class Marker : InteractiveLayer
     {
-        internal Marker(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+        internal Marker(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
             JsReference = jsReference;
             EventedJsInterop = eventedJsInterop;

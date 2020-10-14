@@ -10,6 +10,6 @@ namespace FisSst.Maps.JsInterops.Base
 {
     interface IMapJsInterop : IBaseJsInterop
     {
-        ValueTask<JSObjectReference> Initialize(MapOptions mapOptions);
+        ValueTask<IJSObjectReference> Initialize(MapOptions mapOptions);
     }
 }

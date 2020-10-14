@@ -20,8 +20,8 @@ namespace FisSst.Maps.JsInterops
         }
 
         public async ValueTask OnCallback(
-            DotNetObjectReference<Evented> eventedClass, 
-            JSObjectReference evented, 
+            DotNetObjectReference<Evented> eventedClass,
+            IJSObjectReference evented, 
             string eventType)
         {
             var module = await moduleTask.Value;
