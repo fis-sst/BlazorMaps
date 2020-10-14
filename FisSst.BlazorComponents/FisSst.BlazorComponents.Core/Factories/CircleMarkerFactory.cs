@@ -33,16 +33,14 @@ namespace FisSst.Maps.Factories
 
         public async Task<CircleMarker> CreateAndAddToMap(LatLng latLngs, Map map)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            CircleMarker circleMarker = new CircleMarker(jsReference, this.eventedJsInterop);
+            CircleMarker circleMarker = await this.Create(latLngs);
             await circleMarker.AddTo(map);
             return circleMarker;
         }
 
         public async Task<CircleMarker> CreateAndAddToMap(LatLng latLngs, Map map, CircleMarkerOptions options)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            CircleMarker circleMarker = new CircleMarker(jsReference, this.eventedJsInterop);
+            CircleMarker circleMarker = await this.Create(latLngs, options);
             await circleMarker.AddTo(map);
             return circleMarker;
         }

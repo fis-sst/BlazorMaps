@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace FisSst.Maps.Models
 {
-    public abstract class JsReferenceBase
+    public class Icon : JsReferenceBase
     {
-        internal JSObjectReference JsReference;
+        internal Icon(JSObjectReference jsReference)
+        {
+            JsReference = jsReference;
+        }
     }
 }

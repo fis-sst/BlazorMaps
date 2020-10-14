@@ -1,6 +1,4 @@
-﻿using FisSst.BlazorComponents.Core;
-using FisSst.BlazorComponents.Core.JsInterops;
-using FisSst.Maps.JsInterops.Base;
+﻿using FisSst.Maps.JsInterops.Base;
 using FisSst.Maps.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;

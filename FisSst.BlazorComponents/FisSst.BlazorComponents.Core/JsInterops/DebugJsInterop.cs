@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorComponents.Core.JsInterops
+namespace FisSst.Maps.JsInterops
 {
     internal class DebugJsInterop : BaseJsInterop, IDebugJsInterop
     {
