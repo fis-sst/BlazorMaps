@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FisSst.Maps.JsInterops.Base
+﻿namespace FisSst.Maps.JsInterops.Base
 {
     internal static class JsInteropConfig
     {
