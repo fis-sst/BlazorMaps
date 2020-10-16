@@ -4,6 +4,6 @@ namespace FisSst.Maps.Models
 {
     public abstract class JsReferenceBase
     {
-        internal JSObjectReference JsReference;
+        internal IJSObjectReference JsReference;
     }
 }

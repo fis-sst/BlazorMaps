@@ -5,6 +5,6 @@ namespace FisSst.Maps.JsInterops.Base
 {
     interface IIconFactoryJsInterop
     {
-        ValueTask<JSObjectReference> CreateDefaultIcon();
+        ValueTask<IJSObjectReference> CreateDefaultIcon();
     }
 }

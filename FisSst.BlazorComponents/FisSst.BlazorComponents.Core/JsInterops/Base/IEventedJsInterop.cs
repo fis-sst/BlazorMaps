@@ -6,6 +6,6 @@ namespace FisSst.Maps.JsInterops.Base
 {
     public interface IEventedJsInterop
     {
-        ValueTask OnCallback(DotNetObjectReference<Evented> eventedClass, JSObjectReference eventedReference, string eventType);
+        ValueTask OnCallback(DotNetObjectReference<Evented> eventedClass, IJSObjectReference eventedReference, string eventType);
     }
 }

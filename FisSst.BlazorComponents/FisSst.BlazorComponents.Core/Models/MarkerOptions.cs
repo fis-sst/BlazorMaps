@@ -42,7 +42,7 @@ namespace FisSst.Maps.Models
                 }
             }
         }
-        public JSObjectReference Icon { get; init; }
+        public IJSObjectReference Icon { get; init; }
         public bool Keyboard { get; init; }
         public string Title { get; init; }
         public string Alt { get; init; }

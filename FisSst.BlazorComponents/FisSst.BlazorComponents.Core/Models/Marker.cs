@@ -13,7 +13,7 @@ namespace FisSst.Maps.Models
         private readonly string setIcon = "setIcon";
         private readonly string setOpacity = "setOpacity";
 
-        internal Marker(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+        internal Marker(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
             JsReference = jsReference;
             EventedJsInterop = eventedJsInterop;
@@ -24,14 +24,14 @@ namespace FisSst.Maps.Models
             return await this.JsReference.InvokeAsync<LatLng>(getLatLng);
         }
 
-        public async Task<JSObjectReference> SetLatLng(LatLng latLng)
+        public async Task<IJSObjectReference> SetLatLng(LatLng latLng)
         {
-            return await this.JsReference.InvokeAsync<JSObjectReference>(setLatLng, latLng);
+            return await this.JsReference.InvokeAsync<IJSObjectReference>(setLatLng, latLng);
         }
 
-        public async Task<JSObjectReference> SetZIndexOffset(int number)
+        public async Task<IJSObjectReference> SetZIndexOffset(int number)
         {
-            return await this.JsReference.InvokeAsync<JSObjectReference>(setZIndexOffset, number);
+            return await this.JsReference.InvokeAsync<IJSObjectReference>(setZIndexOffset, number);
         }
 
         public async Task<Icon> GetIcon()
@@ -39,14 +39,14 @@ namespace FisSst.Maps.Models
             return await this.JsReference.InvokeAsync<Icon>(getIcon);
         }
 
-        public async Task<JSObjectReference> SetIcon(Icon icon)
+        public async Task<IJSObjectReference> SetIcon(Icon icon)
         {
-            return await this.JsReference.InvokeAsync<JSObjectReference>(setIcon, icon);
+            return await this.JsReference.InvokeAsync<IJSObjectReference>(setIcon, icon);
         }
 
-        public async Task<JSObjectReference> SetOpacity(int number)
+        public async Task<IJSObjectReference> SetOpacity(int number)
         {
-            return await this.JsReference.InvokeAsync<JSObjectReference>(setOpacity, number);
+            return await this.JsReference.InvokeAsync<IJSObjectReference>(setOpacity, number);
         }
     }
 }

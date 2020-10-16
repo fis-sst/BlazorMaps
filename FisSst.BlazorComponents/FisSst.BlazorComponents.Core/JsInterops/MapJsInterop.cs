@@ -19,10 +19,10 @@ namespace FisSst.Maps.JsInterops
 
         }
 
-        public async ValueTask<JSObjectReference> Initialize(MapOptions mapOptions)
+        public async ValueTask<IJSObjectReference> Initialize(MapOptions mapOptions)
         {
             var module = await moduleTask.Value;
-            return await module.InvokeAsync<JSObjectReference>(initialize, mapOptions);
+            return await module.InvokeAsync<IJSObjectReference>(initialize, mapOptions);
         }
     }
 }

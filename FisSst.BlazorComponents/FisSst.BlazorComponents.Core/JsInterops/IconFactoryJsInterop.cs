@@ -14,10 +14,10 @@ namespace FisSst.Maps.JsInterops
 
         }
 
-        public async ValueTask<JSObjectReference> CreateDefaultIcon()
+        public async ValueTask<IJSObjectReference> CreateDefaultIcon()
         {
             var module = await moduleTask.Value;
-            return await module.InvokeAsync<JSObjectReference>(createDefaultIcon);
+            return await module.InvokeAsync<IJSObjectReference>(createDefaultIcon);
         }
     }
 }

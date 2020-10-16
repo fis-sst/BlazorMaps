@@ -20,7 +20,7 @@ namespace FisSst.Maps
         [Parameter]
         public MapOptions MapOptions { get; set; }
 
-        internal JSObjectReference MapReference { get; set; }
+        internal IJSObjectReference MapReference { get; set; }
 
         private const string getCenter = "getCenter";
         private const string getZoom = "getZoom";
@@ -62,27 +62,27 @@ namespace FisSst.Maps
 
         public async Task SetView(LatLng latLng)
         {
-            await this.MapReference.InvokeAsync<JSObjectReference>(setView, latLng);
+            await this.MapReference.InvokeAsync<IJSObjectReference>(setView, latLng);
         }
 
         public async Task SetZoom(int zoom)
         {
-            await this.MapReference.InvokeAsync<JSObjectReference>(setZoom, zoom);
+            await this.MapReference.InvokeAsync<IJSObjectReference>(setZoom, zoom);
         }
 
         public async Task ZoomIn(int zoomDelta)
         {
-            await this.MapReference.InvokeAsync<JSObjectReference>(zoomIn, zoomDelta);
+            await this.MapReference.InvokeAsync<IJSObjectReference>(zoomIn, zoomDelta);
         }
 
         public async Task ZoomOut(int zoomDelta)
         {
-            await this.MapReference.InvokeAsync<JSObjectReference>(zoomOut, zoomDelta);
+            await this.MapReference.InvokeAsync<IJSObjectReference>(zoomOut, zoomDelta);
         }
 
         public async Task SetZoomAround(LatLng latLng, int zoom)
         {
-            await this.MapReference.InvokeAsync<JSObjectReference>(setZoomAround, latLng, zoom);
+            await this.MapReference.InvokeAsync<IJSObjectReference>(setZoomAround, latLng, zoom);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FisSst.Maps.Models
         private readonly string setRadius = "setRadius";
         private readonly string getRadius = "getRadius";
 
-        internal CircleMarker(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+        internal CircleMarker(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
             JsReference = jsReference;
             EventedJsInterop = eventedJsInterop;
@@ -26,7 +26,7 @@ namespace FisSst.Maps.Models
 
         public async Task<CircleMarker> SetLatLng(LatLng latLng)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(setLatLng, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(setLatLng, latLng);
             return this;
         }
 
@@ -37,7 +37,7 @@ namespace FisSst.Maps.Models
 
         public async Task<CircleMarker> SetRadius(LatLng latLng)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(setRadius, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(setRadius, latLng);
             return this;
         }
 

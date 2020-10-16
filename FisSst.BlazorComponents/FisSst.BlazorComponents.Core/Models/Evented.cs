@@ -76,7 +76,7 @@ namespace FisSst.Maps.Models
             if (this.MouseEvents.ContainsKey(eventType))
             {
                 this.MouseEvents.Remove(eventType);
-                await this.JsReference.InvokeAsync<JSObjectReference>(off, eventType);
+                await this.JsReference.InvokeAsync<IJSObjectReference>(off, eventType);
             }
         }
 

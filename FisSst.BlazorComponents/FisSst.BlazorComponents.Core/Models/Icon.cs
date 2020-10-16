@@ -4,7 +4,7 @@ namespace FisSst.Maps.Models
 {
     public class Icon : JsReferenceBase
     {
-        internal Icon(JSObjectReference jsReference)
+        internal Icon(IJSObjectReference jsReference)
         {
             JsReference = jsReference;
         }

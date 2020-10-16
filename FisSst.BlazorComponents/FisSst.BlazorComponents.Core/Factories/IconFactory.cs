@@ -22,13 +22,13 @@ namespace FisSst.Maps.Factories
 
         public async Task<Icon> Create(IconOptions options)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, options);
+            IJSObjectReference jsReference = await this.jsRuntime.InvokeAsync<IJSObjectReference>(create, options);
             return new Icon(jsReference);
         }
 
         public async Task<Icon> CreateDefault()
         {
-            JSObjectReference jsReference = await this.iconFactoryJsInterop.CreateDefaultIcon();
+            IJSObjectReference jsReference = await this.iconFactoryJsInterop.CreateDefaultIcon();
             return new Icon(jsReference);
         }
     }
