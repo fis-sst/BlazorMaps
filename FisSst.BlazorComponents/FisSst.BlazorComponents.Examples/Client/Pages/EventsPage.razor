@@ -14,6 +14,8 @@
 <button @onclick="async () => await AddCircleToMap()">Add Circle</button>
 <button @onclick="async () => await AddEventsToMarkers()">Add events to markers</button>
 <button @onclick="async () => await RemoveEventsFromMarkers()">Remove events from markers</button>
+<button @onclick="async () => await AddEventsToMap()">Add events to map</button>
+<button @onclick="async () => await RemoveEventsFromMap()">Remove events from map</button>
 
 <style>
     #mapId {
@@ -116,5 +118,15 @@
         await Marker.Off("click");
         await Marker2.Off("contextmenu");
         await Marker3.Off("dblclick");
+    }
+
+    private async Task AddEventsToMap()
+    {
+        await MapRef.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+    }
+
+    private async Task RemoveEventsFromMap()
+    {
+        await MapRef.Off("click");
     }
 }
