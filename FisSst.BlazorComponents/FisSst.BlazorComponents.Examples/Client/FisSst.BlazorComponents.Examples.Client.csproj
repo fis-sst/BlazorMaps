@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\FisSst.BlazorComponents.Core\FisSst.BlazorComponents.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\icons\" />
+  </ItemGroup>
+
 </Project>
