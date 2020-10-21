@@ -13,6 +13,7 @@
     --white: #FFFFFF;
     --font-color-base: #3B5284;
     --border-radius-base: 20px;
+    --horizontal-outer-padding: 2rem;
 }
 
 html, body {
@@ -24,10 +25,6 @@ html, body {
 app {
     height: 100%;
     position: relative;
-}
-
-a, .btn-link {
-    color: #0366d6;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -64,23 +61,37 @@ a, .btn-link {
 .navbar {
     height: var(--navbar-height);
     background: var(--gray-one);
+    padding: 0 var(--horizontal-outer-padding);
+    display: flex;
+    gap: 3rem;
+    justify-content: stretch;
 }
 
-    .navbar .logo {
-
+    .navbar .logo-wrapper {
+        margin-right: auto;
     }
 
-    .navbar .button-wrapper {
-
-    }
-
-        .navbar .button-wrapper .label {
-            font-weight: bold;
+        .navbar .logo-wrapper .logo {
+            height: 3rem;
         }
 
+    .navbar .button-wrapper {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
 
         .navbar .button-wrapper .circle {
+            background: var(--green-one);
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: var(--border-radius-base);
+        }
 
+        .navbar .button-wrapper .label {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--font-color-base) !important;
         }
 
 .main {
@@ -93,6 +104,7 @@ a, .btn-link {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 4rem;
+    padding-top: 1rem;
 }   
 
     .main .top-container {
@@ -102,7 +114,10 @@ a, .btn-link {
     }
 
         .main .top-container .page-header {
+            font-size: 3rem;
             font-weight: bold;
+            margin-left: 0.5rem;
+            margin-bottom: 0 !important;
         }
 
     .main .map-wrapper {
@@ -118,7 +133,7 @@ a, .btn-link {
         background: var(--white);
         box-shadow: 0px 3px 6px var(--gray-three);
         border-radius: var(--border-radius-base);
-        padding: 2rem 1rem;
+        padding: var(--horizontal-outer-padding) 1rem;
     }
 
         .main .side-panel .header{
