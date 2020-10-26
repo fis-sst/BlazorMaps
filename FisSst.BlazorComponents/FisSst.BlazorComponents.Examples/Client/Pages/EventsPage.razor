@@ -5,22 +5,26 @@
 @inject IPolygonFactory PolygonFactory
 @inject ICircleFactory CircleFactory
 
-<h1>Events</h1>
+<div class="top-container">
+    <h1 class="page-header">Events</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddMarkersToMap()">Add Markers</button>
-<button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
-<button @onclick="async () => await AddCircleToMap()">Add Circle</button>
-<button @onclick="async () => await AddEventsToMarkers()">Add events to markers</button>
-<button @onclick="async () => await RemoveEventsFromMarkers()">Remove events from markers</button>
-<button @onclick="async () => await AddEventsToMap()">Add events to map</button>
-<button @onclick="async () => await RemoveEventsFromMap()">Remove events from map</button>
+<div class="side-panel">
+    <button @onclick="async () => await AddMarkersToMap()">Add Markers</button>
+    <button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
+    <button @onclick="async () => await AddCircleToMap()">Add Circle</button>
+    <button @onclick="async () => await AddEventsToMarkers()">Add events to markers</button>
+    <button @onclick="async () => await RemoveEventsFromMarkers()">Remove events from markers</button>
+    <button @onclick="async () => await AddEventsToMap()">Add events to map</button>
+    <button @onclick="async () => await RemoveEventsFromMap()">Remove events from map</button>
+</div>
 
 <style>
-    #mapId {
-        height: 600px;
-    }
+
 </style>
 
 @code {

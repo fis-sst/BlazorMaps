@@ -4,19 +4,24 @@
 @inject IMarkerFactory MarkerFactory
 @inject IIconFactory IconFactory
 
-<h1>Markers</h1>
+<div class="top-container">
+    <h1 class="page-header">Markers</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddMarkers()">Add Markers</button>
-<button @onclick="async () => await RemoveMarkers()">Remove Markers</button>
-<button @onclick="async () => await AddMarkerWithOptions()">Add Marker with options</button>
-<button @onclick="async () => await RemoveMarkerWithOptions()">Remove Marker with options</button>
+<div class="side-panel">
+    <button @onclick="async () => await AddMarkers()">Add Markers</button>
+    <button @onclick="async () => await RemoveMarkers()">Remove Markers</button>
+    <button @onclick="async () => await AddMarkerWithOptions()">Add Marker with options</button>
+    <button @onclick="async () => await RemoveMarkerWithOptions()">Remove Marker with options</button>
+</div>
+
 
 <style>
-    #mapId {
-        height: 600px;
-    }
+
 </style>
 
 @code {

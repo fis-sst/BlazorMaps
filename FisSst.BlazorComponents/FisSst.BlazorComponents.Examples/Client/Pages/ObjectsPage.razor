@@ -6,11 +6,15 @@
 @inject ICircleMarkerFactory CircleMarkerFactory
 @inject ICircleFactory CircleFactory
 
-<h1>Objects</h1>
+<div class="top-container">
+    <h1 class="page-header">Markers</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<div class="col">
+<div class="side-panel">
     <div>
         <button @onclick="async () => await AddPolylines()">Add Polylines</button>
         <button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
@@ -34,9 +38,7 @@
 </div>
 
 <style>
-    #mapId {
-        height: 600px;
-    }
+
 </style>
 
 @code {

@@ -3,24 +3,28 @@
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
 
-<h1>Popups</h1>
+<div class="top-container">
+    <h1 class="page-header">Popups</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddMarkers()">Add markers</button>
-<button @onclick="async () => await BindPopup()">Bind popup</button>
-<button @onclick="async () => await BindTooltip()">Bind tooltip</button>
-<button @onclick="async () => await UpdatePopup()">Update popup</button>
-<button @onclick="async () => await UpdateTooltip()">Update tooltip</button>
-<button @onclick="async () => await TogglePopup()">Toogle popup</button>
-<button @onclick="async () => await ToggleTooltip()">Toggle tooltip</button>
-<button @onclick="async () => await RemovePopup()">Remove popup</button>
-<button @onclick="async () => await RemoveTooltip()">Remove tooltip</button>
+<div class="side-panel">
+    <button @onclick="async () => await AddMarkers()">Add markers</button>
+    <button @onclick="async () => await BindPopup()">Bind popup</button>
+    <button @onclick="async () => await BindTooltip()">Bind tooltip</button>
+    <button @onclick="async () => await UpdatePopup()">Update popup</button>
+    <button @onclick="async () => await UpdateTooltip()">Update tooltip</button>
+    <button @onclick="async () => await TogglePopup()">Toogle popup</button>
+    <button @onclick="async () => await ToggleTooltip()">Toggle tooltip</button>
+    <button @onclick="async () => await RemovePopup()">Remove popup</button>
+    <button @onclick="async () => await RemoveTooltip()">Remove tooltip</button>
+</div>
 
 <style>
-    #mapId {
-        height: 600px;
-    }
+
 </style>
 
 @code {
