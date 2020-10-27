@@ -1,5 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 :root {
     --navbar-height: 5rem;
@@ -9,7 +9,8 @@
     --green-one: #CBE54E;
     --green-two: #94B447;
     --green-three: #55BB88;
-    --blue-one: #006C8C
+    --green-four: #D3DD18;
+    --blue-one: #006C8C;
     --white: #FFFFFF;
     --font-color-base: #3B5284;
     --border-radius-base: 20px;
@@ -63,8 +64,9 @@ app {
     background: var(--gray-one);
     padding: 0 var(--horizontal-outer-padding);
     display: flex;
-    gap: 3rem;
     justify-content: stretch;
+    align-items: center;
+    gap: 1.5rem;
 }
 
     .navbar .logo-wrapper {
@@ -91,14 +93,18 @@ app {
         .navbar .button-wrapper .label {
             font-size: 1.3rem;
             font-weight: bold;
-            color: var(--font-color-base) !important;
+            color: var(--font-color-base);
+        }
+
+        .active .label {
+            color: var(--green-two)!important;
         }
 
 .main {
     height: calc(100% - var(--navbar-height));  
     display: grid;
     grid-template-rows: 0.1fr 0.9fr;
-    grid-template-columns: 0.75fr 0.25fr;
+    grid-template-columns: 1fr minmax(400px, 0.25fr);
     gap: 1rem;
     background: var(--gray-two);
     padding-left: 2rem;
@@ -118,6 +124,7 @@ app {
             font-weight: bold;
             margin-left: 0.5rem;
             margin-bottom: 0 !important;
+            color: inherit;
         }
 
     .main .map-wrapper {
@@ -133,24 +140,13 @@ app {
         background: var(--white);
         box-shadow: 0px 3px 6px var(--gray-three);
         border-radius: var(--border-radius-base);
-        padding: var(--horizontal-outer-padding) 1rem;
+        padding: 2rem var(--horizontal-outer-padding);
     }
 
         .main .side-panel .header{
+            font-size: 1.5rem;
             font-weight: bold;
         }
-
-        .main .side-panel .tile {
-
-        }
-
-            .main .side-panel .tile .icon {
-
-            }
-
-            .main .side-panel .tile .label {
-
-            }
 
 #mapId {
     position: absolute;
@@ -160,3 +156,18 @@ app {
     right: 0;
     border-radius: var(--border-radius-base) !important;
 }
+
+    #mapId > div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
+        border: 1px solid #E9E9E9;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 8px;
+        background: var(--white);
+    }
+
+    #mapId > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > a.leaflet-control-zoom-in,
+    #mapId > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > a.leaflet-control-zoom-out {
+        color: var(--green-four);
+        background: transparent;
+    }
+
+

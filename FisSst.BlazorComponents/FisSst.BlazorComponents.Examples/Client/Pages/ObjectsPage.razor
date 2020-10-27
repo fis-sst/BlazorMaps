@@ -15,30 +15,69 @@
 </div>
 
 <div class="side-panel">
-    <div>
-        <button @onclick="async () => await AddPolylines()">Add Polylines</button>
-        <button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
-        <button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
-    </div>
-    <div>
-        <button @onclick="async () => await AddPolygons()">Add Polygons</button>
-        <button @onclick="async () => await ChangePolygonStyle()">Change Polygon Style</button>
-        <button @onclick="async () => await DeletePolygons()">Delete Polygons</button>
-    </div>
-    <div>
-        <button @onclick="async () => await AddCircleMarkers()">Add CircleMarkers</button>
-        <button @onclick="async () => await ChangeCircleMarkerStyle()">Change CircleMarker Style</button>
-        <button @onclick="async () => await DeleteCircleMarkers()">Delete CircleMarkers</button>
-    </div>
-    <div>
-        <button @onclick="async () => await AddCircles()">Add Circles</button>
-        <button @onclick="async () => await ChangeCircleStyle()">Change Circle Style</button>
-        <button @onclick="async () => await DeleteCircles()">Delete Circles</button>
-    </div>
+    <h3 class="header">Add</h3>
+    <SidePanelButton Label="polilines"
+                     IconSrc="@Icons.OBJECTS_ADD_POLILINES_ICON_SRC"
+                     OnClick="async () => await AddPolylines()" />
+    <SidePanelButton Label="circlemarker"
+                     IconSrc="@Icons.OBJECTS_ADD_CIRCLEMARKER_ICON_SRC"
+                     OnClick="async () => await AddCircleMarkers()" />
+    <SidePanelButton Label="circles"
+                     IconSrc="@Icons.OBJECTS_ADD_CIRCLES_ICON_SRC"
+                     OnClick="async () => await AddCircles()" />
+    <SidePanelButton Label="polygons"
+                     IconSrc="@Icons.OBJECTS_ADD_POLYGONS_ICON_SRC"
+                     OnClick="async () => await AddPolygons()" />
+    <h3 class="header">Change</h3>
+    <SidePanelButton Label="polilines"
+                     IconSrc="@Icons.OBJECTS_CHANGE_POLILINES_ICON_SRC"
+                     OnClick="async () => await ChangePolylineStyle()" />
+    <SidePanelButton Label="circlemarker"
+                     IconSrc="@Icons.OBJECTS_CHANGE_CIRCLEMARKER_ICON_SRC"
+                     OnClick="async () => await ChangeCircleMarkerStyle()" />
+    <SidePanelButton Label="circles"
+                     IconSrc="@Icons.OBJECTS_CHANGE_CIRCLES_ICON_SRC"
+                     OnClick="async () => await ChangeCircleStyle()" />
+    <SidePanelButton Label="polygons"
+                     IconSrc="@Icons.OBJECTS_CHANGE_POLYGONS_ICON_SRC"
+                     OnClick="async () => await ChangePolygonStyle()" />
+    <h3 class="header">Delete</h3>
+    <SidePanelButton Label="polilines"
+                     IconSrc="@Icons.OBJECTS_DELETE_POLILINES_ICON_SRC"
+                     OnClick="async () => await DeletePolylines()" />
+    <SidePanelButton Label="circlemarker"
+                     IconSrc="@Icons.OBJECTS_DELETE_CIRCLEMARKER_ICON_SRC"
+                     OnClick="async () => await DeleteCircleMarkers()" />
+    <SidePanelButton Label="circles"
+                     IconSrc="@Icons.OBJECTS_DELETE_CIRCLES_ICON_SRC"
+                     OnClick="async () => await DeleteCircles()" />
+    <SidePanelButton Label="polygons"
+                     IconSrc="@Icons.OBJECTS_DELETE_POLYGONS_ICON_SRC"
+                     OnClick="async () => await DeletePolygons()" />
 </div>
 
 <style>
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        align-items: center;
+        grid-template-rows: repeat(3, 8vh 12vh);
+        grid-template-columns: repeat(4, 1fr);
+    }
 
+        .side-panel .header {
+            grid-column: 1/-1;
+            font-size: 2.5vh !important;
+            margin: 0 !important;
+        }
+
+        .side-panel .tile .icon-wrapper {
+            height: 6vh!important;
+        }
+
+            .side-panel .tile .icon-wrapper .icon {
+                height: 5vh!important;
+            }
 </style>
 
 @code {

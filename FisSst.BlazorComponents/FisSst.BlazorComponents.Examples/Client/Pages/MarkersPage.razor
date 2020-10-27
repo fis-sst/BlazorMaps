@@ -13,15 +13,33 @@
 </div>
 
 <div class="side-panel">
-    <button @onclick="async () => await AddMarkers()">Add Markers</button>
-    <button @onclick="async () => await RemoveMarkers()">Remove Markers</button>
-    <button @onclick="async () => await AddMarkerWithOptions()">Add Marker with options</button>
-    <button @onclick="async () => await RemoveMarkerWithOptions()">Remove Marker with options</button>
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.MARKERS_ADD_MARKERS_ICON_SRC"
+                     OnClick="async () => await AddMarkers()" />
+    <SidePanelButton Label="remove markers"
+                     IconSrc="@Icons.MARKERS_REMOVE_MARKERS_ICON_SRC"
+                     OnClick="async () => await RemoveMarkers()" />
+    <SidePanelButton Label="add marker with options"
+                     IconSrc="@Icons.MARKERS_ADD_MARKERS_WITH_OPTIONS_ICON_SRC"
+                     OnClick="async () => await AddMarkerWithOptions()" />
+    <SidePanelButton Label="remove marker with options"
+                     IconSrc="@Icons.MARKERS_REMOVE_MARKERS_WITH_OPTIONS_ICON_SRC"
+                     OnClick="async () => await RemoveMarkerWithOptions()" />
 </div>
 
 
 <style>
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-columns: repeat(3, 1fr);
+    }
 
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
 </style>
 
 @code {

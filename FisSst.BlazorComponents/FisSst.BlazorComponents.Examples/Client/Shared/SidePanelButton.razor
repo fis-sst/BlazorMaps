@@ -1,0 +1,52 @@
+﻿<a @onclick="() => OnClick.Invoke()" class="@Class">
+    <div class="tile">
+        <div class="icon-wrapper">
+            <img src="@IconSrc" class="icon" />
+        </div>
+        <h3 class="label">@Label</h3>
+    </div>
+</a>
+
+<style>
+.tile {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 0.8rem;
+}
+
+.tile:hover {
+    cursor: pointer;
+}
+
+    .tile .icon-wrapper {
+        width: 60px;
+        height: 80px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+        .tile .icon-wrapper .icon {
+            width: 60px;
+        }
+
+    .tile .label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: center;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string Label { get; set; }
+    [Parameter]
+    public string IconSrc { get; set; }
+    [Parameter]
+    public Func<Task> OnClick { get; set; }
+    [Parameter]
+    public string Class { get; set; }
+}
