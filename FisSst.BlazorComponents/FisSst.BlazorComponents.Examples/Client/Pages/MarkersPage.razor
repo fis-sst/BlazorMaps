@@ -4,19 +4,42 @@
 @inject IMarkerFactory MarkerFactory
 @inject IIconFactory IconFactory
 
-<h1>Markers</h1>
+<div class="top-container">
+    <h1 class="page-header">Markers</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddMarkers()">Add Markers</button>
-<button @onclick="async () => await RemoveMarkers()">Remove Markers</button>
-<button @onclick="async () => await AddMarkerWithOptions()">Add Marker with options</button>
-<button @onclick="async () => await RemoveMarkerWithOptions()">Remove Marker with options</button>
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.MARKERS_ADD_MARKERS_ICON_SRC"
+                     OnClick="async () => await AddMarkers()" />
+    <SidePanelButton Label="remove markers"
+                     IconSrc="@Icons.MARKERS_REMOVE_MARKERS_ICON_SRC"
+                     OnClick="async () => await RemoveMarkers()" />
+    <SidePanelButton Label="add marker with options"
+                     IconSrc="@Icons.MARKERS_ADD_MARKERS_WITH_OPTIONS_ICON_SRC"
+                     OnClick="async () => await AddMarkerWithOptions()" />
+    <SidePanelButton Label="remove marker with options"
+                     IconSrc="@Icons.MARKERS_REMOVE_MARKERS_WITH_OPTIONS_ICON_SRC"
+                     OnClick="async () => await RemoveMarkerWithOptions()" />
+</div>
+
 
 <style>
-    #mapId {
-        height: 600px;
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-columns: repeat(3, 1fr);
     }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
 </style>
 
 @code {

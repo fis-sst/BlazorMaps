@@ -2,21 +2,48 @@
 
 @inject IJSRuntime jsRuntime
 
-<h1>Initialization</h1>
+<div class="top-container">
+    <h1 class="page-header">Initialization</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await GetCenterExample()">Get Center</button>
-<button @onclick="async () => await MapRef.SetView(Center)">Set View</button>
-<button @onclick="async () => await MapRef.SetZoom(zoom: 16)">Set Zoom</button>
-<button @onclick="async () => await MapRef.ZoomIn(zoomDelta: 1)">Zoom in</button>
-<button @onclick="async () => await MapRef.ZoomOut(zoomDelta: 3)">Zoom out</button>
-<button @onclick="async () => await MapRef.SetZoomAround(Center, zoom: 10)">Set Zoom Around</button>
+
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="get center"
+                     IconSrc="@Icons.INITIALIZATION_GET_CENTER_ICON_SRC"
+                     OnClick="async () => await GetCenterExample()" />
+    <SidePanelButton Label="set view"
+                     IconSrc="@Icons.INITIALIZATION_SET_VIEW_ICON_SRC"
+                     OnClick="async () => await MapRef.SetView(Center)" />
+    <SidePanelButton Label="set zoom"
+                     IconSrc="@Icons.INITIALIZATION_SET_ZOOM_ICON_SRC"
+                     OnClick="async () => await MapRef.SetZoom(zoom: 16)" />
+    <SidePanelButton Label="zoom in"
+                     IconSrc="@Icons.INITIALIZATION_ZOOM_IN_ICON_SRC"
+                     OnClick="async () => await MapRef.ZoomIn(zoomDelta: 1)" />
+    <SidePanelButton Label="zoom out"
+                     IconSrc="@Icons.INITIALIZATION_ZOOM_OUT_ICON_SRC"
+                     OnClick="async () => await MapRef.ZoomOut(zoomDelta: 3)" />
+    <SidePanelButton Label="set zoom around"
+                     IconSrc="@Icons.INITIALIZATION_SET_ZOOM_AROUND_ICON_SRC"
+                     OnClick="async () => await MapRef.SetZoomAround(Center, zoom: 10)" />
+</div>
 
 <style>
-    #mapId {
-        height: 600px;
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-columns: repeat(4, 1fr);
     }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
 </style>
 
 @code {
@@ -44,6 +71,6 @@
     private async Task GetCenterExample()
     {
         LatLng center = await MapRef.GetCenter();
-        await jsRuntime.InvokeAsync<string>("alert", $"Wycentrowanie mapy w: Lat: {center.Lat}, Lng: {center.Lng}");
+        await jsRuntime.InvokeAsync<string>("alert", $"Map centered at: Lat: {center.Lat}, Lng: {center.Lng}");
     }
 }

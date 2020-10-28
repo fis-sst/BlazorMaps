@@ -5,22 +5,47 @@
 @inject IPolygonFactory PolygonFactory
 @inject ICircleFactory CircleFactory
 
-<h1>Events</h1>
+<div class="top-container">
+    <h1 class="page-header">Events</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddMarkersToMap()">Add Markers</button>
-<button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
-<button @onclick="async () => await AddCircleToMap()">Add Circle</button>
-<button @onclick="async () => await AddEventsToMarkers()">Add events to markers</button>
-<button @onclick="async () => await RemoveEventsFromMarkers()">Remove events from markers</button>
-<button @onclick="async () => await AddEventsToMap()">Add events to map</button>
-<button @onclick="async () => await RemoveEventsFromMap()">Remove events from map</button>
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.EVENTS_ADD_MARKERS_ICON_SRC"
+                     OnClick="async () => await AddMarkersToMap()" />
+    <SidePanelButton Label="add polygon"
+                     IconSrc="@Icons.EVENTS_ADD_POLYGON_ICON_SRC"
+                     OnClick="async () => await AddPolygonToMap()" />
+    <SidePanelButton Label="add circle" 
+                     IconSrc="@Icons.EVENTS_ADD_CIRCLE_ICON_SRC" 
+                     OnClick="async () => await AddCircleToMap()" />
+    <SidePanelButton Label="add events to markers" 
+                     IconSrc="@Icons.EVENTS_ADD_EVENTS_TO_MARKERS_ICON_SRC" 
+                     OnClick="async () => await AddEventsToMarkers()" />
+    <SidePanelButton Label="remove events from markers" 
+                     IconSrc="@Icons.EVENTS_REMOVE_EVENTS_FROM_MARKERS_ICON_SRC" 
+                     OnClick="async () => await RemoveEventsFromMarkers() " />
+
+    @*<SidePanelButton Label="Add events to map" OnClick="async () => await AddEventsToMap()" />
+        <SidePanelButton Label="Remove events from map" OnClick="async () => await RemoveEventsFromMap()" />*@
+</div>
 
 <style>
-    #mapId {
-        height: 600px;
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-columns: repeat(3, 1fr);
     }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
 </style>
 
 @code {
