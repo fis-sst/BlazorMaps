@@ -14,22 +14,22 @@
 <div class="side-panel">
     <h3 class="header">Functionalities</h3>
     <SidePanelButton Label="get center"
-                     IconSrc="@Icons.INITIALIZATION_GET_CENTER_ICON_SRC"
+                     IconSrc="@Icons.InitializationGetCenterIconSrc"
                      OnClick="async () => await GetCenterExample()" />
     <SidePanelButton Label="set view"
-                     IconSrc="@Icons.INITIALIZATION_SET_VIEW_ICON_SRC"
+                     IconSrc="@Icons.InitializationSetViewIconSrc"
                      OnClick="async () => await MapRef.SetView(Center)" />
     <SidePanelButton Label="set zoom"
-                     IconSrc="@Icons.INITIALIZATION_SET_ZOOM_ICON_SRC"
+                     IconSrc="@Icons.InitializationSetZoomIconSrc"
                      OnClick="async () => await MapRef.SetZoom(zoom: 16)" />
     <SidePanelButton Label="zoom in"
-                     IconSrc="@Icons.INITIALIZATION_ZOOM_IN_ICON_SRC"
+                     IconSrc="@Icons.InitializationZoomInIconSrc"
                      OnClick="async () => await MapRef.ZoomIn(zoomDelta: 1)" />
     <SidePanelButton Label="zoom out"
-                     IconSrc="@Icons.INITIALIZATION_ZOOM_OUT_ICON_SRC"
+                     IconSrc="@Icons.InitializationZoomOutIconSrc"
                      OnClick="async () => await MapRef.ZoomOut(zoomDelta: 3)" />
     <SidePanelButton Label="set zoom around"
-                     IconSrc="@Icons.INITIALIZATION_SET_ZOOM_AROUND_ICON_SRC"
+                     IconSrc="@Icons.InitializationSetZoomAroundIconSrc"
                      OnClick="async () => await MapRef.SetZoomAround(Center, zoom: 10)" />
 </div>
 
@@ -43,6 +43,10 @@
 
         .side-panel .header {
             grid-column: 1/-1;
+        }
+
+        .side-panel .icon-wrapper .icon {
+            height: auto;
         }
 </style>
 

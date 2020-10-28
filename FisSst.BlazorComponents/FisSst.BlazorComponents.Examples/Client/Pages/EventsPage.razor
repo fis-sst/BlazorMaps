@@ -16,30 +16,33 @@
 <div class="side-panel">
     <h3 class="header">Functionalities</h3>
     <SidePanelButton Label="add markers"
-                     IconSrc="@Icons.EVENTS_ADD_MARKERS_ICON_SRC"
+                     IconSrc="@Icons.EventsAddMarkersIconSrc"
                      OnClick="async () => await AddMarkersToMap()" />
     <SidePanelButton Label="add polygon"
-                     IconSrc="@Icons.EVENTS_ADD_POLYGON_ICON_SRC"
+                     IconSrc="@Icons.EventsAddPolygonsIconSrc"
                      OnClick="async () => await AddPolygonToMap()" />
-    <SidePanelButton Label="add circle" 
-                     IconSrc="@Icons.EVENTS_ADD_CIRCLE_ICON_SRC" 
+    <SidePanelButton Label="add circle"
+                     IconSrc="@Icons.EventsAddCirclesIconSrc"
                      OnClick="async () => await AddCircleToMap()" />
-    <SidePanelButton Label="add events to markers" 
-                     IconSrc="@Icons.EVENTS_ADD_EVENTS_TO_MARKERS_ICON_SRC" 
+    <SidePanelButton Label="add events to markers"
+                     IconSrc="@Icons.EventsAddEventsToMarkerIconSrc"
                      OnClick="async () => await AddEventsToMarkers()" />
-    <SidePanelButton Label="remove events from markers" 
-                     IconSrc="@Icons.EVENTS_REMOVE_EVENTS_FROM_MARKERS_ICON_SRC" 
-                     OnClick="async () => await RemoveEventsFromMarkers() " />
-
-    @*<SidePanelButton Label="Add events to map" OnClick="async () => await AddEventsToMap()" />
-        <SidePanelButton Label="Remove events from map" OnClick="async () => await RemoveEventsFromMap()" />*@
+    <SidePanelButton Label="remove events from markers"
+                     IconSrc="@Icons.EventsRemoveEventsFromMarkersIconSrc"
+                     OnClick="async () => await RemoveEventsFromMarkers()" />
+    <SidePanelButton Label="add events to map"
+                     IconSrc="@Icons.EventsRemoveEventsFromMarkersIconSrc"
+                     OnClick="async () => await RemoveEventsFromMarkers()" />
+    <SidePanelButton Label="remove events from map"
+                     IconSrc="@Icons.EventsRemoveEventsFromMarkersIconSrc"
+                     OnClick="async () => await AddEventsToMap()" />
 </div>
 
 <style>
     .side-panel {
         min-width: 400px;
         display: grid;
-        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-rows: minmax(3rem, 5rem) repeat(3, 14vh);
         grid-template-columns: repeat(3, 1fr);
     }
 
