@@ -38,5 +38,7 @@
         public const string EventsAddCirclesIconSrc = "/assets/icons/add-circles.svg";
         public const string EventsAddEventsToMarkerIconSrc = "/assets/icons/add-events-to-marker.svg";
         public const string EventsRemoveEventsFromMarkersIconSrc = "/assets/icons/remove-events-from-markers.svg";
+        public const string EventsAddEventsToMapIconSrc = "/assets/icons/add-events-to-map.svg";
+        public const string EventsRemoveEventsFromMapIconSrc = "/assets/icons/remove-events-from-map.svg";
     }
 }
