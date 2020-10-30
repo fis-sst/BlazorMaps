@@ -8,36 +8,37 @@
 </a>
 
 <style>
-.tile {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-    gap: 0.8rem;
-}
-
-.tile:hover {
-    cursor: pointer;
-}
-
-    .tile .icon-wrapper {
-        width: 60px;
-        height: 80px;
+    .tile {
+        height: 100%;
         display: flex;
-        align-items: flex-end;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+        gap: 0.8rem;
     }
 
-        .tile .icon-wrapper .icon {
-            width: 60px;
+        .tile:hover {
+            cursor: pointer;
         }
 
-    .tile .label {
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-align: center;
-    }
+        .tile .icon-wrapper {
+            width: 60px;
+            height: 6vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+            .tile .icon-wrapper .icon {
+                width: 60px;
+                height: 5vh;
+            }
+
+        .tile .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
 </style>
 
 @code {

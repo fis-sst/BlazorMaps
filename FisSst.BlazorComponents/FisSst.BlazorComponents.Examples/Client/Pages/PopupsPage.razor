@@ -14,35 +14,35 @@
 <div class="side-panel">
     <h3 class="header">Popups</h3>
     <SidePanelButton Label="add markers"
-                     IconSrc="@Icons.POPUPS_ADD_MARKERS_ICON_SRC"
+                     IconSrc="@Icons.PopupsAddMarkersIconSrc"
                      OnClick="async () => await AddMarkers()" />
     <SidePanelButton Label="bind popup"
-                     IconSrc="@Icons.POPUPS_BIND_POPUP_ICON_SRC"
+                     IconSrc="@Icons.PopupsBindPopupIconSrc"
                      OnClick="async () => await BindPopup()" />
     <SidePanelButton Label="remove popup"
-                     IconSrc="@Icons.POPUPS_REMOVE_POPUP_ICON_SRC"
+                     IconSrc="@Icons.PopupsRemovePopupIconSrc"
                      OnClick="async () => await RemovePopup()" />
     <SidePanelButton Label="update popup"
-                     IconSrc="@Icons.POPUPS_UPDATE_POPUP_ICON_SRC"
+                     IconSrc="@Icons.PopupsUpdatePopupIconSrc"
                      OnClick="async () => await UpdatePopup()" />
     <SidePanelButton Label="toggle popup"
-                     IconSrc="@Icons.POPUPS_TOGGLE_POPUP_ICON_SRC"
+                     IconSrc="@Icons.PopupsTogglePopupIconSrc"
                      OnClick="async () => await TogglePopup()" />
-    <SidePanelButton Class="button-bind-tooltip" 
+    <SidePanelButton Class="button-bind-tooltip"
                      Label="bind tooltip"
-                     IconSrc="@Icons.POPUPS_BIND_TOOLTIP_ICON_SRC"
+                     IconSrc="@Icons.PopupsBindTooltipIconSrc"
                      OnClick="async () => await BindTooltip()" />
     <SidePanelButton Class="button-remove-tooltip"
                      Label="remove tooltip"
-                     IconSrc="@Icons.POPUPS_REMOVE_TOOLTIP_ICON_SRC"
+                     IconSrc="@Icons.PopupsRemoveTooltipIconSrc"
                      OnClick="async () => await RemoveTooltip()" />
     <SidePanelButton Class="button-update-tooltip"
                      Label="update tooltip"
-                     IconSrc="@Icons.POPUPS_UPDATE_TOOLTIP_ICON_SRC"
+                     IconSrc="@Icons.PopupsUpdateTooltipIconSrc"
                      OnClick="async () => await UpdateTooltip()" />
     <SidePanelButton Class="button-toggle-tooltip"
                      Label="toggle tooltip"
-                     IconSrc="@Icons.POPUPS_TOGGLE_TOOLTIP_ICON_SRC"
+                     IconSrc="@Icons.PopupsToggleTooltipIconSrc"
                      OnClick="async () => await ToggleTooltip()" />
 </div>
 
@@ -54,37 +54,29 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-        .side-panel .tile .icon-wrapper {
-            height: 6vh !important;
-        }
-
-            .side-panel .tile .icon-wrapper .icon {
-                height: 5vh !important;
-            }
-
         .side-panel .header {
             grid-column: 1/-1;
         }
 
-        .button-bind-tooltip {
-            grid-row: 4;
-            grid-column: 1;
-        }
+    .button-bind-tooltip {
+        grid-row: 4;
+        grid-column: 1;
+    }
 
-        .button-remove-tooltip {
-            grid-row: 4;
-            grid-column: 2;
-        }
+    .button-remove-tooltip {
+        grid-row: 4;
+        grid-column: 2;
+    }
 
-        .button-update-tooltip {
-            grid-row: 4;
-            grid-column: 3;
-        }
+    .button-update-tooltip {
+        grid-row: 4;
+        grid-column: 3;
+    }
 
-        .button-toggle-tooltip {
-            grid-row: 5;
-            grid-column: 1;
-        }
+    .button-toggle-tooltip {
+        grid-row: 5;
+        grid-column: 1;
+    }
 </style>
 
 @code {
