@@ -3,23 +3,79 @@
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
 
-<h1>Popups</h1>
+<div class="top-container">
+    <h1 class="page-header">Popups</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddMarkers()">Add markers</button>
-<button @onclick="async () => await BindPopup()">Bind popup</button>
-<button @onclick="async () => await BindTooltip()">Bind tooltip</button>
-<button @onclick="async () => await UpdatePopup()">Update popup</button>
-<button @onclick="async () => await UpdateTooltip()">Update tooltip</button>
-<button @onclick="async () => await TogglePopup()">Toogle popup</button>
-<button @onclick="async () => await ToggleTooltip()">Toggle tooltip</button>
-<button @onclick="async () => await RemovePopup()">Remove popup</button>
-<button @onclick="async () => await RemoveTooltip()">Remove tooltip</button>
+<div class="side-panel">
+    <h3 class="header">Popups</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.PopupsAddMarkersIconSrc"
+                     OnClick="async () => await AddMarkers()" />
+    <SidePanelButton Label="bind popup"
+                     IconSrc="@Icons.PopupsBindPopupIconSrc"
+                     OnClick="async () => await BindPopup()" />
+    <SidePanelButton Label="remove popup"
+                     IconSrc="@Icons.PopupsRemovePopupIconSrc"
+                     OnClick="async () => await RemovePopup()" />
+    <SidePanelButton Label="update popup"
+                     IconSrc="@Icons.PopupsUpdatePopupIconSrc"
+                     OnClick="async () => await UpdatePopup()" />
+    <SidePanelButton Label="toggle popup"
+                     IconSrc="@Icons.PopupsTogglePopupIconSrc"
+                     OnClick="async () => await TogglePopup()" />
+    <SidePanelButton Class="button-bind-tooltip"
+                     Label="bind tooltip"
+                     IconSrc="@Icons.PopupsBindTooltipIconSrc"
+                     OnClick="async () => await BindTooltip()" />
+    <SidePanelButton Class="button-remove-tooltip"
+                     Label="remove tooltip"
+                     IconSrc="@Icons.PopupsRemoveTooltipIconSrc"
+                     OnClick="async () => await RemoveTooltip()" />
+    <SidePanelButton Class="button-update-tooltip"
+                     Label="update tooltip"
+                     IconSrc="@Icons.PopupsUpdateTooltipIconSrc"
+                     OnClick="async () => await UpdateTooltip()" />
+    <SidePanelButton Class="button-toggle-tooltip"
+                     Label="toggle tooltip"
+                     IconSrc="@Icons.PopupsToggleTooltipIconSrc"
+                     OnClick="async () => await ToggleTooltip()" />
+</div>
 
 <style>
-    #mapId {
-        height: 600px;
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: 8vh repeat(4, 12vh);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
+
+    .button-bind-tooltip {
+        grid-row: 4;
+        grid-column: 1;
+    }
+
+    .button-remove-tooltip {
+        grid-row: 4;
+        grid-column: 2;
+    }
+
+    .button-update-tooltip {
+        grid-row: 4;
+        grid-column: 3;
+    }
+
+    .button-toggle-tooltip {
+        grid-row: 5;
+        grid-column: 1;
     }
 </style>
 
@@ -64,12 +120,12 @@
 
     private async Task BindPopup()
     {
-        await marker1.BindPopup("Cześć, tu popup");
+        await marker1.BindPopup("Hi! This is a popup");
     }
 
     private async Task BindTooltip()
     {
-        await marker2.BindTooltip("A tu tooltip");
+        await marker2.BindTooltip("And this is a tooltip");
     }
 
     private async Task RemovePopup()
@@ -84,12 +140,12 @@
 
     private async Task UpdatePopup()
     {
-        await marker1.SetPopupContent("Cześć, tu popup, ale już ze zmienioną zawartością!");
+        await marker1.SetPopupContent("Popup has changed its content");
     }
 
     private async Task UpdateTooltip()
     {
-        await marker2.SetTooltipContent("A tu tooltip i też umiem zmieniać wartość");
+        await marker2.SetTooltipContent("Tooltip has changed its content");
     }
 
     private async Task TogglePopup()

@@ -16,7 +16,7 @@ namespace FisSst.Maps.Models
         private readonly string getBounds = "getBounds";
         private readonly string addLatLng = "addLatLng";
 
-        internal Polyline(JSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
+        internal Polyline(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
             EventedJsInterop = eventedJsInterop;
             JsReference = jsReference;
@@ -35,7 +35,7 @@ namespace FisSst.Maps.Models
 
         public async Task<Polyline> SetLatLngs(IEnumerable<LatLng> latLngs)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(setLatLngs, latLngs);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(setLatLngs, latLngs);
             return this;
         }
 
@@ -63,13 +63,13 @@ namespace FisSst.Maps.Models
 
         public async Task<Polyline> AddLatLng(LatLng latLng)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(addLatLng, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(addLatLng, latLng);
             return this;
         }
 
         public async Task<Polyline> AddLatLng(LatLng latLng, IEnumerable<LatLng> latLngs)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(addLatLng, latLng, latLngs);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(addLatLng, latLng, latLngs);
             return this;
         }
     }

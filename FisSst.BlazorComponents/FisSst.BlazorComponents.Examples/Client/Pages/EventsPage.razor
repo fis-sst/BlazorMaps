@@ -5,18 +5,50 @@
 @inject IPolygonFactory PolygonFactory
 @inject ICircleFactory CircleFactory
 
-<h1>Events</h1>
+<div class="top-container">
+    <h1 class="page-header">Events</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<button @onclick="async () => await AddEventToMap()">Add Markers</button>
-<button @onclick="async () => await AddPolygonToMap()">Add Polygon</button>
-<button @onclick="async () => await AddCircleToMap()">Add Circle</button>
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.EventsAddMarkersIconSrc"
+                     OnClick="async () => await AddMarkersToMap()" />
+    <SidePanelButton Label="add polygon"
+                     IconSrc="@Icons.EventsAddPolygonsIconSrc"
+                     OnClick="async () => await AddPolygonToMap()" />
+    <SidePanelButton Label="add circle"
+                     IconSrc="@Icons.EventsAddCirclesIconSrc"
+                     OnClick="async () => await AddCircleToMap()" />
+    <SidePanelButton Label="add events to markers"
+                     IconSrc="@Icons.EventsAddEventsToMarkerIconSrc"
+                     OnClick="async () => await AddEventsToMarkers()" />
+    <SidePanelButton Label="remove events from markers"
+                     IconSrc="@Icons.EventsRemoveEventsFromMarkersIconSrc"
+                     OnClick="async () => await RemoveEventsFromMarkers()" />
+    <SidePanelButton Label="add events to map"
+                     IconSrc="@Icons.EventsAddEventsToMapIconSrc"
+                     OnClick="async () => await AddEventsToMap()" />
+    <SidePanelButton Label="remove events from map"
+                     IconSrc="@Icons.EventsRemoveEventsFromMapIconSrc"
+                     OnClick="async () => await RemoveEventsFromMap()" />
+</div>
 
 <style>
-    #mapId {
-        height: 600px;
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(3, 14vh);
+        grid-template-columns: repeat(3, 1fr);
     }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
 </style>
 
 @code {
@@ -25,6 +57,12 @@
     private Polygon Polygon;
 
     private Circle Circle;
+
+    private Marker Marker;
+
+    private Marker Marker2;
+
+    private Marker Marker3;
 
     private MapOptions MapOptions = new MapOptions()
     {
@@ -43,14 +81,11 @@
         }
     };
 
-    private async Task AddEventToMap()
+    private async Task AddMarkersToMap()
     {
-        Marker marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
-        await marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-        Marker marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
-        await marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-        Marker marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
-        await marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        Marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
+        Marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
+        Marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
     }
 
     private async Task HandleMouseEvent(MouseEvent mouseEvent)
@@ -97,5 +132,29 @@
         };
 
         await Circle.SetLatLng(new LatLng(50.283783, 18.724827));
+    }
+
+    private async Task AddEventsToMarkers()
+    {
+        await Marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await Marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await Marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+    }
+
+    private async Task RemoveEventsFromMarkers()
+    {
+        await Marker.Off("click");
+        await Marker2.Off("contextmenu");
+        await Marker3.Off("dblclick");
+    }
+
+    private async Task AddEventsToMap()
+    {
+        await MapRef.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+    }
+
+    private async Task RemoveEventsFromMap()
+    {
+        await MapRef.Off("click");
     }
 }

@@ -19,30 +19,28 @@ namespace FisSst.Maps.Factories
             this.eventedJsInterop = eventedJsInterop;
         }
 
-        public async Task<Circle> Create(LatLng latLngs)
+        public async Task<Circle> Create(LatLng latLng)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
+            IJSObjectReference jsReference = await this.jsRuntime.InvokeAsync<IJSObjectReference>(create, latLng);
             return new Circle(jsReference, this.eventedJsInterop);
         }
 
-        public async  Task<Circle> Create(LatLng latLngs, CircleOptions options)
+        public async  Task<Circle> Create(LatLng latLng, CircleOptions options)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
+            IJSObjectReference jsReference = await this.jsRuntime.InvokeAsync<IJSObjectReference>(create, latLng, options);
             return new Circle(jsReference, this.eventedJsInterop);
         }
 
-        public async Task<Circle> CreateAndAddToMap(LatLng latLngs, Map map)
+        public async Task<Circle> CreateAndAddToMap(LatLng latLng, Map map)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs);
-            Circle circle = new Circle(jsReference, this.eventedJsInterop);
+            Circle circle = await this.Create(latLng);
             await circle.AddTo(map);
             return circle;
         }
 
-        public async Task<Circle> CreateAndAddToMap(LatLng latLngs, Map map, CircleOptions options)
+        public async Task<Circle> CreateAndAddToMap(LatLng latLng, Map map, CircleOptions options)
         {
-            JSObjectReference jsReference = await this.jsRuntime.InvokeAsync<JSObjectReference>(create, latLngs, options);
-            Circle circle = new Circle(jsReference, this.eventedJsInterop);
+            Circle circle = await this.Create(latLng, options);
             await circle.AddTo(map);
             return circle;
         }

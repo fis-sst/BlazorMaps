@@ -12,25 +12,25 @@ namespace FisSst.Maps.Models
 
         public async Task<Path> Redraw()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(redraw);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(redraw);
             return this;
         }
 
         public async Task<Path> SetStyle(PathOptions options)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(setStyle, options);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(setStyle, options);
             return this;
         }
 
         public async Task<Path> BringToFront()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(bringToFront);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(bringToFront);
             return this;
         }
 
         public async Task<Path> BringToBack()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(bringToBack);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(bringToBack);
             return this;
         }
     }

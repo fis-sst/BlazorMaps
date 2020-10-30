@@ -6,37 +6,70 @@
 @inject ICircleMarkerFactory CircleMarkerFactory
 @inject ICircleFactory CircleFactory
 
-<h1>Objects</h1>
+<div class="top-container">
+    <h1 class="page-header">Objects</h1>
+</div>
 
-<Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+<div class="map-wrapper">
+    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+</div>
 
-<div class="col">
-    <div>
-        <button @onclick="async () => await AddPolylines()">Add Polylines</button>
-        <button @onclick="async () => await ChangePolylineStyle()">Change Polyline Style</button>
-        <button @onclick="async () => await DeletePolylines()">Delete Polylines</button>
-    </div>
-    <div>
-        <button @onclick="async () => await AddPolygons()">Add Polygons</button>
-        <button @onclick="async () => await ChangePolygonStyle()">Change Polygon Style</button>
-        <button @onclick="async () => await DeletePolygons()">Delete Polygons</button>
-    </div>
-    <div>
-        <button @onclick="async () => await AddCircleMarkers()">Add CircleMarkers</button>
-        <button @onclick="async () => await ChangeCircleMarkerStyle()">Change CircleMarker Style</button>
-        <button @onclick="async () => await DeleteCircleMarkers()">Delete CircleMarkers</button>
-    </div>
-    <div>
-        <button @onclick="async () => await AddCircles()">Add Circles</button>
-        <button @onclick="async () => await ChangeCircleStyle()">Change Circle Style</button>
-        <button @onclick="async () => await DeleteCircles()">Delete Circles</button>
-    </div>
+<div class="side-panel">
+    <h3 class="header">Add</h3>
+    <SidePanelButton Label="polilines"
+                     IconSrc="@Icons.ObjectsAddPolilinesIconSrc"
+                     OnClick="async () => await AddPolylines()" />
+    <SidePanelButton Label="circlemarker"
+                     IconSrc="@Icons.ObjectsAddCircleMarkerIconSrc"
+                     OnClick="async () => await AddCircleMarkers()" />
+    <SidePanelButton Label="circles"
+                     IconSrc="@Icons.ObjectsAddCirclesIconSrc"
+                     OnClick="async () => await AddCircles()" />
+    <SidePanelButton Label="polygons"
+                     IconSrc="@Icons.ObjectsAddPolygonsIconSrc"
+                     OnClick="async () => await AddPolygons()" />
+    <h3 class="header">Change</h3>
+    <SidePanelButton Label="polilines"
+                     IconSrc="@Icons.ObjectsChangePolilinesIconSrc"
+                     OnClick="async () => await ChangePolylineStyle()" />
+    <SidePanelButton Label="circlemarker"
+                     IconSrc="@Icons.ObjectsChangeCirclemarkerIconSrc"
+                     OnClick="async () => await ChangeCircleMarkerStyle()" />
+    <SidePanelButton Label="circles"
+                     IconSrc="@Icons.ObjectsChangeCirclesIconSrc"
+                     OnClick="async () => await ChangeCircleStyle()" />
+    <SidePanelButton Label="polygons"
+                     IconSrc="@Icons.ObjectsChangePolygonsIconSrc"
+                     OnClick="async () => await ChangePolygonStyle()" />
+    <h3 class="header">Delete</h3>
+    <SidePanelButton Label="polilines"
+                     IconSrc="@Icons.ObjectsDeletePolilinesIconSrc"
+                     OnClick="async () => await DeletePolylines()" />
+    <SidePanelButton Label="circlemarker"
+                     IconSrc="@Icons.ObjectsDeleteCirclemarkerIconSrc"
+                     OnClick="async () => await DeleteCircleMarkers()" />
+    <SidePanelButton Label="circles"
+                     IconSrc="@Icons.ObjectsDeleteCirclesIconSrc"
+                     OnClick="async () => await DeleteCircles()" />
+    <SidePanelButton Label="polygons"
+                     IconSrc="@Icons.ObjectsDeletePolygonsIconSrc"
+                     OnClick="async () => await DeletePolygons()" />
 </div>
 
 <style>
-    #mapId {
-        height: 600px;
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        align-items: center;
+        grid-template-rows: repeat(3, 8vh 12vh);
+        grid-template-columns: repeat(4, 1fr);
     }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+            font-size: 2.5vh !important;
+            margin: 0 !important;
+        }
 </style>
 
 @code {
@@ -166,7 +199,7 @@
 
     private async Task AddPolygons()
     {
-        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EighthLatLng, NinthLatLng, TenthLatLng}, MapRef);
+        Polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EighthLatLng, NinthLatLng, TenthLatLng }, MapRef);
         Polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { EleventhLatLng, TwelfthLatLng, ThirteenthLatLng, FourteenthLatLng }, MapRef);
     }
 

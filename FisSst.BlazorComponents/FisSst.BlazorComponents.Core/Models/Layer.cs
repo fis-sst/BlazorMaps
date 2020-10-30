@@ -1,8 +1,4 @@
 ﻿using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FisSst.Maps.Models
@@ -29,50 +25,50 @@ namespace FisSst.Maps.Models
 
         public async Task<Layer> AddTo(Map map)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(addTo, map.MapReference);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(addTo, map.MapReference);
             return this;
         }
 
         public async Task<Layer> Remove()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(remove);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(remove);
             await this.JsReference.DisposeAsync();
             return this;
         }
 
         public async Task<Layer> RemoveFrom(Map map)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(removeFrom, map.MapReference);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(removeFrom, map.MapReference);
             return this;
         }
 
         public async Task<Layer> BindPopup(string content)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(bindPopup, content);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(bindPopup, content);
             return this;
         }
 
         public async Task<Layer> UnbindPopup()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(unbindPopup);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(unbindPopup);
             return this;
         }
 
         public async Task<Layer> OpenPopup(LatLng? latLng)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(openPopup, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(openPopup, latLng);
             return this;
         }
 
         public async Task<Layer> ClosePopup()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(closePopup);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(closePopup);
             return this;
         }
 
         public async Task<Layer> TogglePopup()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(togglePopup);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(togglePopup);
             return this;
         }
 
@@ -83,37 +79,37 @@ namespace FisSst.Maps.Models
 
         public async Task<Layer> SetPopupContent(string content)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(setPopupContent, content);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(setPopupContent, content);
             return this;
         }
 
         public async Task<Layer> BindTooltip(string content)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(bindTooltip, content);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(bindTooltip, content);
             return this;
         }
 
         public async Task<Layer> UnbindTooltip()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(unbindTooltip);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(unbindTooltip);
             return this;
         }
 
         public async Task<Layer> OpenTooltip(LatLng? latLng)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(openTooltip, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(openTooltip, latLng);
             return this;
         }
 
         public async Task<Layer> CloseTooltip()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(closeTooltip);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(closeTooltip);
             return this;
         }
 
         public async Task<Layer> ToggleTooltip()
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(toggleTooltip);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(toggleTooltip);
             return this;
         }
 
@@ -124,7 +120,7 @@ namespace FisSst.Maps.Models
 
         public async Task<Layer> SetTooltipContent(string content)
         {
-            await this.JsReference.InvokeAsync<JSObjectReference>(setTooltipContent, content);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(setTooltipContent, content);
             return this;
         }
     }

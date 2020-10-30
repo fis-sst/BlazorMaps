@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorComponents.Core.JsInterops
+namespace FisSst.Maps.JsInterops
 {
     internal class MapJsInterop : BaseJsInterop, IMapJsInterop
     {
@@ -19,10 +19,10 @@ namespace FisSst.BlazorComponents.Core.JsInterops
 
         }
 
-        public async ValueTask<JSObjectReference> Initialize(MapOptions mapOptions)
+        public async ValueTask<IJSObjectReference> Initialize(MapOptions mapOptions)
         {
             var module = await moduleTask.Value;
-            return await module.InvokeAsync<JSObjectReference>(initialize, mapOptions);
+            return await module.InvokeAsync<IJSObjectReference>(initialize, mapOptions);
         }
     }
 }

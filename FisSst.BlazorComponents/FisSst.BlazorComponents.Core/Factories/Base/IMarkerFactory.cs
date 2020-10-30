@@ -1,8 +1,4 @@
 ﻿using FisSst.Maps.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FisSst.Maps.Factories
@@ -10,6 +6,8 @@ namespace FisSst.Maps.Factories
     public interface IMarkerFactory
     {
         Task<Marker> Create(LatLng latLng);
+        Task<Marker> Create(LatLng latLng, MarkerOptions options);
         Task<Marker> CreateAndAddToMap(LatLng latLng, Map map);
+        Task<Marker> CreateAndAddToMap(LatLng latLng, Map map, MarkerOptions options);
     }
 }

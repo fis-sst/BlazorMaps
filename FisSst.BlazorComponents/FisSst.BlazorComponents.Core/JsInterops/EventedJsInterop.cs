@@ -1,10 +1,6 @@
 ﻿using FisSst.Maps.JsInterops.Base;
 using FisSst.Maps.Models;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FisSst.Maps.JsInterops
@@ -20,8 +16,8 @@ namespace FisSst.Maps.JsInterops
         }
 
         public async ValueTask OnCallback(
-            DotNetObjectReference<Evented> eventedClass, 
-            JSObjectReference evented, 
+            DotNetObjectReference<Evented> eventedClass,
+            IJSObjectReference evented, 
             string eventType)
         {
             var module = await moduleTask.Value;
