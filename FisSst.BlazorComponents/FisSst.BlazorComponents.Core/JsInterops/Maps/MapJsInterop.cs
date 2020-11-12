@@ -1,12 +1,9 @@
 ﻿using FisSst.BlazorMaps.JsInterops.Base;
 using FisSst.BlazorMaps.Models;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.JsInterops
+namespace FisSst.BlazorMaps.JsInterops.Maps
 {
     internal class MapJsInterop : BaseJsInterop, IMapJsInterop
     {

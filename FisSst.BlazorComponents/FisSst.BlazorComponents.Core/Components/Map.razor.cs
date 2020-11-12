@@ -1,4 +1,5 @@
-﻿using FisSst.BlazorMaps.JsInterops.Base;
+﻿using FisSst.BlazorMaps.JsInterops.Events;
+using FisSst.BlazorMaps.JsInterops.Maps;
 using FisSst.BlazorMaps.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -11,9 +12,6 @@ namespace FisSst.BlazorMaps
     {
         [Inject]
         public IJSRuntime JsRuntime { get; set; }
-
-        [Inject]
-        internal IDebugJsInterop DebugJsInterop { get; set; }
 
         [Inject]
         internal IMapJsInterop MapJsInterop { get; set; }

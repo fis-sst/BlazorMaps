@@ -1,6 +1,6 @@
-using FisSst.BlazorMaps.Factories;
-using FisSst.BlazorMaps.JsInterops;
-using FisSst.BlazorMaps.JsInterops.Base;
+using FisSst.BlazorMaps.JsInterops.Events;
+using FisSst.BlazorMaps.JsInterops.IconFactories;
+using FisSst.BlazorMaps.JsInterops.Maps;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FisSst.BlazorMaps.DependencyInjection
@@ -26,7 +26,6 @@ namespace FisSst.BlazorMaps.DependencyInjection
 
         private static void AddJsInterops(IServiceCollection services)
         {
-            services.AddTransient<IDebugJsInterop, DebugJsInterop>();
             services.AddTransient<IMapJsInterop, MapJsInterop>();
             services.AddTransient<IEventedJsInterop, EventedJsInterop>();
             services.AddTransient<IIconFactoryJsInterop, IconFactoryJsInterop>();

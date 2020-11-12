@@ -1,6 +1,5 @@
-﻿using FisSst.BlazorMaps.JsInterops.Base;
+﻿using FisSst.BlazorMaps.JsInterops.Events;
 using Microsoft.JSInterop;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps.Models

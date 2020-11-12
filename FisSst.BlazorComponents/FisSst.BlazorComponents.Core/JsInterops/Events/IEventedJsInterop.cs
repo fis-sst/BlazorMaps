@@ -2,7 +2,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.JsInterops.Base
+namespace FisSst.BlazorMaps.JsInterops.Events
 {
     public interface IEventedJsInterop
     {

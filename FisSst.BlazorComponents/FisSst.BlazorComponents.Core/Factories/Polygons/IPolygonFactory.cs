@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.Factories
+namespace FisSst.BlazorMaps
 {
     public interface IPolygonFactory
     {

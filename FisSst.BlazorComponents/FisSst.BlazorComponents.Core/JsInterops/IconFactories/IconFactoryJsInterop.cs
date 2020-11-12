@@ -2,7 +2,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.JsInterops
+namespace FisSst.BlazorMaps.JsInterops.IconFactories
 {
     internal class IconFactoryJsInterop : BaseJsInterop, IIconFactoryJsInterop
     {

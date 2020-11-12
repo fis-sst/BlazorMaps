@@ -1,9 +1,9 @@
-﻿using FisSst.BlazorMaps.JsInterops.Base;
+﻿using FisSst.BlazorMaps.JsInterops.IconFactories;
 using FisSst.BlazorMaps.Models;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.Factories
+namespace FisSst.BlazorMaps
 {
     class IconFactory : IIconFactory
     {

@@ -1,10 +1,10 @@
-﻿using FisSst.BlazorMaps.JsInterops.Base;
+﻿using FisSst.BlazorMaps.JsInterops.Events;
 using FisSst.BlazorMaps.Models;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.Factories
+namespace FisSst.BlazorMaps
 {
     class PolylineFactory : IPolylineFactory
     {

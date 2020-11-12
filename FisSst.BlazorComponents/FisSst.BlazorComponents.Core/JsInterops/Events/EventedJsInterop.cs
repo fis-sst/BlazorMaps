@@ -3,9 +3,9 @@ using FisSst.BlazorMaps.Models;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.BlazorMaps.JsInterops
+namespace FisSst.BlazorMaps.JsInterops.Events
 {
-    class EventedJsInterop : BaseJsInterop, IEventedJsInterop
+    internal class EventedJsInterop : BaseJsInterop, IEventedJsInterop
     {
         private static readonly string jsFilePath = $"{JsInteropConfig.BaseJsFolder}{JsInteropConfig.EventedFile}";
         private const string onCallback = "onCallback";
