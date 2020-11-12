@@ -1,8 +1,8 @@
-﻿using FisSst.Maps.JsInterops.Base;
+﻿using FisSst.BlazorMaps.JsInterops.Base;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.Models
+namespace FisSst.BlazorMaps.Models
 {
     public class Marker : InteractiveLayer
     {

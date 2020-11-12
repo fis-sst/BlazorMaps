@@ -1,11 +1,11 @@
-﻿using FisSst.Maps.JsInterops.Base;
-using FisSst.Maps.Models;
+﻿using FisSst.BlazorMaps.JsInterops.Base;
+using FisSst.BlazorMaps.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps
+namespace FisSst.BlazorMaps
 {
     public partial class Map : ComponentBase
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.JsInterops.Base
+namespace FisSst.BlazorMaps.JsInterops.Base
 {
     internal abstract class BaseJsInterop : IAsyncDisposable, IBaseJsInterop
     {

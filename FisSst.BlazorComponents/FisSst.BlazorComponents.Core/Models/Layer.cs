@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.Models
+namespace FisSst.BlazorMaps.Models
 {
     public abstract class Layer : Evented
     {

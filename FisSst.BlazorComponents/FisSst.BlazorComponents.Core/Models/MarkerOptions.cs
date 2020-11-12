@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using System.Text.Json.Serialization;
 
-namespace FisSst.Maps.Models
+namespace FisSst.BlazorMaps.Models
 {
     public class MarkerOptions : InteractiveLayerOptions
     {

@@ -1,9 +1,9 @@
-using FisSst.Maps.Factories;
-using FisSst.Maps.JsInterops;
-using FisSst.Maps.JsInterops.Base;
+using FisSst.BlazorMaps.Factories;
+using FisSst.BlazorMaps.JsInterops;
+using FisSst.BlazorMaps.JsInterops.Base;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FisSst.Maps.DependencyInjection
+namespace FisSst.BlazorMaps.DependencyInjection
 {
     public static class FisSstMapsDependencyInjection
     {

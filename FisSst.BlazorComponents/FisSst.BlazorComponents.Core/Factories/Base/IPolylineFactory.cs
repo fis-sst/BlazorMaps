@@ -1,8 +1,8 @@
-﻿using FisSst.Maps.Models;
+﻿using FisSst.BlazorMaps.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.Factories
+namespace FisSst.BlazorMaps.Factories
 {
     public interface IPolylineFactory
     {

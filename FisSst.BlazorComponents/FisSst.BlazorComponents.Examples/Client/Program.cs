@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using FisSst.Maps.DependencyInjection;
+using FisSst.BlazorMaps.DependencyInjection;
 
 namespace FisSst.BlazorComponents.Examples.Client
 {

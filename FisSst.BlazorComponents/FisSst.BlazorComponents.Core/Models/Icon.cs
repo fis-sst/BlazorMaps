@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace FisSst.Maps.Models
+namespace FisSst.BlazorMaps.Models
 {
     public class Icon : JsReferenceBase
     {

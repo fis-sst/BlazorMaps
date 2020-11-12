@@ -1,7 +1,7 @@
-﻿using FisSst.Maps.Models;
+﻿using FisSst.BlazorMaps.Models;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.Factories
+namespace FisSst.BlazorMaps.Factories
 {
     public interface ICircleFactory
     {

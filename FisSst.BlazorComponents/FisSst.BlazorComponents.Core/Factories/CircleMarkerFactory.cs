@@ -1,9 +1,9 @@
-﻿using FisSst.Maps.JsInterops.Base;
-using FisSst.Maps.Models;
+﻿using FisSst.BlazorMaps.JsInterops.Base;
+using FisSst.BlazorMaps.Models;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.Factories
+namespace FisSst.BlazorMaps.Factories
 {
     class CircleMarkerFactory : ICircleMarkerFactory
     {

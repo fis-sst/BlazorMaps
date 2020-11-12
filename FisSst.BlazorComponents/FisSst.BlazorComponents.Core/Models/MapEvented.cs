@@ -1,4 +1,4 @@
-﻿using FisSst.Maps.JsInterops.Base;
+﻿using FisSst.BlazorMaps.JsInterops.Base;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FisSst.Maps.Models
+namespace FisSst.BlazorMaps.Models
 {
     internal class MapEvented : Evented
     {

@@ -1,4 +1,4 @@
-﻿namespace FisSst.Maps.JsInterops.Base
+﻿namespace FisSst.BlazorMaps.JsInterops.Base
 {
     internal static class JsInteropConfig
     {

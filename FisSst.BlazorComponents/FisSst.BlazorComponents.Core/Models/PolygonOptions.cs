@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace FisSst.Maps.Models
+namespace FisSst.BlazorMaps.Models
 {
     public class PolygonOptions : PolylineOptions
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace FisSst.Maps.JsInterops.Base
+namespace FisSst.BlazorMaps.JsInterops.Base
 {
     interface IDebugJsInterop : IBaseJsInterop
     {
