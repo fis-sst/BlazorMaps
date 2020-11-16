@@ -19,7 +19,7 @@ namespace FisSst.BlazorMaps.JsInterops.Events
             IJSObjectReference evented, 
             string eventType)
         {
-            var module = await moduleTask.Value;
+            IJSObjectReference module = await moduleTask.Value;
             await module.InvokeVoidAsync(onCallback, eventedClass, evented, eventType);
         }
     }

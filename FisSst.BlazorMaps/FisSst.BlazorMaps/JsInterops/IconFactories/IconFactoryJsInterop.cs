@@ -16,7 +16,7 @@ namespace FisSst.BlazorMaps.JsInterops.IconFactories
 
         public async ValueTask<IJSObjectReference> CreateDefaultIcon()
         {
-            var module = await moduleTask.Value;
+            IJSObjectReference module = await moduleTask.Value;
             return await module.InvokeAsync<IJSObjectReference>(createDefaultIcon);
         }
     }
