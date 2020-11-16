@@ -10,7 +10,7 @@
 </div>
 
 <div class="map-wrapper">
-    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
 </div>
 
 <div class="side-panel">
@@ -52,22 +52,22 @@
 </style>
 
 @code {
-    private Map MapRef;
+    private static readonly LatLng center = new LatLng(50.279133, 18.685578);
 
-    private Polygon Polygon;
+    private Map mapRef;
 
-    private Circle Circle;
+    private Polygon polygon;
 
-    private Marker Marker;
+    private Circle circle;
 
-    private Marker Marker2;
+    private Marker marker1;
+    private Marker marker2;
+    private Marker marker3;
 
-    private Marker Marker3;
-
-    private MapOptions MapOptions = new MapOptions()
+    private MapOptions mapOptions = new MapOptions()
     {
         DivId = "mapId",
-        Center = new LatLng(50.279133, 18.685578),
+        Center = center,
         Zoom = 13,
         UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
         SubOptions = new MapSubOptions()
@@ -83,9 +83,9 @@
 
     private async Task AddMarkersToMap()
     {
-        Marker = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), MapRef);
-        Marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), MapRef);
-        Marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), MapRef);
+        this.marker1 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.278133, 18.683578), this.mapRef);
+        this.marker2 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.277133, 18.670578), this.mapRef);
+        this.marker3 = await this.MarkerFactory.CreateAndAddToMap(new LatLng(50.255133, 18.66578), this.mapRef);
     }
 
     private async Task HandleMouseEvent(MouseEvent mouseEvent)
@@ -98,8 +98,8 @@
         LatLng FirstLatLng = new LatLng(50.2905456, 18.634743);
         LatLng SecondLatLng = new LatLng(50.287532, 18.615791);
         LatLng ThirdLatLng = new LatLng(50.295247, 18.579297);
-        Polygon = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, MapRef);
-        await Polygon.OnClick(async (MouseEvent mouseEvent) => await ChangePolygonStyle());
+        this.polygon = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, this.mapRef);
+        await this.polygon.OnClick(async (MouseEvent mouseEvent) => await ChangePolygonStyle());
     }
 
     private async Task ChangePolygonStyle()
@@ -110,7 +110,7 @@
             Color = "green"
         };
 
-        await Polygon.SetStyle(PolygonOptions);
+        await this.polygon.SetStyle(PolygonOptions);
     }
 
     private async Task AddCircleToMap()
@@ -120,8 +120,8 @@
             Radius = 300
         };
 
-        Circle = await this.CircleFactory.CreateAndAddToMap(new LatLng(50.263766, 18.705137), MapRef, CircleOptionsInit);
-        await Circle.OnClick(async (MouseEvent mouseEvent) => await ChangeCircleStyle());
+        this.circle = await this.CircleFactory.CreateAndAddToMap(new LatLng(50.263766, 18.705137), this.mapRef, CircleOptionsInit);
+        await this.circle.OnClick(async (MouseEvent mouseEvent) => await ChangeCircleStyle());
     }
 
     private async Task ChangeCircleStyle()
@@ -131,30 +131,30 @@
             Color = "green"
         };
 
-        await Circle.SetLatLng(new LatLng(50.283783, 18.724827));
+        await this.circle.SetLatLng(new LatLng(50.283783, 18.724827));
     }
 
     private async Task AddEventsToMarkers()
     {
-        await Marker.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-        await Marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-        await Marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await this.marker1.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await this.marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await this.marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
     }
 
     private async Task RemoveEventsFromMarkers()
     {
-        await Marker.Off("click");
-        await Marker2.Off("contextmenu");
-        await Marker3.Off("dblclick");
+        await this.marker1.Off("click");
+        await this.marker2.Off("contextmenu");
+        await this.marker3.Off("dblclick");
     }
 
     private async Task AddEventsToMap()
     {
-        await MapRef.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+        await this.mapRef.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
     }
 
     private async Task RemoveEventsFromMap()
     {
-        await MapRef.Off("click");
+        await this.mapRef.Off("click");
     }
 }
