@@ -7,7 +7,6 @@ namespace FisSst.BlazorMaps
     public class Circle : CircleMarker
     {
         private readonly string setRadius = "setRadius";
-        private readonly string getBounds = "getBounds";
 
         internal Circle(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
             : base (jsReference, eventedJsInterop)
@@ -19,11 +18,5 @@ namespace FisSst.BlazorMaps
             await this.JsReference.InvokeAsync<Circle>(setRadius, radius);
             return this;
         }
-
-        //TO DO
-        //public async Task<LatLngBounds> GetBounds()
-        //{
-        //    return await this.JsReference.InvokeAsync<LatLngBounds>(getBounds);
-        //}
     }
 }

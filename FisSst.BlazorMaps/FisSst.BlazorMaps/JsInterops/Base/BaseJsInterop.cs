@@ -10,15 +10,15 @@ namespace FisSst.BlazorMaps.JsInterops.Base
 
         public BaseJsInterop(IJSRuntime jsRuntime, string jsFilePath)
         {
-            moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
+            this.moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
                JsInteropConfig.Import, jsFilePath).AsTask());
         }
 
         public async ValueTask DisposeAsync()
         {
-            if (moduleTask.IsValueCreated)
+            if (this.moduleTask.IsValueCreated)
             {
-                var module = await moduleTask.Value;
+                var module = await this.moduleTask.Value;
                 await module.DisposeAsync();
             }
         }

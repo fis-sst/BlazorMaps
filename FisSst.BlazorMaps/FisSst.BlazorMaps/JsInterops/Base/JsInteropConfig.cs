@@ -8,6 +8,5 @@
         internal const string EventedFile = "evented.js";
         internal const string IconFactoryFile = "iconFactory.js";
         internal const string Import = "import";
-        
     }
 }
