@@ -7,7 +7,7 @@ namespace FisSst.BlazorMaps
 {
     class PolylineFactory : IPolylineFactory
     {
-        private readonly string create = "L.polyline";
+        private const string create = "L.polyline";
         private readonly IJSRuntime jsRuntime;
         private readonly IEventedJsInterop eventedJsInterop;
 

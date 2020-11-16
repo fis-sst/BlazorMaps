@@ -6,7 +6,7 @@ namespace FisSst.BlazorMaps
 {
     class IconFactory : IIconFactory
     {
-        private readonly string create = "L.icon";
+        private const string create = "L.icon";
         private readonly IJSRuntime jsRuntime;
         private readonly IIconFactoryJsInterop iconFactoryJsInterop;
 

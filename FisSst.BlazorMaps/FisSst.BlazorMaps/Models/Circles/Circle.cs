@@ -6,7 +6,7 @@ namespace FisSst.BlazorMaps
 {
     public class Circle : CircleMarker
     {
-        private readonly string setRadius = "setRadius";
+        private const string setRadius = "setRadius";
 
         internal Circle(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
             : base (jsReference, eventedJsInterop)
