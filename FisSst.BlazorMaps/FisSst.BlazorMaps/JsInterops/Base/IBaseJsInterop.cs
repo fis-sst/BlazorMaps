@@ -2,7 +2,7 @@
 
 namespace FisSst.BlazorMaps.JsInterops.Base
 {
-    interface IBaseJsInterop
+    internal interface IBaseJsInterop
     {
         ValueTask DisposeAsync();
     }

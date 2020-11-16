@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
-    class CircleFactory : ICircleFactory
+    internal class CircleFactory : ICircleFactory
     {
         private readonly string create = "L.circle";
         private readonly IJSRuntime jsRuntime;
