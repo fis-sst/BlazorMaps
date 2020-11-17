@@ -79,8 +79,6 @@
     private double firstLng = 18.62;
     private double secondLng = 18.75;
 
-    public int NumberOfMarkers { get; set; }
-
     private MapOptions mapOptions = new MapOptions()
     {
         DivId = "mapId",
@@ -95,6 +93,8 @@
             ZoomOffset = -1,
         }
     };
+
+    public int NumberOfMarkers { get; set; }
 
     private async Task AddMarkers()
     {
