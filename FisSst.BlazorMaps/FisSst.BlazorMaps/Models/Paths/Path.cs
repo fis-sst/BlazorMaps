@@ -5,10 +5,10 @@ namespace FisSst.BlazorMaps
 {
     public abstract class Path : InteractiveLayer
     {
-        private readonly string redraw = "redraw";
-        private readonly string setStyle = "setStyle";
-        private readonly string bringToFront = "bringToFront";
-        private readonly string bringToBack = "bringToBack";
+        private const string redraw = "redraw";
+        private const string setStyle = "setStyle";
+        private const string bringToFront = "bringToFront";
+        private const string bringToBack = "bringToBack";
 
         public async Task<Path> Redraw()
         {

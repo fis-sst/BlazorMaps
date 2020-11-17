@@ -7,11 +7,11 @@ namespace FisSst.BlazorMaps
 {
     public class Polyline : Path
     {
-        private readonly string toGeoJSON = "toGeoJSON";
-        private readonly string setLatLngs = "setLatLngs";
-        private readonly string isEmpty = "isEmpty";
-        private readonly string getCenter = "getCenter";
-        private readonly string addLatLng = "addLatLng";
+        private const string toGeoJSON = "toGeoJSON";
+        private const string setLatLngs = "setLatLngs";
+        private const string isEmpty = "isEmpty";
+        private const string getCenter = "getCenter";
+        private const string addLatLng = "addLatLng";
 
         internal Polyline(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {

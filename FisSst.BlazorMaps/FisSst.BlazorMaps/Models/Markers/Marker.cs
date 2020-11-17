@@ -6,12 +6,12 @@ namespace FisSst.BlazorMaps
 {
     public class Marker : InteractiveLayer
     {
-        private readonly string getLatLng = "getLatLng";
-        private readonly string setLatLng = "setLatLng";
-        private readonly string setZIndexOffset = "setZIndexOffset";
-        private readonly string getIcon = "getIcon";
-        private readonly string setIcon = "setIcon";
-        private readonly string setOpacity = "setOpacity";
+        private const string getLatLng = "getLatLng";
+        private const string setLatLng = "setLatLng";
+        private const string setZIndexOffset = "setZIndexOffset";
+        private const string getIcon = "getIcon";
+        private const string setIcon = "setIcon";
+        private const string setOpacity = "setOpacity";
 
         internal Marker(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {

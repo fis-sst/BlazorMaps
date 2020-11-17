@@ -5,23 +5,23 @@ namespace FisSst.BlazorMaps
 {
     public abstract class Layer : Evented
     {
-        private readonly string addTo = "addTo";
-        private readonly string remove = "remove";
-        private readonly string removeFrom = "removeFrom";
-        private readonly string bindPopup = "bindPopup";
-        private readonly string unbindPopup = "unbindPopup";
-        private readonly string openPopup = "openPopup";
-        private readonly string closePopup = "closePopup";
-        private readonly string togglePopup = "togglePopup";
-        private readonly string isPopupOpen = "isPopupOpen";
-        private readonly string setPopupContent = "setPopupContent";
-        private readonly string bindTooltip = "bindTooltip";
-        private readonly string unbindTooltip = "unbindTooltip";
-        private readonly string openTooltip = "openTooltip";
-        private readonly string closeTooltip = "closeTooltip";
-        private readonly string toggleTooltip = "toggleTooltip";
-        private readonly string isTooltipOpen = "isTooltipOpen";
-        private readonly string setTooltipContent = "setTooltipContent";
+        private const string addTo = "addTo";
+        private const string remove = "remove";
+        private const string removeFrom = "removeFrom";
+        private const string bindPopup = "bindPopup";
+        private const string unbindPopup = "unbindPopup";
+        private const string openPopup = "openPopup";
+        private const string closePopup = "closePopup";
+        private const string togglePopup = "togglePopup";
+        private const string isPopupOpen = "isPopupOpen";
+        private const string setPopupContent = "setPopupContent";
+        private const string bindTooltip = "bindTooltip";
+        private const string unbindTooltip = "unbindTooltip";
+        private const string openTooltip = "openTooltip";
+        private const string closeTooltip = "closeTooltip";
+        private const string toggleTooltip = "toggleTooltip";
+        private const string isTooltipOpen = "isTooltipOpen";
+        private const string setTooltipContent = "setTooltipContent";
 
         public async Task<Layer> AddTo(Map map)
         {

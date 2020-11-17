@@ -17,7 +17,7 @@ namespace FisSst.BlazorMaps.JsInterops.Maps
 
         public async ValueTask<IJSObjectReference> Initialize(MapOptions mapOptions)
         {
-            var module = await moduleTask.Value;
+            IJSObjectReference module = await moduleTask.Value;
             return await module.InvokeAsync<IJSObjectReference>(initialize, mapOptions);
         }
     }
