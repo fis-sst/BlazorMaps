@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps.JsInterops.IconFactories
 {
-    interface IIconFactoryJsInterop
+    internal interface IIconFactoryJsInterop
     {
         ValueTask<IJSObjectReference> CreateDefaultIcon();
     }
