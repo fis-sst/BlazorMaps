@@ -1,13 +1,13 @@
 ﻿@page "/"
 
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JsRuntime
 
 <div class="top-container">
     <h1 class="page-header">Initialization</h1>
 </div>
 
 <div class="map-wrapper">
-    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
 </div>
 
 
@@ -18,19 +18,19 @@
                      OnClick="async () => await GetCenterExample()" />
     <SidePanelButton Label="set view"
                      IconSrc="@Icons.InitializationSetViewIconSrc"
-                     OnClick="async () => await MapRef.SetView(Center)" />
+                     OnClick="async () => await mapRef.SetView(center)" />
     <SidePanelButton Label="set zoom"
                      IconSrc="@Icons.InitializationSetZoomIconSrc"
-                     OnClick="async () => await MapRef.SetZoom(zoom: 16)" />
+                     OnClick="async () => await mapRef.SetZoom(zoom: 16)" />
     <SidePanelButton Label="zoom in"
                      IconSrc="@Icons.InitializationZoomInIconSrc"
-                     OnClick="async () => await MapRef.ZoomIn(zoomDelta: 1)" />
+                     OnClick="async () => await mapRef.ZoomIn(zoomDelta: 1)" />
     <SidePanelButton Label="zoom out"
                      IconSrc="@Icons.InitializationZoomOutIconSrc"
-                     OnClick="async () => await MapRef.ZoomOut(zoomDelta: 3)" />
+                     OnClick="async () => await mapRef.ZoomOut(zoomDelta: 3)" />
     <SidePanelButton Label="set zoom around"
                      IconSrc="@Icons.InitializationSetZoomAroundIconSrc"
-                     OnClick="async () => await MapRef.SetZoomAround(Center, zoom: 10)" />
+                     OnClick="async () => await mapRef.SetZoomAround(center, 10)" />
 </div>
 
 <style>
@@ -51,14 +51,14 @@
 </style>
 
 @code {
-    private Map MapRef;
+    private static readonly LatLng center = new LatLng(50.279133, 18.685578);
 
-    private static readonly LatLng Center = new LatLng(50.279133, 18.685578);
+    private Map mapRef;
 
-    private MapOptions MapOptions = new MapOptions()
+    private MapOptions mapOptions = new MapOptions()
     {
         DivId = "mapId",
-        Center = Center,
+        Center = center,
         Zoom = 13,
         UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         SubOptions = new MapSubOptions()
@@ -72,7 +72,7 @@
 
     private async Task GetCenterExample()
     {
-        LatLng center = await MapRef.GetCenter();
-        await jsRuntime.InvokeAsync<string>("alert", $"Map centered at: Lat: {center.Lat}, Lng: {center.Lng}");
+        LatLng center = await this.mapRef.GetCenter();
+        await this.JsRuntime.InvokeAsync<string>("alert", $"Map centered at: Lat: {center.Lat}, Lng: {center.Lng}");
     }
 }

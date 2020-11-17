@@ -8,7 +8,7 @@
 </div>
 
 <div class="map-wrapper">
-    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
 </div>
 
 <div class="side-panel">
@@ -80,21 +80,22 @@
 </style>
 
 @code {
-    private Map MapRef;
+    private static readonly LatLng center = new LatLng(50.279133, 18.685578);
 
-    bool firstRender = true;
+    private readonly LatLng firstMarkerLatLng = new LatLng(50.284324, 18.664683);
+    private readonly LatLng secondMarkerLatLng = new LatLng(50.285495, 18.691064);
 
-    private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
-    private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
-    private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+    private Map mapRef;
 
-    Marker marker1 = null;
-    Marker marker2 = null;
+    private bool firstRender = true;
 
-    private MapOptions MapOptions = new MapOptions()
+    private Marker marker1;
+    private Marker marker2;
+
+    private MapOptions mapOptions = new MapOptions()
     {
         DivId = "mapId",
-        Center = new LatLng(50.279133, 18.685578),
+        Center = center,
         Zoom = 13,
         UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         SubOptions = new MapSubOptions()
@@ -110,49 +111,49 @@
     {
         if (firstRender)
         {
-            firstRender = false;
-            marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
-            marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
+            this.firstRender = false;
+            this.marker1 = await this.MarkerFactory.CreateAndAddToMap(this.firstMarkerLatLng, this.mapRef);
+            this.marker2 = await this.MarkerFactory.CreateAndAddToMap(this.secondMarkerLatLng, this.mapRef);
         }
     }
 
     private async Task BindPopup()
     {
-        await marker1.BindPopup("Hi! This is a popup");
+        await this.marker1.BindPopup("Hi! This is a popup");
     }
 
     private async Task BindTooltip()
     {
-        await marker2.BindTooltip("And this is a tooltip");
+        await this.marker2.BindTooltip("And this is a tooltip");
     }
 
     private async Task RemovePopup()
     {
-        await marker1.UnbindPopup();
+        await this.marker1.UnbindPopup();
     }
 
     private async Task RemoveTooltip()
     {
-        await marker2.UnbindTooltip();
+        await this.marker2.UnbindTooltip();
     }
 
     private async Task UpdatePopup()
     {
-        await marker1.SetPopupContent("Popup has changed its content");
+        await this.marker1.SetPopupContent("Popup has changed its content");
     }
 
     private async Task UpdateTooltip()
     {
-        await marker2.SetTooltipContent("Tooltip has changed its content");
+        await this.marker2.SetTooltipContent("Tooltip has changed its content");
     }
 
     private async Task TogglePopup()
     {
-        await marker1.TogglePopup();
+        await this.marker1.TogglePopup();
     }
 
     private async Task ToggleTooltip()
     {
-        await marker2.ToggleTooltip();
+        await this.marker2.ToggleTooltip();
     }
 }

@@ -9,7 +9,7 @@
 </div>
 
 <div class="map-wrapper">
-    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
 </div>
 
 <div class="side-panel">
@@ -47,23 +47,24 @@
 </style>
 
 @code {
-    private Map MapRef;
+    private static readonly LatLng center = new LatLng(50.279133, 18.685578);
 
-    private static readonly LatLng FirstMarkerLatLng = new LatLng(50.284324, 18.664683);
-    private static readonly LatLng SecondMarkerLatLng = new LatLng(50.285495, 18.691064);
-    private static readonly LatLng ThirdMarkerLatLng = new LatLng(50.279103, 18.685534);
-    private static readonly LatLng MarkerWithOptionsLatLng = new LatLng(50.273103, 18.684534);
+    private readonly LatLng firstMarkerLatLng = new LatLng(50.284324, 18.664683);
+    private readonly LatLng secondMarkerLatLng = new LatLng(50.285495, 18.691064);
+    private readonly LatLng thirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+    private readonly LatLng markerWithOptionsLatLng = new LatLng(50.273103, 18.684534);
 
-    private Marker MarkerWithOptions;
+    private Map mapRef;
 
-    Marker marker1 = null;
-    Marker marker2 = null;
-    Marker marker3 = null;
+    private Marker markerWithOptions;
+    private Marker marker1;
+    private Marker marker2;
+    private Marker marker3;
 
-    private MapOptions MapOptions = new MapOptions()
+    private MapOptions mapOptions = new MapOptions()
     {
         DivId = "mapId",
-        Center = new LatLng(50.279133, 18.685578),
+        Center = center,
         Zoom = 13,
         UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         SubOptions = new MapSubOptions()
@@ -77,16 +78,16 @@
 
     private async Task AddMarkers()
     {
-        marker1 = await this.MarkerFactory.CreateAndAddToMap(FirstMarkerLatLng, MapRef);
-        marker2 = await this.MarkerFactory.CreateAndAddToMap(SecondMarkerLatLng, MapRef);
-        marker3 = await this.MarkerFactory.CreateAndAddToMap(ThirdMarkerLatLng, MapRef);
+        this.marker1 = await this.MarkerFactory.CreateAndAddToMap(this.firstMarkerLatLng, this.mapRef);
+        this.marker2 = await this.MarkerFactory.CreateAndAddToMap(this.secondMarkerLatLng, this.mapRef);
+        this.marker3 = await this.MarkerFactory.CreateAndAddToMap(this.thirdMarkerLatLng, this.mapRef);
     }
 
     private async Task RemoveMarkers()
     {
-        await marker1.Remove();
-        await marker2.Remove();
-        await marker3.Remove();
+        await this.marker1.Remove();
+        await this.marker2.Remove();
+        await this.marker3.Remove();
     }
 
     private async Task AddMarkerWithOptions()
@@ -109,11 +110,11 @@
             IconRef = await this.IconFactory.Create(iconOptions),
         };
 
-        this.MarkerWithOptions = await this.MarkerFactory.CreateAndAddToMap(MarkerWithOptionsLatLng, MapRef, markerOptions);
+        this.markerWithOptions = await this.MarkerFactory.CreateAndAddToMap(this.markerWithOptionsLatLng, this.mapRef, markerOptions);
     }
 
     private async Task RemoveMarkerWithOptions()
     {
-        await this.MarkerWithOptions.Remove();
+        await this.markerWithOptions.Remove();
     }
 }

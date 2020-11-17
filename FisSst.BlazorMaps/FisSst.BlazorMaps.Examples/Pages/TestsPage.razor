@@ -2,7 +2,6 @@
 
 @inject IJSRuntime JsRuntime
 @inject IMarkerFactory MarkerFactory
-@inject IIconFactory IconFactory
 
 @using System.Diagnostics;
 
@@ -94,6 +93,11 @@
         }
     };
 
+    private MatTheme matTheme = new MatTheme()
+    {
+        Primary = "#CBE54E"
+    };
+
     public int NumberOfMarkers { get; set; }
 
     private async Task AddMarkers()
@@ -141,10 +145,4 @@
         double lng = random.NextDouble() * (this.secondLng - this.firstLng) + this.firstLng;
         return new LatLng(lat, lng);
     }
-
-    private MatTheme matTheme = new MatTheme()
-    {
-        Primary = "#CBE54E"
-    };
-
 }
