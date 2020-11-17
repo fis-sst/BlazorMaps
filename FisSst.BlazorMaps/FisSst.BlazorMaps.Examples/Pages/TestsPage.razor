@@ -11,24 +11,25 @@
 </div>
 
 <div class="map-wrapper">
-    <Map @ref="MapRef" MapOptions="@MapOptions"></Map>
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
 </div>
 
 <div class="side-panel">
-    <h3 class="header">Measurements</h3>
-    <div class="number-of-markers-input">
-        <span class="number-of-markers-label">Enter the number of markers you want to add to the map</span>
-        <input type="number"
-               @bind="@NumberOfMarkers" />
-    </div>
+    <h3 class="header">Performance tests</h3>
+    <p class="number-of-markers-input">
+        <MatThemeProvider Theme="@matTheme">
+            <MatTextField @bind-Value="@NumberOfMarkers" Label="A number of markers to add" Outlined="true"></MatTextField>
+        </MatThemeProvider>
+    </p>
     <SidePanelButton Label="add markers"
                      IconSrc="@Icons.MarkersAddMarkersIconSrc"
                      OnClick="async () => await AddMarkers()" />
     <SidePanelButton Label="remove markers"
                      IconSrc="@Icons.MarkersRemoveMarkersIconSrc"
-                     OnClick="async () => await RemoveMarkers()" />
+                     OnClick="async () => RemoveMarkers()" />
     <p class="number-of-markers-output">Number of markers on the map: @markers.Count</p>
-    <p class="stopwatch">Action performed in: @stopwatch.Elapsed</p>
+    <p class="stopwatch">Action performed in: @stopwatch.ElapsedMilliseconds ms</p>
+    <p class="note">Markers' random coordinates generation is not included in the measurement.</p>
 </div>
 
 
@@ -45,7 +46,8 @@
         .side-panel .number-of-markers-input,
         .side-panel .number-of-markers-output,
         .side-panel .number-of-markers-label,
-        .side-panel .stopwatch {
+        .side-panel .stopwatch,
+        .side-panel .note {
             grid-column: 1/-1;
         }
 
@@ -54,17 +56,21 @@
         }
 
         .side-panel .tile {
-            margin-top: 3rem;
+            margin-top: 2rem;
             margin-bottom: 2rem;
+            justify-self: flex-start;
+            align-self: flex-start;
+            justify-content: flex-start;
         }
 
         .side-panel .icon-wrapper .icon {
             height: auto;
+            transform:  translateX(10px)
         }
 </style>
 
 @code {
-    private Map MapRef;
+    private Map mapRef;
     private List<Marker> markers = new List<Marker>();
     private Stopwatch stopwatch = new Stopwatch();
 
@@ -75,7 +81,7 @@
 
     public int NumberOfMarkers { get; set; }
 
-    private MapOptions MapOptions = new MapOptions()
+    private MapOptions mapOptions = new MapOptions()
     {
         DivId = "mapId",
         Center = new LatLng(50.279133, 18.685578),
@@ -92,19 +98,22 @@
 
     private async Task AddMarkers()
     {
+        List<LatLng> coordinates = GenerateListOfCoordinates();
+
         this.stopwatch.Restart();
         this.stopwatch.Start();
+
         for (int i = 0; i < this.NumberOfMarkers; i++)
         {
-            Marker marker = await this.GetRandomMarker();
-            await marker.AddTo(this.MapRef);
+            Marker marker = await MarkerFactory.CreateAndAddToMap(coordinates[i], this.mapRef);
             this.markers.Add(marker);
         }
+
         this.stopwatch.Stop();
         StateHasChanged();
     }
 
-    private async Task RemoveMarkers()
+    private void RemoveMarkers()
     {
         this.stopwatch.Restart();
         this.stopwatch.Start();
@@ -114,12 +123,28 @@
         StateHasChanged();
     }
 
-    private async Task<Marker> GetRandomMarker()
+    private List<LatLng> GenerateListOfCoordinates()
+    {
+        List<LatLng> coordinates = new List<LatLng>();
+        for (int i = 0; i < this.NumberOfMarkers; i++)
+        {
+            coordinates.Add(GetRandomLatLng());
+        }
+
+        return coordinates;
+    }
+
+    private LatLng GetRandomLatLng()
     {
         Random random = new Random();
         double lat = random.NextDouble() * (this.secondLat - this.firstLat) + this.firstLat;
         double lng = random.NextDouble() * (this.secondLng - this.firstLng) + this.firstLng;
-        return await this.MarkerFactory.Create(new LatLng(lat, lng));
+        return new LatLng(lat, lng);
     }
+
+    private MatTheme matTheme = new MatTheme()
+    {
+        Primary = "#CBE54E"
+    };
 
 }
