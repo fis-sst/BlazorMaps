@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
-    class CircleMarkerFactory : ICircleMarkerFactory
+    internal class CircleMarkerFactory : ICircleMarkerFactory
     {
-        private readonly string create = "L.circleMarker";
+        private const string create = "L.circleMarker";
         private readonly IJSRuntime jsRuntime;
         private readonly IEventedJsInterop eventedJsInterop;
 

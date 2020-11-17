@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
-    class PolygonFactory : IPolygonFactory
+    internal class PolygonFactory : IPolygonFactory
     {
-        private readonly string create = "L.polygon";
+        private const string create = "L.polygon";
         private readonly IJSRuntime jsRuntime;
         private readonly IEventedJsInterop eventedJsInterop;
 

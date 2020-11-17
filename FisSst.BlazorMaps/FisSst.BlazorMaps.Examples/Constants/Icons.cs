@@ -1,6 +1,6 @@
 ﻿namespace FisSst.BlazorMaps.Examples
 {
-    public static class Icons
+    internal static class Icons
     {
         public const string InitializationGetCenterIconSrc = "/assets/icons/get-center.svg";
         public const string InitializationSetViewIconSrc = "/assets/icons/set-view.svg";

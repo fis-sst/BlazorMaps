@@ -18,7 +18,7 @@ namespace FisSst.BlazorMaps.JsInterops.Base
         {
             if (this.moduleTask.IsValueCreated)
             {
-                var module = await this.moduleTask.Value;
+                IJSObjectReference module = await this.moduleTask.Value;
                 await module.DisposeAsync();
             }
         }
