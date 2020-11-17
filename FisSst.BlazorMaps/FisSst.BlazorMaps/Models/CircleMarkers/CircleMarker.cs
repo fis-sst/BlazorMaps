@@ -6,11 +6,11 @@ namespace FisSst.BlazorMaps
 {
     public class CircleMarker : Path
     {
-        private readonly string toGeoJSON = "toGeoJSON";
-        private readonly string setLatLng = "setLatLng";
-        private readonly string getLatLng = "getLatLng";
-        private readonly string setRadius = "setRadius";
-        private readonly string getRadius = "getRadius";
+        private const string toGeoJSON = "toGeoJSON";
+        private const string setLatLng = "setLatLng";
+        private const string getLatLng = "getLatLng";
+        private const string setRadius = "setRadius";
+        private const string getRadius = "getRadius";
 
         internal CircleMarker(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {

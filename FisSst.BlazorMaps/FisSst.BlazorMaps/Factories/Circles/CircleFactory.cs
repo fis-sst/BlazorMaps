@@ -6,7 +6,7 @@ namespace FisSst.BlazorMaps
 {
     internal class CircleFactory : ICircleFactory
     {
-        private readonly string create = "L.circle";
+        private const string create = "L.circle";
         private readonly IJSRuntime jsRuntime;
         private readonly IEventedJsInterop eventedJsInterop;
 
