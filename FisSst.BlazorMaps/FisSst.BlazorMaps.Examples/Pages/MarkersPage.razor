@@ -48,10 +48,11 @@
 
 @code {
     private static readonly LatLng center = new LatLng(50.279133, 18.685578);
-    private static readonly LatLng firstMarkerLatLng = new LatLng(50.284324, 18.664683);
-    private static readonly LatLng secondMarkerLatLng = new LatLng(50.285495, 18.691064);
-    private static readonly LatLng thirdMarkerLatLng = new LatLng(50.279103, 18.685534);
-    private static readonly LatLng markerWithOptionsLatLng = new LatLng(50.273103, 18.684534);
+
+    private readonly LatLng firstMarkerLatLng = new LatLng(50.284324, 18.664683);
+    private readonly LatLng secondMarkerLatLng = new LatLng(50.285495, 18.691064);
+    private readonly LatLng thirdMarkerLatLng = new LatLng(50.279103, 18.685534);
+    private readonly LatLng markerWithOptionsLatLng = new LatLng(50.273103, 18.684534);
 
     private Map mapRef;
 
@@ -77,9 +78,9 @@
 
     private async Task AddMarkers()
     {
-        this.marker1 = await this.MarkerFactory.CreateAndAddToMap(firstMarkerLatLng, this.mapRef);
-        this.marker2 = await this.MarkerFactory.CreateAndAddToMap(secondMarkerLatLng, this.mapRef);
-        this.marker3 = await this.MarkerFactory.CreateAndAddToMap(thirdMarkerLatLng, this.mapRef);
+        this.marker1 = await this.MarkerFactory.CreateAndAddToMap(this.firstMarkerLatLng, this.mapRef);
+        this.marker2 = await this.MarkerFactory.CreateAndAddToMap(this.secondMarkerLatLng, this.mapRef);
+        this.marker3 = await this.MarkerFactory.CreateAndAddToMap(this.thirdMarkerLatLng, this.mapRef);
     }
 
     private async Task RemoveMarkers()
@@ -109,7 +110,7 @@
             IconRef = await this.IconFactory.Create(iconOptions),
         };
 
-        this.markerWithOptions = await this.MarkerFactory.CreateAndAddToMap(markerWithOptionsLatLng, this.mapRef, markerOptions);
+        this.markerWithOptions = await this.MarkerFactory.CreateAndAddToMap(this.markerWithOptionsLatLng, this.mapRef, markerOptions);
     }
 
     private async Task RemoveMarkerWithOptions()

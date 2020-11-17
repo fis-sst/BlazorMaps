@@ -74,24 +74,25 @@
 
 @code {
     private static readonly LatLng center = new LatLng(50.279133, 18.685578);
-    private static readonly LatLng firstLatLng = new LatLng(50.284324, 18.664683);
-    private static readonly LatLng secondLatLng = new LatLng(50.285495, 18.691064);
-    private static readonly LatLng thirdLatLng = new LatLng(50.306061, 18.707469);
-    private static readonly LatLng fourthLatLng = new LatLng(50.279103, 18.685534);
-    private static readonly LatLng fifthLatLng = new LatLng(50.268534, 18.673535);
-    private static readonly LatLng sixthLatLng = new LatLng(50.268235, 18.695198);
-    private static readonly LatLng seventhLatLng = new LatLng(50.273202, 18.705697);
-    private static readonly LatLng eighthLatLng = new LatLng(50.2905456, 18.634743);
-    private static readonly LatLng ninthLatLng = new LatLng(50.287532, 18.615791);
-    private static readonly LatLng tenthLatLng = new LatLng(50.295247, 18.579297);
-    private static readonly LatLng eleventhLatLng = new LatLng(50.298249, 18.650836);
-    private static readonly LatLng twelfthLatLng = new LatLng(50.304129, 18.635537);
-    private static readonly LatLng thirteenthLatLng = new LatLng(50.304403, 18.613286);
-    private static readonly LatLng fourteenthLatLng = new LatLng(50.31915, 18.633894);
-    private static readonly LatLng fifteenthLatLng = new LatLng(50.276159, 18.599046);
-    private static readonly LatLng sixteenthLatLng = new LatLng(50.270142, 18.641009);
-    private static readonly LatLng seventeenthLatLng = new LatLng(50.263766, 18.705137);
-    private static readonly LatLng eighteenthLatLng = new LatLng(50.283783, 18.724827);
+
+    private readonly LatLng firstLatLng = new LatLng(50.284324, 18.664683);
+    private readonly LatLng secondLatLng = new LatLng(50.285495, 18.691064);
+    private readonly LatLng thirdLatLng = new LatLng(50.306061, 18.707469);
+    private readonly LatLng fourthLatLng = new LatLng(50.279103, 18.685534);
+    private readonly LatLng fifthLatLng = new LatLng(50.268534, 18.673535);
+    private readonly LatLng sixthLatLng = new LatLng(50.268235, 18.695198);
+    private readonly LatLng seventhLatLng = new LatLng(50.273202, 18.705697);
+    private readonly LatLng eighthLatLng = new LatLng(50.2905456, 18.634743);
+    private readonly LatLng ninthLatLng = new LatLng(50.287532, 18.615791);
+    private readonly LatLng tenthLatLng = new LatLng(50.295247, 18.579297);
+    private readonly LatLng eleventhLatLng = new LatLng(50.298249, 18.650836);
+    private readonly LatLng twelfthLatLng = new LatLng(50.304129, 18.635537);
+    private readonly LatLng thirteenthLatLng = new LatLng(50.304403, 18.613286);
+    private readonly LatLng fourteenthLatLng = new LatLng(50.31915, 18.633894);
+    private readonly LatLng fifteenthLatLng = new LatLng(50.276159, 18.599046);
+    private readonly LatLng sixteenthLatLng = new LatLng(50.270142, 18.641009);
+    private readonly LatLng seventeenthLatLng = new LatLng(50.263766, 18.705137);
+    private readonly LatLng eighteenthLatLng = new LatLng(50.283783, 18.724827);
 
     private Map mapRef;
 
@@ -180,8 +181,8 @@
 
     private async Task AddPolylines()
     {
-        this.polyline1 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { firstLatLng, secondLatLng, thirdLatLng }, this.mapRef);
-        this.polyline2 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { fourthLatLng, fifthLatLng }, this.mapRef);
+        this.polyline1 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { this.firstLatLng, this.eighteenthLatLng, this.secondLatLng, this.thirdLatLng }, this.mapRef);
+        this.polyline2 = await this.PolylineFactory.CreateAndAddToMap(new List<LatLng> { this.fourthLatLng, this.fifthLatLng }, this.mapRef);
     }
 
     private async Task ChangePolylineStyle()
@@ -198,8 +199,8 @@
 
     private async Task AddPolygons()
     {
-        this.polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { eighthLatLng, ninthLatLng, tenthLatLng }, this.mapRef);
-        this.polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { eleventhLatLng, twelfthLatLng, thirteenthLatLng, fourteenthLatLng }, this.mapRef);
+        this.polygon1 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { this.eighthLatLng, this.ninthLatLng, this.tenthLatLng }, this.mapRef);
+        this.polygon2 = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { this.eleventhLatLng, this.twelfthLatLng, this.thirteenthLatLng, this.fourteenthLatLng }, this.mapRef);
     }
 
     private async Task ChangePolygonStyle()
@@ -216,8 +217,8 @@
 
     private async Task AddCircleMarkers()
     {
-        this.circleMarker1 = await this.CircleMarkerFactory.CreateAndAddToMap(fifteenthLatLng, this.mapRef, this.circleMarkerOptionsInit);
-        this.circleMarker2 = await this.CircleMarkerFactory.CreateAndAddToMap(sixteenthLatLng, this.mapRef);
+        this.circleMarker1 = await this.CircleMarkerFactory.CreateAndAddToMap(this.fifteenthLatLng, this.mapRef, this.circleMarkerOptionsInit);
+        this.circleMarker2 = await this.CircleMarkerFactory.CreateAndAddToMap(this.sixteenthLatLng, this.mapRef);
     }
 
     private async Task ChangeCircleMarkerStyle()
@@ -234,8 +235,8 @@
 
     private async Task AddCircles()
     {
-        this.circle1 = await this.CircleFactory.CreateAndAddToMap(seventeenthLatLng, this.mapRef, circleOptionsInit);
-        this.circle2 = await this.CircleFactory.CreateAndAddToMap(eighteenthLatLng, this.mapRef);
+        this.circle1 = await this.CircleFactory.CreateAndAddToMap(this.seventeenthLatLng, this.mapRef, this.circleOptionsInit);
+        this.circle2 = await this.CircleFactory.CreateAndAddToMap(this.eighteenthLatLng, this.mapRef);
     }
 
     private async Task ChangeCircleStyle()

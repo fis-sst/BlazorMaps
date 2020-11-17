@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JsRuntime
 
 <div class="top-container">
     <h1 class="page-header">Initialization</h1>
@@ -73,6 +73,6 @@
     private async Task GetCenterExample()
     {
         LatLng center = await this.mapRef.GetCenter();
-        await this.jsRuntime.InvokeAsync<string>("alert", $"Map centered at: Lat: {center.Lat}, Lng: {center.Lng}");
+        await this.JsRuntime.InvokeAsync<string>("alert", $"Map centered at: Lat: {center.Lat}, Lng: {center.Lng}");
     }
 }
