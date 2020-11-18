@@ -3,7 +3,7 @@
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    ///  It is responsible for creating Circles and optionally adding them to the Map.
+    /// It is responsible for creating Circles and optionally adding them to the Map.
     /// </summary>
     public interface ICircleFactory
     {

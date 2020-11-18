@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Represents a point on a Map.
+    /// Represents a point with x and y coordinates in pixels.
     /// </summary>
     public class Point
     {

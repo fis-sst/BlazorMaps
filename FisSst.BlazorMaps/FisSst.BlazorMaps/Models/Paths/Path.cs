@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Path is an abstract class that contains options and constants
+    /// It is an abstract class that contains options and constants
     /// shared between vector overlays (Polygon, Polyline, Circle).
     /// </summary>
     public abstract class Path : InteractiveLayer
