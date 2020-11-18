@@ -8,50 +8,50 @@ namespace FisSst.BlazorMaps
 {
     public abstract class Evented : JsReferenceBase
     {
-        private const string click = "click";
-        private const string dblclick = "dblclick";
-        private const string mousedown = "mousedown";
-        private const string mouseup = "mouseup";
-        private const string mouseover = "mouseover";
-        private const string mouseout = "mouseout";
-        private const string contextmenu = "contextmenu";
-        private const string off = "off";
+        private const string ClickJsFunction = "click";
+        private const string DblClickJsFunction = "dblclick";
+        private const string MouseDownJsFunction = "mousedown";
+        private const string MouseUpJsFunction = "mouseup";
+        private const string MouseOverJsFunction = "mouseover";
+        private const string MouseOutJsFunction = "mouseout";
+        private const string ContextMenuJsFunction = "contextmenu";
+        private const string OffJsFunction = "off";
         protected IEventedJsInterop EventedJsInterop;
         private readonly IDictionary<string, Func<MouseEvent, Task>> MouseEvents = new Dictionary<string, Func<MouseEvent, Task>>();
 
         public async Task OnClick(Func<MouseEvent, Task> callback)
         {
-            await On(click, callback);
+            await On(ClickJsFunction, callback);
         }
 
         public async Task OnDblClick(Func<MouseEvent, Task> callback)
         {
-            await On(dblclick, callback);
+            await On(DblClickJsFunction, callback);
         }
 
         public async Task OnMouseDown(Func<MouseEvent, Task> callback)
         {
-            await On(mousedown, callback);
+            await On(MouseDownJsFunction, callback);
         }
 
         public async Task OnMouseUp(Func<MouseEvent, Task> callback)
         {
-            await On(mouseup, callback);
+            await On(MouseUpJsFunction, callback);
         }
 
         public async Task OnMouseOver(Func<MouseEvent, Task> callback)
         {
-            await On(mouseover, callback);
+            await On(MouseOverJsFunction, callback);
         }
 
         public async Task OnMouseOut(Func<MouseEvent, Task> callback)
         {
-            await On(mouseout, callback);
+            await On(MouseOutJsFunction, callback);
         }
 
         public async Task OnContextMenu(Func<MouseEvent, Task> callback)
         {
-            await On(contextmenu, callback);
+            await On(ContextMenuJsFunction, callback);
         }
 
         private async Task On(string eventType, Func<MouseEvent, Task> callback)
@@ -76,7 +76,7 @@ namespace FisSst.BlazorMaps
             if (this.MouseEvents.ContainsKey(eventType))
             {
                 this.MouseEvents.Remove(eventType);
-                await this.JsReference.InvokeAsync<IJSObjectReference>(off, eventType);
+                await this.JsReference.InvokeAsync<IJSObjectReference>(OffJsFunction, eventType);
             }
         }
 
