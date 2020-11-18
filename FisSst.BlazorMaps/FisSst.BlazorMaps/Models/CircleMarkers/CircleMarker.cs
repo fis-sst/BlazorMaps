@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CircleMarker : Path
     {
         private const string toGeoJSON = "toGeoJSON";

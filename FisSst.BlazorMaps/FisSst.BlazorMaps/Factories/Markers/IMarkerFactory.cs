@@ -2,6 +2,9 @@
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// IMarkerFactory is responsible for creating Markers and optionally adding them to the map.
+    /// </summary>
     public interface IMarkerFactory
     {
         Task<Marker> Create(LatLng latLng);

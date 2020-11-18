@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Circle is a class for drawing circle overlays on a map.
+    /// </summary>
     public class Circle : CircleMarker
     {
         private const string setRadius = "setRadius";

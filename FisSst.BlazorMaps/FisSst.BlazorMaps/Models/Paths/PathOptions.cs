@@ -1,5 +1,8 @@
 ﻿namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// PathOptions determine path's properties.
+    /// </summary>
     public class PathOptions : InteractiveLayerOptions
     {
         public PathOptions()

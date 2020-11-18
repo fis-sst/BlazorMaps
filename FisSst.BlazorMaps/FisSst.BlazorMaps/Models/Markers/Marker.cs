@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Marker is used to display clickable/draggable icons on the map.
+    /// </summary>
     public class Marker : InteractiveLayer
     {
         private const string getLatLng = "getLatLng";

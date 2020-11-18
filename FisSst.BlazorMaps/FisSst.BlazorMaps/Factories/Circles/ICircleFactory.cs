@@ -2,6 +2,9 @@
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    ///  ICircleFactory is responsible for creating Circles and optionally adding them to the map.
+    /// </summary>
     public interface ICircleFactory
     {
         Task<Circle> Create(LatLng latLng);
