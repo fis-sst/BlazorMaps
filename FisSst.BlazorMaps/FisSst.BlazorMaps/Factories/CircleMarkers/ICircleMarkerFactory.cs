@@ -3,7 +3,7 @@
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// ICircleMarkerFactory is responsible for creating Circlemarkers and optionally adding them to the map.
+    /// It is responsible for creating Circlemarkers and optionally adding them to the Map.
     /// </summary>
     public interface ICircleMarkerFactory
     {

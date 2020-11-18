@@ -3,7 +3,7 @@
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// IIconFactory is responsible for creating icons.
+    /// It is responsible for creating Icons.
     /// </summary>
     public interface IIconFactory
     {

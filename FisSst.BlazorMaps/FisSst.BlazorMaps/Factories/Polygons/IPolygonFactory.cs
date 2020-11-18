@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// IPolygonFactory is responsible for creating Polygons and optionally adding them to the map.
+    /// It is responsible for creating Polygons and optionally adding them to the Map.
     /// </summary>
     public interface IPolygonFactory
     {

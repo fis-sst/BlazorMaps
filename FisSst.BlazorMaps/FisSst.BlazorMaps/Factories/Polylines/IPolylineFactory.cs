@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// IPolylineFactory is responsible for creating Polylines and optionally adding them to the map.
+    /// It is responsible for creating Polylines and optionally adding them to the Map.
     /// </summary>
     public interface IPolylineFactory
     {
