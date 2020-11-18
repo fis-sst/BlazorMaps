@@ -11,16 +11,21 @@ namespace FisSst.BlazorMaps
             Keyboard = true;
             Title = string.Empty;
             Alt = string.Empty;
-            ZIndexOffset = 0;
-            Opacity = 1;
+            ZIndexOffset = DefaultZIndexOffset;
+            Opacity = DefaultOpacity;
             RiseOnHover = false;
-            RiseOffset = 250;
-            Pane = "markerPane";
-            ShadowPane = "shadowPane";
+            RiseOffset = DefaultRiseOffset;
+            Pane = DefaultPane;
+            ShadowPane = DefaultShadowPane;
             BubblingMouseEvents = false;
             Interactive = true;
         }
 
+        private const int DefaultZIndexOffset = 0;
+        private const double DefaultOpacity = 1;
+        private const int DefaultRiseOffset = 250;
+        private const string DefaultPane = "markerPane";
+        private const string DefaultShadowPane = "shadowPane";
         private Icon iconRef;
         [JsonIgnore]
         public Icon IconRef

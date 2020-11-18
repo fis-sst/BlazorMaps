@@ -6,11 +6,11 @@ namespace FisSst.BlazorMaps
 {
     public class CircleMarker : Path
     {
-        private const string toGeoJSON = "toGeoJSON";
-        private const string setLatLng = "setLatLng";
-        private const string getLatLng = "getLatLng";
-        private const string setRadius = "setRadius";
-        private const string getRadius = "getRadius";
+        private const string ToGeoJSONJsFunction = "toGeoJSON";
+        private const string SetLatLngJsFunction = "setLatLng";
+        private const string GetLatLngJsFunction = "getLatLng";
+        private const string SetRadiusJsFunction = "setRadius";
+        private const string GetRadiusJsFunction = "getRadius";
 
         internal CircleMarker(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
@@ -20,29 +20,29 @@ namespace FisSst.BlazorMaps
 
         public async Task<object> ToGeoJSON()
         {
-            return await this.JsReference.InvokeAsync<object>(toGeoJSON);
+            return await this.JsReference.InvokeAsync<object>(ToGeoJSONJsFunction);
         }
 
         public async Task<CircleMarker> SetLatLng(LatLng latLng)
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(setLatLng, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(SetLatLngJsFunction, latLng);
             return this;
         }
 
         public async Task<LatLng> GetLatLng()
         {
-            return await this.JsReference.InvokeAsync<LatLng>(getLatLng);
+            return await this.JsReference.InvokeAsync<LatLng>(GetLatLngJsFunction);
         }
 
         public async Task<CircleMarker> SetRadius(LatLng latLng)
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(setRadius, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(SetRadiusJsFunction, latLng);
             return this;
         }
 
         public async Task<double> GetRadius()
         {
-            return await this.JsReference.InvokeAsync<double>(getRadius);
+            return await this.JsReference.InvokeAsync<double>(GetRadiusJsFunction);
         }
     }
 }

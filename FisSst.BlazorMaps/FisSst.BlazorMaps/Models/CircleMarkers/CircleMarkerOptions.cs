@@ -5,9 +5,10 @@
         public CircleMarkerOptions()
         {
             Fill = true;
-            Radius = 10;
+            Radius = DefaultRadius;
         }
 
+        private const double DefaultRadius = 10;
         public double Radius { get; init; }
     }
 }

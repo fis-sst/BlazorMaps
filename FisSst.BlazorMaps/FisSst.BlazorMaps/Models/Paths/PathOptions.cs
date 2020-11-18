@@ -5,24 +5,32 @@
         public PathOptions()
         {
             Stroke = true;
-            Color = "#3388ff";
-            Weight = 3;
-            Opacity = 1.0;
-            LineCap = "round";
-            LineJoin = "round";
+            Color = DefaultColor;
+            Weight = DefaultWeight;
+            Opacity = DefaultOpacity;
+            LineCap = DefaultLineCap;
+            LineJoin = DefaultLineJoin;
             DashArray = null;
             DashOffset = null;
             Fill = false;
             FillColor = null;
-            FillOpacity = 0.2;
-            FillRule = "evenodd";
+            FillOpacity = DefaultFillOpacity;
+            FillRule = DefaultFillRule;
             BubblingMouseEvents = true;
             ClassName = null;
             Interactive = true;
-            Pane = "overlayPane";
+            Pane = DefaultPane;
             Attribution = null;
         }
 
+        private const string DefaultColor = "#3388ff";
+        private const int DefaultWeight = 3;
+        private const double DefaultOpacity = 1.0;
+        private const string DefaultLineCap = "round";
+        private const string DefaultLineJoin = "round";
+        private const double DefaultFillOpacity = 0.2;
+        private const string DefaultFillRule = "evenodd";
+        private const string DefaultPane = "overlayPane";
         public bool Stroke { get; init; }
         public string Color { get; init; }
         public int Weight { get; init; }
