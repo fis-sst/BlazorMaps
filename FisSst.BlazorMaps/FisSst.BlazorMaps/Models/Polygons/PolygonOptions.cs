@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// PolyGonOptions determine polygon's properties. 
+    /// Determines Polygon's properties. 
     /// </summary>
     public class PolygonOptions : PolylineOptions
     {

@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// MapSubOptions is a subset of MapOptions.
+    /// It is a subset of MapOptions.
     /// </summary>
     public class MapSubOptions
     {

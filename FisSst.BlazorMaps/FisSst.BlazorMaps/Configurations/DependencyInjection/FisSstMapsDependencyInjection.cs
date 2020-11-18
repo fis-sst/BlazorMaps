@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FisSst.BlazorMaps.DependencyInjection
 {
     /// <summary>
-    /// FisSstMapsDependencyInjection is responsible for providing an app's services
+    /// It is responsible for providing an app's services
     /// collection with its Factories and JsInterops implementations.
     /// </summary>
     public static class FisSstMapsDependencyInjection

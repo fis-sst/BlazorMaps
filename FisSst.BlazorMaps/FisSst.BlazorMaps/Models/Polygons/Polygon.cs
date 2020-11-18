@@ -4,7 +4,7 @@ using Microsoft.JSInterop;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Polygon is a class for drawing polygon overlays on a map.
+    /// A class for drawing polygon overlays on a Map.
     /// </summary>
     public class Polygon : Polyline
     {

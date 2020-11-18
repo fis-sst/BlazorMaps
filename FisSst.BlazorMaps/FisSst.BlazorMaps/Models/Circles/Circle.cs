@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Circle is a class for drawing circle overlays on a map.
+    /// A class for drawing circle overlays on a Map.
     /// </summary>
     public class Circle : CircleMarker
     {
-        private const string SetRadiusJsFunction = "setRadius";
+        private const string setRadius = "setRadius";
 
         internal Circle(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
             : base (jsReference, eventedJsInterop)
@@ -18,7 +18,7 @@ namespace FisSst.BlazorMaps
 
         public async Task<Circle> SetRadius(double radius)
         {
-            await this.JsReference.InvokeAsync<Circle>(SetRadiusJsFunction, radius);
+            await this.JsReference.InvokeAsync<Circle>(setRadius, radius);
             return this;
         }
     }

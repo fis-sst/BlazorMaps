@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Point represents a point on a map.
+    /// Represents a point on a Map.
     /// </summary>
     public class Point
     {

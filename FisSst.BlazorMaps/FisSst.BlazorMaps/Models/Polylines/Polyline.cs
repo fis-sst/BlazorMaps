@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// A class for drawing polyline overlays on a map.
+    /// A class for drawing polyline overlays on a Map.
     /// </summary>
     public class Polyline : Path
     {

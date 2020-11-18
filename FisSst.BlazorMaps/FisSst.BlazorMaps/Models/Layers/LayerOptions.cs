@@ -1,7 +1,7 @@
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// LayerOptions determine layer's properties.
+    /// Determines Layer's properties.
     /// </summary>
     public class LayerOptions
     {

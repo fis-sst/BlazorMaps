@@ -3,7 +3,7 @@
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Icon can be a graphical representation of an object on a map.
+    /// Can be a graphical representation of an object on a Map.
     /// </summary>
     public class Icon : JsReferenceBase
     {

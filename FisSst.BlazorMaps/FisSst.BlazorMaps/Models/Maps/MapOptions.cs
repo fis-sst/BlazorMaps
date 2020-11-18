@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// MapOptions determine map's properties.
+    /// Determines Map's properties.
     /// </summary>
     public class MapOptions
     {

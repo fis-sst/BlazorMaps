@@ -1,7 +1,7 @@
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// InteractiveLayerOptions determine InteractiveLayer's properties.
+    /// Determines InteractiveLayer's properties.
     /// </summary>
     public class InteractiveLayerOptions : LayerOptions
     {

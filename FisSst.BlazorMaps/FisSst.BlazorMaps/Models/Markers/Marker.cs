@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Marker is used to display clickable/draggable icons on the map.
+    /// It is used to display clickable/draggable icons on the Map.
     /// </summary>
     public class Marker : InteractiveLayer
     {

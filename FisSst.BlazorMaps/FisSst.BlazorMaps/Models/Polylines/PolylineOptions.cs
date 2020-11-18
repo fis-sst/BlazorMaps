@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// PolylineOptions determine polyline's properties.
+    /// Determines Polyline's properties.
     /// </summary>
     public class PolylineOptions : PathOptions
     {

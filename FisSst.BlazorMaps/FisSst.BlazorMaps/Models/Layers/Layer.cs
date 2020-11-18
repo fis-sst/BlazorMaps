@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// A set of methods from the Layer base class that all Leaflet layers (e.g. markers, circles) use.
+    /// A set of methods from the Layer base class that all Leaflet layers (e.g. Marker, Circle) use.
     /// </summary>
     public abstract class Layer : Evented
     {

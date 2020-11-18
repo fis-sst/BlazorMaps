@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// Evented is an abstract class for beings that are interactive, i.e. they
+    /// An abstract class for beings that are interactive, i.e. they
     /// can react on events such as 'click', 'mouseover' etc.
     /// </summary>
     public abstract class Evented : JsReferenceBase

@@ -1,7 +1,7 @@
 ﻿namespace FisSst.BlazorMaps
 {
     /// <summary>
-    /// CircleOptions include circles' radius and determine whether it's filled or not.
+    /// Determines Circle's properties.
     /// </summary>
     public class CircleOptions : PathOptions
     {
