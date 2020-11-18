@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// A class for drawing polyline overlays on a Map.
+    /// </summary>
     public class Polyline : Path
     {
         private const string ToGeoJSONJsFunction = "toGeoJSON";

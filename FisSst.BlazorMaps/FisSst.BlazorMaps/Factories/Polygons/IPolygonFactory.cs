@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// It is responsible for creating Polygons and optionally adding them to the Map.
+    /// </summary>
     public interface IPolygonFactory
     {
         Task<Polygon> Create(IEnumerable<LatLng> latLngs);

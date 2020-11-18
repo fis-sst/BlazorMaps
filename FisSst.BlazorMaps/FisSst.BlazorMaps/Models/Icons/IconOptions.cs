@@ -1,5 +1,8 @@
 ﻿namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Determines Icon's properties.
+    /// </summary>
     public class IconOptions
     {
         public IconOptions()

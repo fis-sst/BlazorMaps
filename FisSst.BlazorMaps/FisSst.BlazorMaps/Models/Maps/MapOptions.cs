@@ -1,5 +1,8 @@
 ﻿namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Determines Map's properties.
+    /// </summary>
     public class MapOptions
     {
         public string DivId { get; set; }

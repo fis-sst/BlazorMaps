@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Determines Marker's properties.
+    /// </summary>
     public class MarkerOptions : InteractiveLayerOptions
     {
         public MarkerOptions()

@@ -1,5 +1,8 @@
 ﻿namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// It is a subset of MapOptions.
+    /// </summary>
     public class MapSubOptions
     {
         public string Id { get; set; }

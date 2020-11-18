@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FisSst.BlazorMaps.DependencyInjection
 {
+    /// <summary>
+    /// It is responsible for providing an app's services
+    /// collection with its Factories and JsInterops implementations.
+    /// </summary>
     public static class FisSstMapsDependencyInjection
     {
         public static IServiceCollection AddBlazorLeafletMaps(this IServiceCollection services)

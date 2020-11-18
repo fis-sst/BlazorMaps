@@ -1,5 +1,8 @@
 ﻿namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Represents coordinates - latitude and longitude.
+    /// </summary>
     public class LatLng 
     {
         public LatLng()

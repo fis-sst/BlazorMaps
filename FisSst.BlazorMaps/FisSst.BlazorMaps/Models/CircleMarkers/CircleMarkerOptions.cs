@@ -1,5 +1,8 @@
 ﻿namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// Determines CircleMarker's properties.
+    /// </summary>
     public class CircleMarkerOptions : PathOptions
     {
         public CircleMarkerOptions()

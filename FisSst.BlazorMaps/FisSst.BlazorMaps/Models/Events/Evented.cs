@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// An abstract class for beings that are interactive, i.e. they
+    /// can react on events such as 'click', 'mouseover' etc.
+    /// </summary>
     public abstract class Evented : JsReferenceBase
     {
         private const string ClickJsFunction = "click";

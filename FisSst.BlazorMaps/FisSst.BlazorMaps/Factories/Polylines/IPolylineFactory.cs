@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
 {
+    /// <summary>
+    /// It is responsible for creating Polylines and optionally adding them to the Map.
+    /// </summary>
     public interface IPolylineFactory
     {
         Task<Polyline> Create(IEnumerable<LatLng> latLng);
