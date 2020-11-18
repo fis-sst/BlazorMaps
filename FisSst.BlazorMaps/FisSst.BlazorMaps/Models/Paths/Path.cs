@@ -9,32 +9,32 @@ namespace FisSst.BlazorMaps
     /// </summary>
     public abstract class Path : InteractiveLayer
     {
-        private const string redraw = "redraw";
-        private const string setStyle = "setStyle";
-        private const string bringToFront = "bringToFront";
-        private const string bringToBack = "bringToBack";
+        private const string RedrawJsFunction = "redraw";
+        private const string SetStyleJsFunction = "setStyle";
+        private const string BringToFrontJsFunction = "bringToFront";
+        private const string BringToBackJsFunction = "bringToBack";
 
         public async Task<Path> Redraw()
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(redraw);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(RedrawJsFunction);
             return this;
         }
 
         public async Task<Path> SetStyle(PathOptions options)
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(setStyle, options);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(SetStyleJsFunction, options);
             return this;
         }
 
         public async Task<Path> BringToFront()
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(bringToFront);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(BringToFrontJsFunction);
             return this;
         }
 
         public async Task<Path> BringToBack()
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(bringToBack);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(BringToBackJsFunction);
             return this;
         }
     }

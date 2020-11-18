@@ -10,11 +10,11 @@ namespace FisSst.BlazorMaps
     /// </summary>
     public class Polyline : Path
     {
-        private const string toGeoJSON = "toGeoJSON";
-        private const string setLatLngs = "setLatLngs";
-        private const string isEmpty = "isEmpty";
-        private const string getCenter = "getCenter";
-        private const string addLatLng = "addLatLng";
+        private const string ToGeoJSONJsFunction = "toGeoJSON";
+        private const string SetLatLngsJsFunction = "setLatLngs";
+        private const string IsEmptyJsFunction = "isEmpty";
+        private const string GetCenterJsFunction = "getCenter";
+        private const string AddLatLngJsFunction = "addLatLng";
 
         internal Polyline(IJSObjectReference jsReference, IEventedJsInterop eventedJsInterop)
         {
@@ -24,34 +24,34 @@ namespace FisSst.BlazorMaps
 
         public async Task<object> ToGeoJSON()
         {
-            return await this.JsReference.InvokeAsync<object>(toGeoJSON);
+            return await this.JsReference.InvokeAsync<object>(ToGeoJSONJsFunction);
         }
 
         public async Task<Polyline> SetLatLngs(IEnumerable<LatLng> latLngs)
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(setLatLngs, latLngs);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(SetLatLngsJsFunction, latLngs);
             return this;
         }
 
         public async Task<bool> IsEmpty()
         {
-            return await this.JsReference.InvokeAsync<bool>(isEmpty);
+            return await this.JsReference.InvokeAsync<bool>(IsEmptyJsFunction);
         }
 
         public async Task<LatLng> GetCenter()
         {
-            return await this.JsReference.InvokeAsync<LatLng>(getCenter);
+            return await this.JsReference.InvokeAsync<LatLng>(GetCenterJsFunction);
         }
 
         public async Task<Polyline> AddLatLng(LatLng latLng)
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(addLatLng, latLng);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(AddLatLngJsFunction, latLng);
             return this;
         }
 
         public async Task<Polyline> AddLatLng(LatLng latLng, IEnumerable<LatLng> latLngs)
         {
-            await this.JsReference.InvokeAsync<IJSObjectReference>(addLatLng, latLng, latLngs);
+            await this.JsReference.InvokeAsync<IJSObjectReference>(AddLatLngJsFunction, latLng, latLngs);
             return this;
         }
     }
