@@ -1,8 +1,5 @@
 ﻿@page "/tests"
 
-@inject IJSRuntime JsRuntime
-@inject IMarkerFactory MarkerFactory
-
 @using System.Diagnostics;
 
 <div class="top-container">
@@ -67,82 +64,3 @@
             transform:  translateX(10px)
         }
 </style>
-
-@code {
-    private Map mapRef;
-    private List<Marker> markers = new List<Marker>();
-    private Stopwatch stopwatch = new Stopwatch();
-
-    private double firstLat = 50.24;
-    private double secondLat = 50.30;
-    private double firstLng = 18.62;
-    private double secondLng = 18.75;
-
-    private MapOptions mapOptions = new MapOptions()
-    {
-        DivId = "mapId",
-        Center = new LatLng(50.279133, 18.685578),
-        Zoom = 13,
-        UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        SubOptions = new MapSubOptions()
-        {
-            Attribution = "&copy; <a lhref='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
-            MaxZoom = 18,
-            TileSize = 512,
-            ZoomOffset = -1,
-        }
-    };
-
-    private MatTheme matTheme = new MatTheme()
-    {
-        Primary = "#CBE54E"
-    };
-
-    public int NumberOfMarkers { get; set; }
-
-    private async Task AddMarkers()
-    {
-        List<LatLng> coordinates = GenerateListOfCoordinates();
-
-        this.stopwatch.Restart();
-        this.stopwatch.Start();
-
-        for (int i = 0; i < this.NumberOfMarkers; i++)
-        {
-            Marker marker = await MarkerFactory.CreateAndAddToMap(coordinates[i], this.mapRef);
-            this.markers.Add(marker);
-        }
-
-        this.stopwatch.Stop();
-        StateHasChanged();
-    }
-
-    private void RemoveMarkers()
-    {
-        this.stopwatch.Restart();
-        this.stopwatch.Start();
-        this.markers.ForEach(marker => marker.Remove());
-        this.stopwatch.Stop();
-        this.markers = new List<Marker>();
-        StateHasChanged();
-    }
-
-    private List<LatLng> GenerateListOfCoordinates()
-    {
-        List<LatLng> coordinates = new List<LatLng>();
-        for (int i = 0; i < this.NumberOfMarkers; i++)
-        {
-            coordinates.Add(GetRandomLatLng());
-        }
-
-        return coordinates;
-    }
-
-    private LatLng GetRandomLatLng()
-    {
-        Random random = new Random();
-        double lat = random.NextDouble() * (this.secondLat - this.firstLat) + this.firstLat;
-        double lng = random.NextDouble() * (this.secondLng - this.firstLng) + this.firstLng;
-        return new LatLng(lat, lng);
-    }
-}
