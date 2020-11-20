@@ -34,7 +34,7 @@ namespace FisSst.BlazorMaps
 
         public async Task<IJSObjectReference> SetZIndexOffset(int number)
         {
-            return await this.JsReference.InvokeAsync<IJSObjectReference>(setZIndexOffsetJsFunction, number);
+            return await this.JsReference.InvokeAsync<IJSObjectReference>(SetZIndexOffsetJsFunction, number);
         }
 
         public async Task<Icon> GetIcon()
