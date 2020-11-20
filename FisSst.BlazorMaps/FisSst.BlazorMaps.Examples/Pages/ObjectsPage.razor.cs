@@ -45,6 +45,7 @@ namespace FisSst.BlazorMaps.Examples.Pages
         private CircleOptions circleOptionsInit;
         private CircleOptions circleOptions;
         private CircleOptions circleOptions2;
+
         public ObjectsPage()
         {
             this.center = new LatLng(50.279133, 18.685578);

@@ -13,6 +13,7 @@ namespace FisSst.BlazorMaps.Examples.Pages
         private Marker marker1;
         private Marker marker2;
         private MapOptions mapOptions;
+
         public PopupsPage()
         {
             this.center = new LatLng(50.279133, 18.685578);
