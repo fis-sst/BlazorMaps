@@ -51,15 +51,13 @@ An example below shows how to initialize a component with Leaflet's map in Blazo
         DivId = "mapId",
         Center = new LatLng(50.279133, 18.685578),
         Zoom = 13,
-        UrlTileLayer = "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-        SubOptions = new MapSubOptions()
+        UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+	SubOptions = new MapSubOptions()
         {
-            Attribution = "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
-            Id = "mapbox/streets-v11",
+            Attribution = "&copy; <a lhref='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
             TileSize = 512,
             ZoomOffset = -1,
             MaxZoom = 19,
-            AccessToken = "<YourSecretAccessToken>"
         }
     };
 }
