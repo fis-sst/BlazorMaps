@@ -1,0 +1,43 @@
+﻿@page "/markers"
+
+<div class="top-container">
+    <h1 class="page-header">Markers</h1>
+</div>
+
+<div class="map-wrapper">
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
+</div>
+
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.MarkersAddMarkersIconSrc"
+                     OnClick="async () => await AddMarkers()" />
+    <SidePanelButton Label="remove markers"
+                     IconSrc="@Icons.MarkersRemoveMarkersIconSrc"
+                     OnClick="async () => await RemoveMarkers()" />
+    <SidePanelButton Label="add marker with options"
+                     IconSrc="@Icons.MarkersAddMarkersWithOptionsIconSrc"
+                     OnClick="async () => await AddMarkerWithOptions()" />
+    <SidePanelButton Label="remove marker with options"
+                     IconSrc="@Icons.MarkersRemoveMarkersWithOptionsIconSrc"
+                     OnClick="async () => await RemoveMarkerWithOptions()" />
+</div>
+
+
+<style>
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
+
+        .side-panel .icon-wrapper .icon {
+            height: auto;
+        }
+</style>

@@ -1,0 +1,77 @@
+﻿@page "/popups"
+
+<div class="top-container">
+    <h1 class="page-header">Popups</h1>
+</div>
+
+<div class="map-wrapper">
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
+</div>
+
+<div class="side-panel">
+    <h3 class="header">Popups</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.PopupsAddMarkersIconSrc"
+                     OnClick="async () => await AddMarkers()" />
+    <SidePanelButton Label="bind popup"
+                     IconSrc="@Icons.PopupsBindPopupIconSrc"
+                     OnClick="async () => await BindPopup()" />
+    <SidePanelButton Label="remove popup"
+                     IconSrc="@Icons.PopupsRemovePopupIconSrc"
+                     OnClick="async () => await RemovePopup()" />
+    <SidePanelButton Label="update popup"
+                     IconSrc="@Icons.PopupsUpdatePopupIconSrc"
+                     OnClick="async () => await UpdatePopup()" />
+    <SidePanelButton Label="toggle popup"
+                     IconSrc="@Icons.PopupsTogglePopupIconSrc"
+                     OnClick="async () => await TogglePopup()" />
+    <SidePanelButton Class="button-bind-tooltip"
+                     Label="bind tooltip"
+                     IconSrc="@Icons.PopupsBindTooltipIconSrc"
+                     OnClick="async () => await BindTooltip()" />
+    <SidePanelButton Class="button-remove-tooltip"
+                     Label="remove tooltip"
+                     IconSrc="@Icons.PopupsRemoveTooltipIconSrc"
+                     OnClick="async () => await RemoveTooltip()" />
+    <SidePanelButton Class="button-update-tooltip"
+                     Label="update tooltip"
+                     IconSrc="@Icons.PopupsUpdateTooltipIconSrc"
+                     OnClick="async () => await UpdateTooltip()" />
+    <SidePanelButton Class="button-toggle-tooltip"
+                     Label="toggle tooltip"
+                     IconSrc="@Icons.PopupsToggleTooltipIconSrc"
+                     OnClick="async () => await ToggleTooltip()" />
+</div>
+
+<style>
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: 8vh repeat(4, 12vh);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
+
+    .button-bind-tooltip {
+        grid-row: 4;
+        grid-column: 1;
+    }
+
+    .button-remove-tooltip {
+        grid-row: 4;
+        grid-column: 2;
+    }
+
+    .button-update-tooltip {
+        grid-row: 4;
+        grid-column: 3;
+    }
+
+    .button-toggle-tooltip {
+        grid-row: 5;
+        grid-column: 1;
+    }
+</style>

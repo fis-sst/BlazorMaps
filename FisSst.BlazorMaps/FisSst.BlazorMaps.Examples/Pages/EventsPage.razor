@@ -1,0 +1,47 @@
+﻿@page "/events"
+
+<div class="top-container">
+    <h1 class="page-header">Events</h1>
+</div>
+
+<div class="map-wrapper">
+    <Map @ref="mapRef" MapOptions="@mapOptions"></Map>
+</div>
+
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="add markers"
+                     IconSrc="@Icons.EventsAddMarkersIconSrc"
+                     OnClick="async () => await AddMarkersToMap()" />
+    <SidePanelButton Label="add polygon"
+                     IconSrc="@Icons.EventsAddPolygonsIconSrc"
+                     OnClick="async () => await AddPolygonToMap()" />
+    <SidePanelButton Label="add circle"
+                     IconSrc="@Icons.EventsAddCirclesIconSrc"
+                     OnClick="async () => await AddCircleToMap()" />
+    <SidePanelButton Label="add events to markers"
+                     IconSrc="@Icons.EventsAddEventsToMarkerIconSrc"
+                     OnClick="async () => await AddEventsToMarkers()" />
+    <SidePanelButton Label="remove events from markers"
+                     IconSrc="@Icons.EventsRemoveEventsFromMarkersIconSrc"
+                     OnClick="async () => await RemoveEventsFromMarkers()" />
+    <SidePanelButton Label="add events to map"
+                     IconSrc="@Icons.EventsAddEventsToMapIconSrc"
+                     OnClick="async () => await AddEventsToMap()" />
+    <SidePanelButton Label="remove events from map"
+                     IconSrc="@Icons.EventsRemoveEventsFromMapIconSrc"
+                     OnClick="async () => await RemoveEventsFromMap()" />
+</div>
+
+<style>
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(3, 14vh);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+        .side-panel .header {
+            grid-column: 1/-1;
+        }
+</style>
