@@ -3,20 +3,21 @@
 BlazorMaps is a Blazor library that provides a C# interface for maps provided by [Leaflet.js library](https://leafletjs.com/). It includes several Leaflet.js features which are easily accessible from C# level within a project and it does not require any use of JavaScript.
 
 ## Table of contents
-[Setup](setup)
-[Functionalities](functionalities)
-[Usage](usage)
-[License](license)
+- [Setup](setup)
+- [Functionalities](functionalities)
+- [Usage](usage)
+- [License](license)
 
 ## Setup
 
 1. Add NuGet package to your project in Visual Studio by choosing Tools -> NuGet Package Manager -> Browse -> Type "BlazorMaps" in a search field and find the right package.
 2. Add ```builder.Services.AddBlazorLeafletMaps();``` in Main method of your Program class.
 3. Add import ```@using FisSst.BlazorMaps``` to your _Import.cshtml file.
-4. Remember to include proper dependency injections in your code, e.g 
+4. Remember to include proper dependency injections in your code, e.g.
+
 	```
-		[Inject]
-        private IMarkerFactory MarkerFactory { get; init; }
+	[Inject]
+	private IMarkerFactory MarkerFactory { get; init; }
 	```
 	Get familiar with our examples of usage and descriptive comments in public classes if you are not sure which interfaces should be injected in a given case.
 ## Functionalities
