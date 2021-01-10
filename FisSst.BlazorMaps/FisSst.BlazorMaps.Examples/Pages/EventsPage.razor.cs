@@ -62,7 +62,7 @@ namespace FisSst.BlazorMaps.Examples.Pages
             LatLng SecondLatLng = new LatLng(50.287532, 18.615791);
             LatLng ThirdLatLng = new LatLng(50.295247, 18.579297);
             this.polygon = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, this.mapRef);
-            await this.polygon.OnClick(async (MouseEvent mouseEvent) => await ChangePolygonStyle());
+            await this.polygon.OnMouseEvent(MouseEventType.Click, async (MouseEvent mouseEvent) => await ChangePolygonStyle());
         }
 
         private async Task ChangePolygonStyle()
@@ -84,7 +84,7 @@ namespace FisSst.BlazorMaps.Examples.Pages
             };
 
             this.circle = await this.CircleFactory.CreateAndAddToMap(new LatLng(50.263766, 18.705137), this.mapRef, CircleOptionsInit);
-            await this.circle.OnClick(async (MouseEvent mouseEvent) => await ChangeCircleStyle());
+            await this.circle.OnMouseEvent(MouseEventType.Click, async (MouseEvent mouseEvent) => await ChangeCircleStyle());
         }
 
         private async Task ChangeCircleStyle()
@@ -99,26 +99,26 @@ namespace FisSst.BlazorMaps.Examples.Pages
 
         private async Task AddEventsToMarkers()
         {
-            await this.marker1.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-            await this.marker2.OnContextMenu(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
-            await this.marker3.OnDblClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+            await this.marker1.OnMouseEvent(MouseEventType.Click, async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+            await this.marker2.OnMouseEvent(MouseEventType.ContextMenu, async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+            await this.marker3.OnMouseEvent(MouseEventType.DblClick, async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
         }
 
         private async Task RemoveEventsFromMarkers()
         {
-            await this.marker1.Off("click");
-            await this.marker2.Off("contextmenu");
-            await this.marker3.Off("dblclick");
+            await this.marker1.OffMouseEvent(MouseEventType.Click);
+            await this.marker2.OffMouseEvent(MouseEventType.ContextMenu);
+            await this.marker3.OffMouseEvent(MouseEventType.DblClick);
         }
 
         private async Task AddEventsToMap()
         {
-            await this.mapRef.OnClick(async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
+            await this.mapRef.OnMouseEvent(MouseEventType.Click, async (MouseEvent mouseEvent) => await HandleMouseEvent(mouseEvent));
         }
 
         private async Task RemoveEventsFromMap()
         {
-            await this.mapRef.Off("click");
+            await this.mapRef.OffMouseEvent(MouseEventType.Click);
         }
     }
 }

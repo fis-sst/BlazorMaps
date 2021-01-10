@@ -1,6 +1,6 @@
-﻿export function onCallback(dotnetHelper, evented, eventType) {
+﻿export function onMouseCallback(dotnetHelper, evented, eventType) {
     evented.on(eventType, (mouseEvent) => {
-        dotnetHelper.invokeMethodAsync('OnCallback', eventType, {
+        dotnetHelper.invokeMethodAsync('OnMouseCallbackCalled', eventType, {
             type: mouseEvent.type,
             latLng: mouseEvent.latlng,
         });        

@@ -7,20 +7,20 @@ namespace FisSst.BlazorMaps.JsInterops.Events
     internal class EventedJsInterop : BaseJsInterop, IEventedJsInterop
     {
         private static readonly string jsFilePath = $"{JsInteropConfig.BaseJsFolder}{JsInteropConfig.EventedFile}";
-        private const string onCallback = "onCallback";
+        private const string onMouseCallback = "onMouseCallback";
 
         public EventedJsInterop(IJSRuntime jsRuntime) : base(jsRuntime, jsFilePath)
         {
 
         }
 
-        public async ValueTask OnCallback(
+        public async ValueTask OnMouseCallback(
             DotNetObjectReference<Evented> eventedClass,
             IJSObjectReference evented, 
             string eventType)
         {
             IJSObjectReference module = await moduleTask.Value;
-            await module.InvokeVoidAsync(onCallback, eventedClass, evented, eventType);
+            await module.InvokeVoidAsync(onMouseCallback, eventedClass, evented, eventType);
         }
     }
 }

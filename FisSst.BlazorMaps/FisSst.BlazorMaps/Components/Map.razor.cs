@@ -89,43 +89,14 @@ namespace FisSst.BlazorMaps
             await this.MapReference.InvokeAsync<IJSObjectReference>(setZoomAround, latLng, zoom);
         }
 
-        public async Task OnClick(Func<MouseEvent, Task> callback)
+        public async Task OnMouseEvent(MouseEventType mouseEventType, Func<MouseEvent, Task> callback)
         {
-            await this.MapEvented.OnClick(callback);
-        }
-        public async Task OnDblClick(Func<MouseEvent, Task> callback)
-        {
-            await this.MapEvented.OnDblClick(callback);
+            await this.MapEvented.OnMouseEvent(mouseEventType, callback);
         }
 
-        public async Task OnMouseDown(Func<MouseEvent, Task> callback)
+        public async Task OffMouseEvent(MouseEventType mouseEventType)
         {
-            await this.MapEvented.OnMouseDown(callback);
-        }
-
-        public async Task OnMouseUp(Func<MouseEvent, Task> callback)
-        {
-            await this.MapEvented.OnMouseUp(callback);
-        }
-
-        public async Task OnMouseOver(Func<MouseEvent, Task> callback)
-        {
-            await this.MapEvented.OnMouseOver(callback);
-        }
-
-        public async Task OnMouseOut(Func<MouseEvent, Task> callback)
-        {
-            await this.MapEvented.OnMouseOut(callback);
-        }
-
-        public async Task OnContextMenu(Func<MouseEvent, Task> callback)
-        {
-            await this.MapEvented.OnContextMenu(callback);
-        }
-
-        public async Task Off(string eventType)
-        {
-            await this.MapEvented.Off(eventType);
+            await this.MapEvented.OffMouseEvent(mouseEventType);
         }
     }
 }

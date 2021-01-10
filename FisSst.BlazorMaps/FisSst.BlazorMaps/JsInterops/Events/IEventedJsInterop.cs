@@ -9,6 +9,6 @@ namespace FisSst.BlazorMaps.JsInterops.Events
     /// </summary>
     public interface IEventedJsInterop
     {
-        ValueTask OnCallback(DotNetObjectReference<Evented> eventedClass, IJSObjectReference eventedReference, string eventType);
+        ValueTask OnMouseCallback(DotNetObjectReference<Evented> eventedClass, IJSObjectReference eventedReference, string eventType);
     }
 }

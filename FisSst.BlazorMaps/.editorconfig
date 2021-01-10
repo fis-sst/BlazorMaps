@@ -1,0 +1,13 @@
+﻿[*.{cs,vb}]
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_method = true:silent
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_property = true:silent
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_field = true:silent
+
+# CA1822: Mark members as static
+dotnet_diagnostic.CA1822.severity = none
