@@ -12,51 +12,105 @@ namespace FisSst.BlazorMaps
     /// </summary>
     public abstract class Evented : JsReferenceBase
     {
-        private const string OffJsFunction = "off";
+        protected const string OffJsFunction = "off";
         protected IEventedJsInterop EventedJsInterop;
-        private readonly IDictionary<string, Func<MouseEvent, Task>> MouseEvents = new Dictionary<string, Func<MouseEvent, Task>>();
+        protected readonly IDictionary<string, Func<MouseEvent, Task>> MouseEvents = new Dictionary<string, Func<MouseEvent, Task>>();
+        protected readonly IDictionary<string, Func<LocationEvent, Task>> LocationEvents = new Dictionary<string, Func<LocationEvent, Task>>();
 
-        public async Task OnMouseEvent(MouseEventType mouseEventType, Func<MouseEvent, Task> callback)
+        #region AddEventListener
+
+        protected async Task AddMouseEventListener(MouseEventType eventType, Func<MouseEvent, Task> callback)
         {
-            string eventType = this.GetMouseEventType(mouseEventType);
-            if (this.MouseEvents.ContainsKey(eventType))
+            await this.AddEventListener(eventType, callback, this.MouseEvents);
+        }
+
+        protected async Task AddLocationEventListener(LocationEventType eventType, Func<LocationEvent, Task> callback)
+        {
+            await this.AddEventListener(eventType, callback, this.LocationEvents);
+        }        
+
+        private async Task AddEventListener<TEvent, TEventType>(
+            TEventType eventTypeValue,
+            Func<TEvent, Task> callback,
+            IDictionary<string, Func<TEvent, Task>> events)
+                where TEvent : Event
+                where TEventType : struct, Enum
+        {
+            string eventType = Enum.GetName(eventTypeValue);
+            if (events.ContainsKey(eventType))
             {
                 return;
             }
-            this.MouseEvents.Add(eventType, callback);
-            await this.OnMouseCallback(eventType);
-        }        
+            events.Add(eventType, callback);
+            await this.AddEventListener(eventTypeValue, eventType);
+        }
 
-        public async Task OffMouseEvent(MouseEventType mouseEventType)
+        private async Task AddEventListener<TEventType>(TEventType eventTypeValue, string eventType)
+            where TEventType : Enum
         {
-            string eventType = this.GetMouseEventType(mouseEventType);
-            if (this.MouseEvents.ContainsKey(eventType))
+            DotNetObjectReference<Evented> eventedClass = DotNetObjectReference.Create(this);
+            await this.EventedJsInterop.AddEventListenerInJs(eventedClass, this.JsReference, eventTypeValue, eventType);
+        }
+
+        #endregion
+
+        #region RemoveEventListener
+
+        protected async Task RemoveMouseEventListener(MouseEventType eventType)
+        {
+            await this.RemoveEventListener(eventType, this.MouseEvents);
+        }
+
+        protected async Task RemoveLocationEventListener(LocationEventType eventType)
+        {
+            await this.RemoveEventListener(eventType, this.LocationEvents);
+        }
+
+        private async Task RemoveEventListener<TEvent, TEventType>(
+            TEventType eventTypeValue, 
+            IDictionary<string, Func<TEvent, Task>> events)
+                where TEvent : Event
+                where TEventType : struct, Enum
+        {
+            string eventType = Enum.GetName(eventTypeValue);
+            if (events.ContainsKey(eventType))
             {
-                this.MouseEvents.Remove(eventType);
+                events.Remove(eventType);
                 await this.JsReference.InvokeAsync<IJSObjectReference>(OffJsFunction, eventType);
             }
         }
+
+        #endregion
+
+        #region OnCallbackCalled
 
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [JSInvokable]
         public async Task OnMouseCallbackCalled(string eventType, MouseEvent mouseEvent)
         {
-            bool isEvented = this.MouseEvents.TryGetValue(eventType, out Func<MouseEvent, Task> callback);
+            await this.OnCallbackCalled(eventType, mouseEvent, this.MouseEvents);
+        }
+
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [JSInvokable]
+        public async Task OnLocationCallbackCalled(string eventType, LocationEvent locationEvent)
+        {
+            await this.OnCallbackCalled(eventType, locationEvent, this.LocationEvents);
+        }
+
+        private async Task OnCallbackCalled<TEvent>(
+            string eventType, 
+            TEvent mouseEvent,
+            IDictionary<string, Func<TEvent, Task>> events)
+                where TEvent : Event
+        {
+            bool isEvented = events.TryGetValue(eventType, out Func<TEvent, Task> callback);
             if (isEvented)
             {
                 await callback.Invoke(mouseEvent);
             }
         }
 
-        private async Task OnMouseCallback(string eventType)
-        {
-            DotNetObjectReference<Evented> eventedClass = DotNetObjectReference.Create(this);
-            await this.EventedJsInterop.OnMouseCallback(eventedClass, this.JsReference, eventType);
-        }        
-
-        private string GetMouseEventType(MouseEventType mouseEventType)
-        {
-            return Enum.GetName(mouseEventType).ToLower();
-        }
+        #endregion 
     }
 }

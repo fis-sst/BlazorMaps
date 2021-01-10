@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps.JsInterops.Events
@@ -9,6 +10,11 @@ namespace FisSst.BlazorMaps.JsInterops.Events
     /// </summary>
     public interface IEventedJsInterop
     {
-        ValueTask OnMouseCallback(DotNetObjectReference<Evented> eventedClass, IJSObjectReference eventedReference, string eventType);
+        ValueTask AddEventListenerInJs<TEventType>(
+            DotNetObjectReference<Evented> eventedClass,
+            IJSObjectReference evented,
+            TEventType eventTypeValue,
+            string eventType)
+                where TEventType : Enum;
     }
 }
