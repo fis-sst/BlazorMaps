@@ -36,8 +36,9 @@ namespace FisSst.BlazorMaps
         private const string setZoom = "setZoom";
         private const string zoomIn = "zoomIn";
         private const string zoomOut = "zoomOut";
-        private const string setZoomAround = "setZoomAround";        
-
+        private const string setZoomAround = "setZoomAround";
+        private const string invalidateSize = "invalidateSize";
+        
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -91,6 +92,11 @@ namespace FisSst.BlazorMaps
         public async Task SetZoomAround(LatLng latLng, int zoom)
         {
             await this.MapReference.InvokeAsync<IJSObjectReference>(setZoomAround, latLng, zoom);
+        }
+
+        public async Task InvalidateSize()
+        {
+            await this.MapReference.InvokeAsync<IJSObjectReference>(invalidateSize);
         }
 
         public async Task OnClick(Func<MouseEvent, Task> callback)
