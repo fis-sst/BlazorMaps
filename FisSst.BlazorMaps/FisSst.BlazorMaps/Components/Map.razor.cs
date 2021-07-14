@@ -3,6 +3,7 @@ using FisSst.BlazorMaps.JsInterops.Maps;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace FisSst.BlazorMaps
@@ -23,6 +24,9 @@ namespace FisSst.BlazorMaps
         [Parameter]
         public MapOptions MapOptions { get; set; }
 
+        [Parameter]
+        public string Style { get; set; }
+
         internal IJSObjectReference MapReference { get; set; }
 
         private const string getCenter = "getCenter";
@@ -33,7 +37,7 @@ namespace FisSst.BlazorMaps
         private const string setZoom = "setZoom";
         private const string zoomIn = "zoomIn";
         private const string zoomOut = "zoomOut";
-        private const string setZoomAround = "setZoomAround";        
+        private const string setZoomAround = "setZoomAround";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -41,7 +45,18 @@ namespace FisSst.BlazorMaps
             {
                 this.MapReference = await this.MapJsInterop.Initialize(this.MapOptions);
                 this.MapEvented = new MapEvented(this.MapReference, this.EventedJsInterop);
-            }            
+                initialized = true;
+            }
+        }
+
+        private bool initialized;
+
+        public async Task WaitForInitialize()
+        {
+            while (!initialized)
+            {
+                await Task.Delay(10);
+            }
         }
 
         public async Task<LatLng> GetCenter()
