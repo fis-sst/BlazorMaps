@@ -35,7 +35,7 @@ namespace FisSst.BlazorMaps.Examples.Pages
                 Center = new LatLng(50.279133, 18.685578),
                 Zoom = 13,
                 UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                SubOptions = new MapSubOptions()
+                SubOptions = new TileLayerOptions()
                 {
                     Attribution = "&copy; <a lhref='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
                     MaxZoom = 18,
