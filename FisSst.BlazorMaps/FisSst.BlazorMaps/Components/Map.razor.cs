@@ -25,6 +25,9 @@ namespace FisSst.BlazorMaps
         public MapOptions MapOptions { get; set; }
 
         [Parameter]
+        public EventCallback AfterRender { get; set; }
+
+        [Parameter]
         public string Style { get; set; }
 
         internal IJSObjectReference MapReference { get; set; }
@@ -46,6 +49,7 @@ namespace FisSst.BlazorMaps
                 this.MapReference = await this.MapJsInterop.Initialize(this.MapOptions);
                 this.MapEvented = new MapEvented(this.MapReference, this.EventedJsInterop);
                 initialized = true;
+                await this.AfterRender.InvokeAsync();
             }
         }
 
