@@ -9,6 +9,6 @@
         public LatLng Center { get; set; }
         public int Zoom { get; set; }
         public string UrlTileLayer { get; set; }
-        public MapSubOptions SubOptions { get; set; }
+        public TileLayerOptions SubOptions { get; set; }
     }
 }
