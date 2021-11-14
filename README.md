@@ -3,10 +3,11 @@
 BlazorMaps is a Blazor library that provides a C# interface for maps provided by [Leaflet.js library](https://leafletjs.com/). It includes several Leaflet.js features which are easily accessible from C# level within a project and it does not require any use of JavaScript.
 
 ## Table of contents
-- [Setup](setup)
-- [Functionalities](functionalities)
-- [Usage](usage)
-- [License](license)
+- [Setup](#setup)
+- [Functionalities](#functionalities)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Setup
 
@@ -33,7 +34,9 @@ BlazorMaps is a Blazor library that provides a C# interface for maps provided by
 	private IMarkerFactory MarkerFactory { get; init; }
 	```
 	Get familiar with our examples of usage and descriptive comments in public classes if you are not sure which interfaces should be injected in a given case.
+	
 ## Functionalities
+
 So far, BlazorMap includes:
 * initialization of Leaflet map component,
 * markers,
@@ -45,6 +48,7 @@ So far, BlazorMap includes:
 The above functionalities have been developed in a way that allows to use them in the same way (or at least similar) to those from Leaflet.js library. Some of them are limited or incomplete but the main goal of BlazorMaps is to cover them all.
 
 ## Usage
+
 There is an example project available in this repository. You can play around with functionalities and execute performance tests.
 
 An example below shows how to initialize a component with Leaflet's map in Blazor: 
@@ -78,6 +82,7 @@ An example below shows how to initialize a component with Leaflet's map in Blazo
 
 
 ## Contributing
+
 Feel free to report issues regarding bugs and improvements. If you want to report an issue, try to stick to the rules:
 * before reporting a bug make sure it is caused by BlazorMaps
 * include steps to reproduce
@@ -85,5 +90,7 @@ Feel free to report issues regarding bugs and improvements. If you want to repor
 * include minimal scope of code that is needed to reproduce your issue
 
 In case of not being sure how to report, contact us **info@fis-sst.pl**.
+
 ## License
+
 BlazorMaps works under MIT license. You can find the license in LICENSE.txt file in the root directory of our project.
