@@ -1,0 +1,52 @@
+﻿@page "/css-classes"
+
+<div class="top-container">
+    <h1 class="page-header">Container CSS class</h1>
+</div>
+
+<div class="map-wrapper">
+    <Map @ref="mapRef" MapOptions="@mapOptions" CssClass="custom-css-class"></Map>
+</div>
+
+
+<div class="side-panel">
+    <h3 class="header">Functionalities</h3>
+    <SidePanelButton Label="get center"
+                     IconSrc="@Icons.InitializationGetCenterIconSrc"
+                     OnClick="async () => await GetCenterExample()"/>
+    <SidePanelButton Label="set view"
+                     IconSrc="@Icons.InitializationSetViewIconSrc"
+                     OnClick="async () => await mapRef.SetView(center)"/>
+    <SidePanelButton Label="set zoom"
+                     IconSrc="@Icons.InitializationSetZoomIconSrc"
+                     OnClick="async () => await mapRef.SetZoom(zoom: 16)"/>
+    <SidePanelButton Label="zoom in"
+                     IconSrc="@Icons.InitializationZoomInIconSrc"
+                     OnClick="async () => await mapRef.ZoomIn(zoomDelta: 1)"/>
+    <SidePanelButton Label="zoom out"
+                     IconSrc="@Icons.InitializationZoomOutIconSrc"
+                     OnClick="async () => await mapRef.ZoomOut(zoomDelta: 3)"/>
+    <SidePanelButton Label="set zoom around"
+                     IconSrc="@Icons.InitializationSetZoomAroundIconSrc"
+                     OnClick="async () => await mapRef.SetZoomAround(center, 10)"/>
+</div>
+
+<style>
+    .side-panel {
+        min-width: 400px;
+        display: grid;
+        grid-template-rows: minmax(3rem, 5rem) repeat(2, 150px);
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .side-panel .header {
+        grid-column: 1/-1;
+    }
+
+    .side-panel .icon-wrapper .icon {
+        height: auto;
+    }
+    .custom-css-class {
+        border: 2px solid red;
+    }
+</style>

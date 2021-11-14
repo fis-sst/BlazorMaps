@@ -22,6 +22,9 @@ namespace FisSst.BlazorMaps
 
         [Parameter]
         public MapOptions MapOptions { get; set; }
+        
+        [Parameter]
+        public string CssClass { get; set; }
 
         [Parameter]
         public EventCallback AfterRender { get; set; }
