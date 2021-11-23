@@ -28,6 +28,7 @@ namespace FisSst.BlazorMaps
 
         internal IJSObjectReference MapReference { get; set; }
 
+        private const string getBounds = "getBounds";
         private const string getCenter = "getCenter";
         private const string getZoom = "getZoom";
         private const string getMinZoom = "getMinZoom";
@@ -46,6 +47,11 @@ namespace FisSst.BlazorMaps
                 this.MapEvented = new MapEvented(this.MapReference, this.EventedJsInterop);
                 await this.AfterRender.InvokeAsync();
             }            
+        }
+
+        public async Task<LatLngBounds> GetBounds()
+        {
+            return await this.MapReference.InvokeAsync<LatLngBounds>(getBounds);
         }
 
         public async Task<LatLng> GetCenter()
