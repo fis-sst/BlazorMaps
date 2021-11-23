@@ -37,7 +37,8 @@ namespace FisSst.BlazorMaps
         private const string zoomIn = "zoomIn";
         private const string zoomOut = "zoomOut";
         private const string setZoomAround = "setZoomAround";        
-
+        private const string fitBounds = "fitBounds";
+        
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -130,6 +131,19 @@ namespace FisSst.BlazorMaps
         public async Task Off(string eventType)
         {
             await this.MapEvented.Off(eventType);
+        }
+        
+        /// <summary>
+        /// As far Leaflet (javascript) can accept getBounds() as parameter for fitBounds()
+        /// Here we have to make some transform to give proper values for fitBounds() and prevent Exception "Bounds are not valid."
+        /// Due to _southwest & _northeast returned by getBounds()
+        /// All Leaflet methods that accept LatLngBounds objects also accept them in a simple Array form (unless noted otherwise), so the bounds can be passed like this:
+        /// map.fitBounds([ [40.712, -74.227], [40.774, -74.125] ])
+        /// </summary>
+        /// <param name="coords">Use ToLatLng extension method from LatLngBounds</param>
+        public async Task FitBounds(IEnumerable<LatLng> coords)
+        {
+          await this.MapReference.InvokeAsync<IJSObjectReference>(fitBounds, coords);
         }
     }
 }
