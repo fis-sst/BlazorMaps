@@ -33,6 +33,9 @@ namespace FisSst.BlazorMaps.Examples.Pages
         private IJSRuntime JsRuntime { get; init; }
 
         [Inject]
+        private ICircleFactory CircleFactory { get; init; }
+        
+        [Inject]
         private IRectangleFactory RectangleFactory { get; init; }
         
         private async Task GetCenterExample()
