@@ -13,7 +13,8 @@ namespace FisSst.BlazorMaps
         private const string SetStyleJsFunction = "setStyle";
         private const string BringToFrontJsFunction = "bringToFront";
         private const string BringToBackJsFunction = "bringToBack";
-
+        private const string GetBoundsJsFunction = "getBounds";
+        
         public async Task<Path> Redraw()
         {
             await this.JsReference.InvokeAsync<IJSObjectReference>(RedrawJsFunction);
@@ -36,6 +37,17 @@ namespace FisSst.BlazorMaps
         {
             await this.JsReference.InvokeAsync<IJSObjectReference>(BringToBackJsFunction);
             return this;
+        }
+        
+        /// <summary>
+        /// Leaflet getBounds() function returns  
+        /// {"_southWest":{"lat":-23.601783040147975,"lng":-46.537071217637845}, "_northEast":{"lat":-23.556816959852032,"lng":-46.48800878236214}}"
+        /// </summary>
+        /// <returns>LatLngBounds</returns>
+        public async Task<LatLngBounds> GetBounds()
+        {
+          
+          return await this.JsReference.InvokeAsync<LatLngBounds>(GetBoundsJsFunction);
         }
     }
 }
