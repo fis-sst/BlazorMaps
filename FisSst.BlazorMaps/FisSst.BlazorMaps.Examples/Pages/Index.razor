@@ -29,6 +29,9 @@
     <SidePanelButton Label="set zoom around"
                      IconSrc="@Icons.InitializationSetZoomAroundIconSrc"
                      OnClick="async () => await mapRef.SetZoomAround(center, 10)" />
+    <SidePanelButton Label="get, fitBounds, Rectangle sample"
+                   IconSrc="@Icons.InitializationSetZoomAroundIconSrc"
+                   OnClick="async () => await SetMapInitialView(center)" />
 </div>
 
 <style>
